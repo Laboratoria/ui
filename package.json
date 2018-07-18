@@ -1,0 +1,12 @@
+{
+  "name": "laboratoria-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Laboratoria/ui.git",
+  "author": "ivandevp <medinadiazivan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^1.4.0",
+    "react": "^16.4.1"
+  }
+}
