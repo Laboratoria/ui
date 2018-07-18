@@ -1,12 +1,24 @@
 {
   "name": "laboratoria-ui",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
+  "main": "dist/index.js",
   "repository": "https://github.com/Laboratoria/ui.git",
   "author": "ivandevp <medinadiazivan@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^1.4.0",
-    "react": "^16.4.1"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "build": "webpack --mode production"
   }
 }
