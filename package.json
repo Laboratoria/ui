@@ -4,7 +4,7 @@
   "main": "dist/laboratoria-ui.js",
   "module": "dist/laboratoria-ui.module.js",
   "repository": "https://github.com/Laboratoria/ui.git",
-  "author": "ivandevp <medinadiazivan@gmail.com>",
+  "author": "Laboratoria Devs Team",
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^1.4.0",
