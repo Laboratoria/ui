@@ -1,5 +1,5 @@
-const Button = require('./src/Button');
+import Button from './src/Button';
 
-module.exports = {
+export default {
     Button,
 };
