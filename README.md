@@ -34,7 +34,7 @@ ReactDOM.render(
       </Typography>
 
       <Button variant="contained" color="primary">
-        I'm a Button
+        Button
       </Button>    
   </MuiThemeProvider>, 
   document.getElementById('app'),
