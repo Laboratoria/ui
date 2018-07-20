@@ -21,14 +21,7 @@ export default {
             exclude: './node_modules/**'
         }),
         resolve(),
-        commonjs({
-            namedExports: {
-            // left-hand side can be an absolute path, a path
-            // relative to the current directory, or the name
-            // of a module in node_modules
-            'node_modules/@material-ui/core/styles/createMuiTheme.js': [ 'createMuiTheme' ]
-            }
-        })
+        commonjs()
     ],
     external: ['react', 'react-dom'],
     globals: {

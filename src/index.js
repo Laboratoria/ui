@@ -1,2 +1,7 @@
-export { default as Theme } from './Theme';
-export { default as Button } from './Button';
+import Theme from './Theme';
+import Button from './Button';
+
+export  {
+  Theme,
+  Button,
+}
