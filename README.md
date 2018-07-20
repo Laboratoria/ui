@@ -37,6 +37,6 @@ ReactDOM.render(
         I'm a Button
       </Button>    
   </MuiThemeProvider>, 
-  document.getElementById('app')
+  document.getElementById('app'),
 );
 ```
