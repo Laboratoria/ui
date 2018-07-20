@@ -4,10 +4,11 @@
   (factory((global.LaboratoriaUI = {}),null,global.React,global.ReactDOM));
 }(this, (function (exports,createMuiTheme,_react,reactDom) { 'use strict';
 
+  createMuiTheme = createMuiTheme && createMuiTheme.hasOwnProperty('default') ? createMuiTheme['default'] : createMuiTheme;
   _react = _react && _react.hasOwnProperty('default') ? _react['default'] : _react;
   reactDom = reactDom && reactDom.hasOwnProperty('default') ? reactDom['default'] : reactDom;
 
-  var theme = createMuiTheme.createMuiTheme({
+  var theme = createMuiTheme({
     typography: {
       fontFamily: ['Bitter']
     },

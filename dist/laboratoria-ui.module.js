@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'createMuiTheme';
+import createMuiTheme from 'createMuiTheme';
 import _react from 'react';
 import reactDom from 'react-dom';
 

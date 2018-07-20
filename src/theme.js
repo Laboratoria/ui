@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'createMuiTheme';
+import createMuiTheme from 'createMuiTheme';
 
 const theme = createMuiTheme({
   typography: {
