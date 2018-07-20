@@ -1,6 +1,6 @@
 {
   "name": "laboratoria-ui",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/laboratoria-ui.commonjs.js",
   "module": "dist/laboratoria-ui.module.js",
   "repository": "https://github.com/Laboratoria/ui.git",
