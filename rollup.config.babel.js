@@ -14,7 +14,11 @@ export default {
         {
             dest: './dist/laboratoria-ui.module.js',
             format: 'es'
-        }
+        },
+        {
+            dest: './dist/laboratoria-ui.commonjs.js',
+            format: 'cjs'
+        },
     ],
     plugins: [
         babel({
