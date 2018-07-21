@@ -9,6 +9,14 @@ export default {
     targets: [
         {
             dest: './dist/laboratoria-ui.js',
+            format: 'umd'
+        },
+        {
+            dest: './dist/laboratoria-ui.module.js',
+            format: 'es'
+        },
+        {
+            dest: './dist/laboratoria-ui.commonjs.js',
             format: 'cjs'
         },
     ],
