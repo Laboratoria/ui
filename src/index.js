@@ -1,7 +1,7 @@
 import Theme from './Theme';
 import Button from './Button';
 
-export  {
+export default {
   Theme,
   Button,
 }
