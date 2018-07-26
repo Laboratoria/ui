@@ -4,7 +4,7 @@ import babel from 'rollup-plugin-babel';
 import nodeGlobals from 'rollup-plugin-node-globals';
 
 const input = './src/index.js';
-const name = 'material-ui';
+const name = 'laboratoria-ui';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
