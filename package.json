@@ -1,17 +1,25 @@
 {
   "name": "laboratoria-ui",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "main": "build/umd/laboratoria-ui.production.min.js",
   "repository": "https://github.com/Laboratoria/ui.git",
   "author": "Laboratoria Devs Team",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c rollup.config.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "dist": "rollup -c rollup.config.js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@material-ui/core": "^1.4.2",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4",
     "rollup": "^0.63.4",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.3",
