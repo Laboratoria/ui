@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import nodeGlobals from 'rollup-plugin-node-globals';
 
-const input = './src/index.js';
+const input = './src/components/index.js';
 const name = 'laboratoria-ui';
 const globals = {
   react: 'React',
