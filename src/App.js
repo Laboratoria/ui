@@ -38,7 +38,7 @@ const App = props => {
   const { classes } = props;
   return (
     <React.Fragment>
-    <Header image="https://app.talento.laboratoria.la/img/logo.svg" />
+    <Header image="https://app.talento.laboratoria.la/img/logo.svg" alt="Laboratoria" />
 
     <Grid container spacing={24} className={classes.root}>
       <Grid item xs={12}>
