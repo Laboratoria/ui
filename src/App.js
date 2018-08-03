@@ -7,6 +7,7 @@ import Colors from './components/Color';
 import MainTitle from './components/MainTitle';
 import Header from './components/Header';
 
+
 const styles = theme => ({
   root : {
     textAlign: 'center'
@@ -30,7 +31,7 @@ const styles = theme => ({
 
   dividers:  {
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
   }
 });
 
