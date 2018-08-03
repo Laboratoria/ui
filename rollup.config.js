@@ -2,6 +2,7 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import nodeGlobals from 'rollup-plugin-node-globals';
+import ignore from 'rollup-plugin-ignore';
 
 const input = './src/components/index.js';
 const name = 'laboratoria-ui';
@@ -20,23 +21,12 @@ const commonjsOptions = {
 export default [
   {
     input,
-    output: { file: `build/umd/${name}.development.js`, format: 'umd', name, globals },
-    external: Object.keys(globals),
-    plugins: [
-      nodeResolve(),
-      babel(babelOptions),
-      commonjs(),
-      nodeGlobals(),
-    ],
-  },
-  {
-    input,
     output: { file: `build/umd/${name}.production.min.js`, format: 'umd', name, globals },
     external: Object.keys(globals),
     plugins: [
       nodeResolve(),
       babel(babelOptions),
-      commonjs(),
+      commonjs(commonjsOptions),
       nodeGlobals(),
     ],
   },
