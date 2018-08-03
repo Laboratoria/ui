@@ -8,7 +8,7 @@ const Header = (props) => (
     align="center"
   >
     <Grid item xs={12}>
-      <img src={props.image} />
+      <img src={props.image} alt="Laboratoria" />
     </Grid>
   </Grid>
 );
