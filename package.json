@@ -1,13 +1,13 @@
 {
   "name": "laboratoria-ui",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "main": "build/umd/laboratoria-ui.production.min.js",
   "repository": "https://github.com/Laboratoria/ui.git",
   "author": "Laboratoria Devs Team",
   "license": "MIT",
   "scripts": {
-    "start": "yarn install @material-ui && react-scripts start",
-    "build": "yarn install @material-ui && react-scripts build",
+    "start": "yarn add @material-ui/core && react-scripts start",
+    "build": "yarn add @material-ui/core && react-scripts build",
     "dist": "rm -Rf node_modules/@material-ui && rollup -c rollup.config.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
