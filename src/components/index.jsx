@@ -4,4 +4,4 @@ import MainTitle from './MainTitle';
 export default {
   Theme,
   MainTitle,
-}
+};

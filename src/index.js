@@ -9,6 +9,7 @@ import App from './App';
 ReactDOM.render(
   <MuiThemeProvider theme={Theme}>
     <App />
-  </MuiThemeProvider>
+  </MuiThemeProvider>,
 
-,document.getElementById('root'));
+  document.getElementById('root'),
+);
