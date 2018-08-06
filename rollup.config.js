@@ -5,6 +5,7 @@ import nodeGlobals from 'rollup-plugin-node-globals';
 import jsx from 'rollup-plugin-jsx';
 
 const input = './src/components/index.jsx';
+
 const name = 'laboratoria-ui';
 const globals = {
   react: 'React',
@@ -18,6 +19,7 @@ const babelOptions = {
 const commonjsOptions = {
   ignoreGlobal: true,
   exclude: './node_modules',
+
 };
 
 export default [
