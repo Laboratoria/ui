@@ -9,32 +9,15 @@ import MainTitle from './components/MainTitle';
 import Header from './components/Header';
 
 
-const styles = theme => ({
+const styles = {
   root: {
     textAlign: 'center',
   },
-  colors: {
-    height: 140,
-    width: 140,
-    'text-align': 'center',
-
-  },
-
-  colorPrimery: {
-    'background-color': theme.palette.primary.main,
-  },
-  colorSecondary: {
-    'background-color': '#FF009E',
-  },
-  colorTertiary: {
-    'background-color': '#56f89a',
-  },
-
   dividers: {
     marginTop: 20,
     marginBottom: 20,
   },
-});
+};
 
 const App = (props) => {
   const { classes } = props;
