@@ -1,8 +1,8 @@
 {
-    "presets": [ 
-        [
-            "env", { "modules": false }
-        ], 
-        "react"
-    ]
+  "presets": [
+    [
+      "env", { "modules": false }
+    ],
+    "react"
+  ]
 }
