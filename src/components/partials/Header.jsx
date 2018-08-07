@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
- const Header = (props) => {
+
+const Header = (props) => {
   const { classes, image } = props;
    return (
     <Grid
@@ -26,8 +27,10 @@ import Grid from '@material-ui/core/Grid';
     </Grid>
   );
 };
- Header.propTypes = {
+
+Header.propTypes = {
   classes: PropTypes.shape().isRequired,
   image: PropTypes.string.isRequired,
 };
- export default Header;
+
+export default Header;
