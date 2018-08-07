@@ -4,13 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import classNames from 'classnames';
- const styles = theme => ({
+
+const styles = theme => ({
   colors: {
     height: 140,
     width: 140,
     'text-align': 'center',
   },
-   colorPrimery: {
+  colorPrimary: {
     'background-color': theme.palette.primary.main,
   },
   colorSecondary: {
@@ -20,35 +21,38 @@ import classNames from 'classnames';
     'background-color': '#56f89a',
   },
  });
- const Colors = (props) => {
+
+const Colors = (props) => {
   const { classes } = props;
    return (
     <Grid container justify="center" spacing="16">
       <Grid item>
         <Paper
-          className={classNames(classes.colors, classes.colorPrimery)}
+          className={classNames(classes.colors, classes.colorPrimary)}
         >
-          {classes.colorPrimery.backgroundColor}
+          {classes.colorPrimary.backgroundColor}
         </Paper>
       </Grid>
        <Grid item>
         <Paper
           className={classNames(classes.colors, classes.colorSecondary)}
         >
-          {classes.colorPrimery.backgroundColor}
+          {classes.colorPrimary.backgroundColor}
         </Paper>
       </Grid>
        <Grid item>
         <Paper
           className={classNames(classes.colors, classes.colorTertiary)}
         >
-          {classes.colorPrimery.backgroundColor}
+          {classes.colorPrimary.backgroundColor}
         </Paper>
       </Grid>
     </Grid>
   );
 };
- Colors.propTypes = {
+
+Colors.propTypes = {
   classes: PropTypes.shape().isRequired,
 };
- export default withStyles(styles)(Colors);
+
+export default withStyles(styles)(Colors);
