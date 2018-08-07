@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
+import Header from './components/partials/Header';
 
 const styles = {
   root: {
@@ -16,9 +17,7 @@ const App = (props) => {
     <React.Fragment>
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12}>
-          <Typography variant="display3" gutterBottom>
-          Laboratoria-ui Styleguide
-          </Typography>
+          <Header image="https://app.talento.laboratoria.la/img/logo.svg" />
           <Divider className={classes.dividers} />
         </Grid>
       </Grid>
