@@ -1,6 +1,6 @@
 {
   "name": "laboratoria-ui",
-  "version": "2.0.9",
+  "version": "2.1.10",
   "main": "dist/umd/laboratoria-ui.production.min.js",
   "repository": "https://github.com/Laboratoria/ui.git",
   "author": "Laboratoria Devs Team",
