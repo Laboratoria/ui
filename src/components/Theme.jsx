@@ -8,26 +8,26 @@ const theme = createMuiTheme({
     title: {
       fontFamily: 'Bitter,serif',
       fontWeight: '700',
-      lineHeight: '100%'
+      lineHeight: '100%',
     },
     subheading: {
       fontFamily: 'Bitter,serif',
       fontWeight: '700',
-      lineHeight: '100%'
+      lineHeight: '100%',
     },
     button: {
-      fontSize: "16px",
-      textTransform: "uppercase",
+      fontSize: '16px',
+      textTransform: 'uppercase',
       fontWeight: 900,
       fontFamily: 'Open Sans,sans-serif',
-      color: "rgba(0, 0, 0, 0.87)",
-    }
+      color: 'rgba(0, 0, 0, 0.87)',
+    },
   },
   palette: {
     primary: {
       main: '#ffe521',
     },
   },
-})
+});
 
 export default theme;
