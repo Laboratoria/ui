@@ -25,7 +25,19 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
+      light: '#ffea4d',
       main: '#ffe521',
+      dark: '#b2a017',
+    },
+    magenta: {
+      light: '#ff33b1',
+      main: '#ff009e',
+      dark: '#b2006e',
+    },
+    mint: {
+      light: '#77f9ae',
+      main: '#56f89a',
+      dark: '#3cad6b',
     },
   },
 });
