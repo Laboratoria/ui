@@ -1,28 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Open Sans,sans-serif',
-    ],
-    title: {
-      fontFamily: 'Bitter,serif',
-      fontWeight: '700',
-      lineHeight: '100%',
-    },
-    subheading: {
-      fontFamily: 'Bitter,serif',
-      fontWeight: '700',
-      lineHeight: '100%',
-    },
-    button: {
-      fontSize: '16px',
-      textTransform: 'uppercase',
-      fontWeight: 900,
-      fontFamily: 'Open Sans,sans-serif',
-      color: 'rgba(0, 0, 0, 0.87)',
-    },
-  },
   palette: {
     primary: {
       light: '#ffea4d',
@@ -38,6 +16,39 @@ const theme = createMuiTheme({
       light: '#77f9ae',
       main: '#56f89a',
       dark: '#3cad6b',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Open Sans,sans-serif',
+    ],
+    display4: {
+      fontFamily: 'Bitter,serif',
+    },
+    display3: {
+      fontFamily: 'Bitter,serif',
+    },
+    display2: {
+      fontFamily: 'Bitter,serif',
+    },
+    display1: {
+      fontFamily: 'Bitter,serif',
+    },
+    headline: {
+      fontFamily: 'Bitter,serif',
+    },
+    title: {
+      fontFamily: 'Bitter,serif',
+    },
+    subheading: {
+      fontFamily: 'Bitter,serif',
+    },
+    body2: {
+      fontWeight: 600,
+    },
+    button: {     
+      fontSize: '16px',
+      fontWeight: 800,
     },
   },
 });
