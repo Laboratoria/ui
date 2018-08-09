@@ -1,50 +1,75 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withTheme, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import classNames from 'classnames';
 
 const styles = theme => ({
   colors: {
-    height: 140,
+    height: 100,
     width: 140,
     'text-align': 'center',
   },
-  colorPrimary: {
+  'primary-light': {
+    'background-color': theme.palette.primary.light,
+  },
+  'primary-main': {
     'background-color': theme.palette.primary.main,
   },
-  colorSecondary: {
-    'background-color': '#FF009E',
+  'primary-dark': {
+    'background-color': theme.palette.primary.dark,
   },
-  colorTertiary: {
-    'background-color': '#56f89a',
+  'magenta-light': {
+    'background-color': theme.palette.magenta.light,
+  },
+  'magenta-main': {
+    'background-color': theme.palette.magenta.main,
+  },
+  'magenta-dark': {
+    'background-color': theme.palette.magenta.dark,
+  },
+  'mint-light': {
+    'background-color': theme.palette.mint.light,
+  },
+  'mint-main': {
+    'background-color': theme.palette.mint.main,
+  },
+  'mint-dark': {
+    'background-color': theme.palette.mint.dark,
   },
  });
 
 const Colors = (props) => {
-  const { classes } = props;
+  const { theme, classes, color } = props;
+  
    return (
     <Grid container justify="center" spacing="16">
       <Grid item>
         <Paper
-          className={classNames(classes.colors, classes.colorPrimary)}
+          className={classNames(classes.colors, classes[`${color}-light`])}
         >
-          {classes.colorPrimary.backgroundColor}
+          {`${color}-light`}
+          <br />
+          {theme.palette[`${color}`].light}
         </Paper>
       </Grid>
        <Grid item>
         <Paper
-          className={classNames(classes.colors, classes.colorSecondary)}
+          className={classNames(classes.colors, classes[`${color}-main`])}
         >
-          {classes.colorPrimary.backgroundColor}
+          {`${color}-main`}
+          <br />
+          {theme.palette[`${color}`].main}
         </Paper>
       </Grid>
        <Grid item>
         <Paper
-          className={classNames(classes.colors, classes.colorTertiary)}
+          className={classNames(classes.colors, classes[`${color}-dark`])}
         >
-          {classes.colorPrimary.backgroundColor}
+          {`${color}-dark`}
+          <br />
+          {theme.palette[`${color}`].dark}
         </Paper>
       </Grid>
     </Grid>
@@ -53,6 +78,8 @@ const Colors = (props) => {
 
 Colors.propTypes = {
   classes: PropTypes.shape().isRequired,
+  color: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Colors);
+export default withTheme()(withStyles(styles)(Colors));
