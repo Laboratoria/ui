@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Header from './components/partials/Header';
 import Colors from './components/brand/Colors';
+import Texts from './components/brand/Texts';
 
 const styles = {
   'main-content': {
@@ -21,7 +22,7 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Header image="img/Laboratoria_logo.svg" className={classes.header} /> 
-      <Grid container spacing={24} className={classes['main-content']}>
+      <Grid container className={classes['main-content']}>
         <Grid item xs={12}>
           <Grid container>
             <Grid item xs={12}>
@@ -51,6 +52,15 @@ const App = (props) => {
               Mint
             </Typography>
             <Colors color="mint" />
+            <Divider className={classes.dividers} />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="display2" gutterBottom>
+                Typography
+            </Typography>
+            <Texts />
             <Divider className={classes.dividers} />
           </Grid>
         </Grid>
