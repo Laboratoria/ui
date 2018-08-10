@@ -23,31 +23,46 @@ const theme = createMuiTheme({
       'Open Sans,sans-serif',
     ],
     display4: {
+      color: "#000",
       fontFamily: 'Bitter,serif',
+      fontSize: '2.5rem',
     },
     display3: {
+      color: "#000",
       fontFamily: 'Bitter,serif',
+      fontSize: '1.8rem',
     },
     display2: {
+      color: "#000",
       fontFamily: 'Bitter,serif',
+      fontSize: '1.4rem',
     },
     display1: {
+      color: "#000",
       fontFamily: 'Bitter,serif',
+      fontSize: '1.2rem',
     },
     headline: {
       fontFamily: 'Bitter,serif',
+      fontSize: '1rem',
     },
     title: {
       fontFamily: 'Bitter,serif',
+      fontSize: '0.8rem',
     },
     subheading: {
       fontFamily: 'Bitter,serif',
+      fontSize: '1rem',
+      fontWeight: '600',
+    },
+    body1: {
+      fontSize: '1rem',
     },
     body2: {
-      fontWeight: 600,
+      fontSize: '0.8rem',
     },
-    button: {     
-      fontSize: '16px',
+    button: {
+      fontSize: '0.8rem',     
       fontWeight: 800,
     },
   },

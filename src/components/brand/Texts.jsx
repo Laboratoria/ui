@@ -5,89 +5,82 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   texts: {
-    textAlign: 'left',
+    // textAlign: 'left',
   },
  });
 
 const Texts = (props) => {
   const { classes, theme } = props;
-
   return (
     <div className={classes.texts}>
       <Typography variant="display4" gutterBottom>
-        Display 4
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.display4.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="display3" gutterBottom>
-        Display 3
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.display3.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="display2" gutterBottom>
-        Display 2
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.display2.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="display1" gutterBottom>
-        Display 1
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.display1.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="headline" gutterBottom>
-        Headline
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.headline.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="title" gutterBottom>
-        Title
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.title.fontSize} (desktop)`}
-      </Typography>
-      <Typography variant="subheading" gutterBottom>
-        Subheading
-      </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.subheading.fontSize} (desktop)`}
+        H1 Our Talent
       </Typography>
       <Typography variant="body2" gutterBottom>
-        Body 2
+        {`${theme.typography.display4.fontSize} (desktop)`}
       </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.body2.fontSize} (desktop)`}
+      <Typography variant="display3" component="h2" gutterBottom>
+        H2 Talent Fest
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        Body 1
+      <Typography variant="body2" gutterBottom>
+        {`${theme.typography.display3.fontSize} (desktop)`}
       </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.body1.fontSize} (desktop)`}
+      <Typography variant="display2" component="h3" gutterBottom>
+        H3 Digital Leadership
       </Typography>
-      <Typography variant="caption" gutterBottom>
-        Caption
+      <Typography variant="body2" gutterBottom>
+        {`${theme.typography.display2.fontSize} (desktop)`}
       </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.caption.fontSize} (desktop)`}
+      <Typography variant="display1" component="h4" gutterBottom>
+        H4 Corporate Training
       </Typography>
-      <Typography gutterBottom>
-        {`
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        `}
+      <Typography variant="body2" gutterBottom>
+        {`${theme.typography.display1.fontSize} (desktop)`}
       </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.fontSize} (desktop)`}
+      <Typography variant="headline" component="h5" gutterBottom>
+        H5 Mariana Costa
       </Typography>
-      <Typography variant="button" gutterBottom>
-        Button
+      <Typography variant="body2" gutterBottom>
+        {`${theme.typography.headline.fontSize} (desktop)`}
       </Typography>
-      <Typography gutterBottom>
-        {`${theme.typography.button.fontSize} (desktop)`}
+      <Typography variant="title" component="h6" gutterBottom>
+        H6 Más Información
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        {`${theme.typography.title.fontSize} (desktop)`}
+      </Typography>
+      <Typography paragraph>
+      {`
+        Para los párrafos la tipografía será Open Sans, usando el tag p.
+        El tamaño de la tipografía será: 20px (desktop), 16px (móvil)
+      `}
+      </Typography>
+      <Typography paragraph>
+      {`
+        Lorem ipsum dolor sit amet, quas reque maiestatis nec ex, vis 
+        suas tincidunt te, ignota verear virtute id est. Usu cu ullum 
+        insolens. Est ne dignissim gloriatur, ne vim sanctus habemus 
+        sententiae, id mel suas accumsan suscipiantur. Mel quaeque 
+        tractatos te, per ea gloriatur voluptatum. Sed debitis partiendo 
+        tincidunt cu.
+      `}
+      </Typography>
+      <Typography paragraph>
+      {`
+        Ea eos facilisis consequat. Ne ius augue dolorem, ex primis 
+        maluisset efficiendi vix, consul probatus pro id. Ius an stet 
+        nonumes. An lorem sapientem vix, ut nostrud feugiat voluptua vis.
+      `}
+      </Typography>
+      <Typography paragraph>
+      {`
+        Eos vide facilisi forensibus ei, prima nominavi consequat sed 
+        id, at tritani debitis accumsan eum. Usu no mucius regione, 
+        no his oratio diceret mentitum. Id reque homero nonumes vim, 
+        vocent officiis eu vim. Ignota sensibus oportere has no, sed 
+        albucius mentitum no, mel ne paulo principes disputationi. 
+        Mazim veniam ne eos.
+      `}
       </Typography>
     </div>
   );

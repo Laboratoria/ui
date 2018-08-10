@@ -44,7 +44,7 @@ const Colors = (props) => {
   const { theme, classes, color } = props;
   
    return (
-    <Grid container justify="center" spacing="16">
+    <Grid container spacing="16">
       <Grid item>
         <Paper
           className={classNames(classes.colors, classes[`${color}-light`])}
