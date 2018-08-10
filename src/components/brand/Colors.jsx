@@ -9,34 +9,34 @@ const styles = theme => ({
   colors: {
     height: 100,
     width: 140,
-    'text-align': 'center',
+    textAlign: 'center',
   },
   'primary-light': {
-    'background-color': theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
   },
   'primary-main': {
-    'background-color': theme.palette.primary.main,
+    'backgroundColor': theme.palette.primary.main,
   },
   'primary-dark': {
-    'background-color': theme.palette.primary.dark,
+    'backgroundColor': theme.palette.primary.dark,
   },
   'magenta-light': {
-    'background-color': theme.palette.magenta.light,
+    'backgroundColor': theme.palette.magenta.light,
   },
   'magenta-main': {
-    'background-color': theme.palette.magenta.main,
+    'backgroundColor': theme.palette.magenta.main,
   },
   'magenta-dark': {
-    'background-color': theme.palette.magenta.dark,
+    'backgroundColor': theme.palette.magenta.dark,
   },
   'mint-light': {
-    'background-color': theme.palette.mint.light,
+    'backgroundColor': theme.palette.mint.light,
   },
   'mint-main': {
-    'background-color': theme.palette.mint.main,
+    'backgroundColor': theme.palette.mint.main,
   },
   'mint-dark': {
-    'background-color': theme.palette.mint.dark,
+    'backgroundColor': theme.palette.mint.dark,
   },
  });
 
