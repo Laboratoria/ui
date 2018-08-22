@@ -61,10 +61,6 @@ const theme = createMuiTheme({
     body2: {
       fontSize: '0.8rem',
     },
-    button: {
-      fontSize: '0.8rem',     
-      fontWeight: 800,
-    },
   },
 });
 
