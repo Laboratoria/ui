@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './components/partials/Header';
 import Colors from './components/brand/Colors';
 import Texts from './components/brand/Texts';
+import PrimaryButton from './components/Buttons';
 
 
 const styles = {
@@ -24,7 +25,7 @@ const App = (props) => {
   const { classes } = props;
   return (
     <React.Fragment>
-      <Header image="img/Laboratoria_logo.svg" className={classes.header} /> 
+      <Header image="img/Laboratoria_logo.svg" className={classes.header} />
       <Grid container className={classes['main-content']}>
         <Grid item xs={12}>
           <Grid container>
@@ -91,6 +92,20 @@ const App = (props) => {
               h1, h2, h3, h4, h5, h6 por default siempre serán BITTER
             </Typography>
             <Texts />
+            <Divider className={classes.dividers} />
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="display3" component="h2" gutterBottom>
+              Buttons
+            </Typography>
+
+            <PrimaryButton tag="a">
+              Publica una posición
+            </PrimaryButton>
+
             <Divider className={classes.dividers} />
           </Grid>
         </Grid>
