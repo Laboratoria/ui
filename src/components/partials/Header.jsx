@@ -45,8 +45,8 @@ Header.defaultProps = {
 Header.propTypes = {
   classes: PropTypes.shape().isRequired,
   image: PropTypes.string.isRequired,
-  linkLeft: PropTypes.arrayOf(PropTypes.string),
-  linkRight: PropTypes.arrayOf(PropTypes.string),
+  linkLeft: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  linkRight: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default Header;
