@@ -3,34 +3,50 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 const Header = (props) => {
-  const { className, image } = props;
-   return (
+  const {
+    classes,
+    image,
+    linkRight,
+    linkLeft,
+  } = props;
+
+  return (
     <Grid
+      className={classes.root}
       container
+      direction="row"
+      justify="space-around"
       component="header"
-      className={className}
     >
-      <Grid item xs={3} md={4} />
       <Grid
-        item
-        xs={6}
-        md={4}
         container
-        display="flex"
-        direction="row"
-        justify="center"
-        alignItems="center"
+        justify="space-between"
+        className={classes.header}
       >
-        <img src={image} alt="Laboratoria" />
+        <Grid item md={4}>
+          { linkLeft }
+        </Grid>
+        <Grid item md={4}>
+          <img src={image} alt="Laboratoria" />
+        </Grid>
+        <Grid item md={4} className={classes.linkRight}>
+          { linkRight }
+        </Grid>
       </Grid>
-      <Grid item xs={3} md={4} />
     </Grid>
   );
 };
 
+Header.defaultProps = {
+  linkLeft: [],
+  linkRight: [],
+};
+
 Header.propTypes = {
-  className: PropTypes.shape().isRequired,
+  classes: PropTypes.shape().isRequired,
   image: PropTypes.string.isRequired,
+  linkLeft: PropTypes.arrayOf(PropTypes.string),
+  linkRight: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Header;
