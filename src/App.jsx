@@ -8,7 +8,7 @@ import Header from './components/partials/Header';
 import Colors from './components/brand/Colors';
 import Font from './components/brand/Font';
 
-const styles = theme => ({
+const styles = {
   container: {
     margin: '0 auto',
     maxWidth: 1200,
@@ -17,7 +17,7 @@ const styles = theme => ({
   header: {
     height: 60,
   },
-});
+};
 
 const App = ({ classes }) => (
   <React.Fragment>
@@ -43,7 +43,7 @@ const App = ({ classes }) => (
 );
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(App);

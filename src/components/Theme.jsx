@@ -63,12 +63,12 @@ const theme = createMuiTheme({
       color: '#000',
       fontSize: '1rem',
       fontWeight: 600,
-      lineHeight: "1.3em",
+      lineHeight: '1.3em',
     },
     body1: {
       color: '#000',
       fontSize: '1rem',
-      lineHeight: "1.3em",
+      lineHeight: '1.3em',
     },
   },
 });

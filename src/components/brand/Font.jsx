@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTheme, withStyles } from '@material-ui/core/styles';
 import CustomTypography from '../partials/CustomTypography';
 
-const styles = theme => ({
+const styles = {
   'bold-text': {
     fontWeight: 600,
   },
@@ -16,11 +16,11 @@ const styles = theme => ({
   'no-list-style': {
     listStyle: 'none',
   },
-});
+};
 
 const Font = ({ classes, theme }) => (
   <section>
-    <CustomTypography variant="display5" component="h2" gutterBottom >
+    <CustomTypography variant="display5" component="h2" gutterBottom>
       Typography
     </CustomTypography>
     <CustomTypography paragraph>
@@ -37,7 +37,8 @@ const Font = ({ classes, theme }) => (
       <li>Open Sans</li>
     </ul>
     <CustomTypography paragraph>
-      h1, h2, h3, h4, h5, h6 por default siempre serán <span className={classes['font-bitter']}>Bitter</span>
+      h1, h2, h3, h4, h5, h6 por default siempre serán
+      <span className={classes['font-bitter']}>Bitter</span>
     </CustomTypography>
     <ul className={classes['no-list-style']}>
       <li>
@@ -90,20 +91,25 @@ const Font = ({ classes, theme }) => (
       </li>
     </ul>
     <CustomTypography paragraph>
-      Para los párrafos la tipografía será <span className={classes['bold-text']}>Open Sans</span>
+      Para los párrafos la tipografía será
+      <span className={classes['bold-text']}>Open Sans</span>
     </CustomTypography>
     <CustomTypography paragraph>
-      El tamaño de la tipografía será: <span className={classes['bold-text']}>20px (desktop)</span>
+      El tamaño de la tipografía será:
+      <span className={classes['bold-text']}>20px (desktop)</span>
     </CustomTypography>
     <CustomTypography paragraph>
-      Lorem ipsum dolor sit amet, quas reque maiestatis nec ex, vis suas tincidunt te, ignota verear virtute id est. Usu cu ullum insolens. Est ne dignissim gloriatur, ne vim sanctus habemus sententiae, id mel suas accumsan suscipiantur. Mel quaeque tractatos te, per ea gloriatur voluptatum. Sed debitis partiendo tincidunt cu.
+      Lorem ipsum dolor sit amet, quas reque maiestatis nec ex, vis suas tincidunt te,
+      ignota verear virtute id est. Usu cu ullum insolens. Est ne dignissim gloriatur,
+      ne vim sanctus habemus sententiae, id mel suas accumsan suscipiantur.
+      Mel quaeque tractatos te, per ea gloriatur voluptatum. Sed debitis partiendo tincidunt cu.
     </CustomTypography>
   </section>
 );
 
 Font.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.shape().isRequired,
+  theme: PropTypes.shape().isRequired,
 };
 
 export default withTheme()(withStyles(styles)(Font));

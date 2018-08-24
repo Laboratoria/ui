@@ -9,17 +9,18 @@ const styles = theme => ({
   display6: theme.typography.display6,
 });
 
-const CustomTypography = ({ classes, ...props }) => (
+const CustomTypography = ({ classes, variant, ...props }) => (
   <Typography
     classes={{
-      root: classNames(classes[props.variant]),
+      root: classNames(classes[variant]),
     }}
+    variant={variant}
     {...props}
   />
 );
 
 CustomTypography.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(CustomTypography);
