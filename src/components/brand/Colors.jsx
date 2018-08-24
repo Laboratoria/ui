@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { withTheme, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import CustomTypography from '../partials/CustomTypography';
 import classNames from 'classnames';
 
 const styles = theme => ({
-  colors: {
+  paper: {
     height: 100,
-    width: 140,
     textAlign: 'center',
   },
   'primary-light': {
@@ -38,47 +38,68 @@ const styles = theme => ({
   'mint-dark': {
     'backgroundColor': theme.palette.mint.dark,
   },
- });
+});
 
-const Colors = (props) => {
-  const { theme, classes, color } = props;
-  
-   return (
-    <Grid container spacing="16">
-      <Grid item>
-        <Paper
-          className={classNames(classes.colors, classes[`${color}-light`])}
-        >
-          {`${color}-light`}
-          <br />
-          {theme.palette[`${color}`].light}
-        </Paper>
-      </Grid>
-       <Grid item>
-        <Paper
-          className={classNames(classes.colors, classes[`${color}-main`])}
-        >
-          {`${color}-main`}
-          <br />
-          {theme.palette[`${color}`].main}
-        </Paper>
-      </Grid>
-       <Grid item>
-        <Paper
-          className={classNames(classes.colors, classes[`${color}-dark`])}
-        >
-          {`${color}-dark`}
-          <br />
-          {theme.palette[`${color}`].dark}
-        </Paper>
-      </Grid>
+const ColorPalette = ({ classes, color, theme }) => (
+  <Grid container spacing={16}>
+    <Grid item xs={12} md={2}>
+      <Paper
+        classes= {{
+          root: classNames(classes.paper, classes[`${color}-light`]),
+        }}
+      >
+        {`${color}-light`}
+        <br />
+        {theme.palette[`${color}`].light}
+      </Paper>
     </Grid>
-  );
-};
+    <Grid item xs={12} md={2}>
+      <Paper
+        classes= {{
+          root: classNames(classes.paper, classes[`${color}-main`]),
+        }}
+      >
+        {`${color}-main`}
+        <br />
+        {theme.palette[`${color}`].main}
+      </Paper>
+    </Grid>
+    <Grid item xs={12} md={2}>
+      <Paper
+        classes= {{
+          root: classNames(classes.paper, classes[`${color}-dark`]),
+        }}
+      >
+        {`${color}-dark`}
+        <br />
+        {theme.palette[`${color}`].dark}
+      </Paper>
+    </Grid>
+  </Grid>
+);
+
+const Colors = ({ theme, classes }) => (
+  <section>
+    <CustomTypography variant="display5" gutterBottom component="h2" >
+      Brand Colors
+    </CustomTypography>
+    <CustomTypography variant="display4" gutterBottom component="h3">
+      Yellow
+    </CustomTypography>
+    <ColorPalette classes={classes} color="primary" theme={theme} />
+    <CustomTypography variant="display4" gutterBottom component="h3">
+      Mint
+    </CustomTypography>
+    <ColorPalette classes={classes} color="mint" theme={theme} />
+    <CustomTypography variant="display4" gutterBottom component="h3">
+      Magenta
+    </CustomTypography>
+    <ColorPalette classes={classes} color="magenta" theme={theme} />
+  </section>
+);
 
 Colors.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  color: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
