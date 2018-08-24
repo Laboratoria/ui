@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Header from './components/partials/Header';
+import HeaderSimple from './how-to-use/Header/Simple';
+import HeaderWithLinks from './how-to-use/Header/WithLinks';
 import Colors from './components/brand/Colors';
 import Texts from './components/brand/Texts';
 import PrimaryButton from './components/Buttons';
@@ -16,16 +17,16 @@ const styles = {
     maxWidth: 1200,
     width: '90%',
   },
-  header: {
-    height: 60,
-  },
 };
 
 const App = (props) => {
   const { classes } = props;
+
   return (
     <React.Fragment>
-      <Header image="img/Laboratoria_logo.svg" className={classes.header} />
+
+      <HeaderSimple />
+
       <Grid container className={classes['main-content']}>
         <Grid item xs={12}>
           <Grid container>
@@ -109,6 +110,19 @@ const App = (props) => {
             <Divider className={classes.dividers} />
           </Grid>
         </Grid>
+
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="display1" component="h2" gutterBottom>
+              Header
+            </Typography>
+
+            <HeaderWithLinks />
+
+            <Divider className={classes.dividers} />
+          </Grid>
+        </Grid>
+
       </Grid>
     </React.Fragment>
   );
