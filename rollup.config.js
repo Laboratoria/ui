@@ -17,7 +17,7 @@ const babelOptions = {
 };
 const commonjsOptions = {
   ignoreGlobal: true,
-  include: './node_modules/prop-types/**',
+  include: ['./node_modules/**'],
 };
 
 export default [
