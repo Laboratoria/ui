@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import { withStyles } from '@material-ui/core/styles';
 import { TypographyDisplay6 } from './components/Typography';
-import Header from './components/partials/Header';
+import HeaderSimple from './how-to-use/Header/Simple';
+import HeaderWithLinks from './how-to-use/Header/WithLinks';
 import Colors from './how-to-use/Brand/Colors';
 import Font from './how-to-use/Brand/Font';
 import Buttons from './how-to-use/Buttons';
@@ -14,14 +15,11 @@ const styles = {
     maxWidth: 1200,
     width: '90%',
   },
-  header: {
-    height: 60,
-  },
 };
 
 const App = ({ classes }) => (
   <React.Fragment>
-    <Header image="img/Laboratoria_logo.svg" className={classes.header} />
+    <HeaderSimple />
     <div className={classes.container}>
       <TypographyDisplay6 gutterBottom align="center" component="h1">
         Laboratoria-ui Styleguide
@@ -31,6 +29,8 @@ const App = ({ classes }) => (
       <Font />
       <Divider />
       <Buttons />
+      <Divider />
+      <HeaderWithLinks />
     </div>
   </React.Fragment>
 );

@@ -1,5 +1,6 @@
 import Theme from './Theme';
 import Buttons from './Buttons';
+import Header from './partials/Header';
 import { TypographyDisplay5, TypographyDisplay6 } from './Typography';
 
 export {
@@ -7,4 +8,5 @@ export {
   TypographyDisplay5,
   TypographyDisplay6,
   Buttons,
+  Header,
 };
