@@ -9,7 +9,6 @@ import Colors from './how-to-use/Brand/Colors';
 import Font from './how-to-use/Brand/Font';
 import Buttons from './how-to-use/Buttons';
 
-
 const styles = {
   container: {
     margin: '0 auto',
