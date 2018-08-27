@@ -13,7 +13,7 @@ const style = {
 
 const MainTitle = (props) => {
   const { classes, children } = props;
-  
+
   return (
     <Typography className={classes.title} variant="headline" gutterBottom>
       {children}
