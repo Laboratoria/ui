@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme, withStyles } from '@material-ui/core/styles';
-import CustomTypography from '../partials/CustomTypography';
+import Typography from '@material-ui/core/Typography';
+import { TypographyDisplay5 } from '../../components/Typography';
 
 const styles = {
   'bold-text': {
@@ -20,90 +21,90 @@ const styles = {
 
 const Font = ({ classes, theme }) => (
   <section>
-    <CustomTypography variant="display5" component="h2" gutterBottom>
+    <TypographyDisplay5 component="h2" gutterBottom>
       Typography
-    </CustomTypography>
-    <CustomTypography paragraph>
+    </TypographyDisplay5>
+    <Typography paragraph>
       A continuación una lista de los tipos de tipografía:
-    </CustomTypography>
-    <CustomTypography variant="display4" component="h3" gutterBottom>
+    </Typography>
+    <Typography variant="display4" component="h3" gutterBottom>
       Font Types
-    </CustomTypography>
-    <CustomTypography paragraph>
+    </Typography>
+    <Typography paragraph>
       Hay 2 tipos de tipografías
-    </CustomTypography>
+    </Typography>
     <ul className={classes['font-open-sans']}>
       <li className={classes['font-bitter']}>Bitter</li>
       <li>Open Sans</li>
     </ul>
-    <CustomTypography paragraph>
+    <Typography paragraph>
       h1, h2, h3, h4, h5, h6 por default siempre serán
       <span className={classes['font-bitter']}>Bitter</span>
-    </CustomTypography>
+    </Typography>
     <ul className={classes['no-list-style']}>
       <li>
-        <CustomTypography variant="display6" component="h1" gutterBottom>
+        <Typography component="h1" gutterBottom>
           H1 Our Talent
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display6.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
       <li>
-        <CustomTypography variant="display5" component="h2" gutterBottom>
+        <TypographyDisplay5 component="h2" gutterBottom>
           H2 Talent Fest
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </TypographyDisplay5>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display5.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
       <li>
-        <CustomTypography variant="display4" component="h3" gutterBottom>
+        <Typography variant="display4" component="h3" gutterBottom>
           H3 Digital Leadership
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display4.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
       <li>
-        <CustomTypography variant="display3" component="h4" gutterBottom>
+        <Typography variant="display3" component="h4" gutterBottom>
           H4 Corporate Training
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display3.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
       <li>
-        <CustomTypography variant="display2" component="h5" gutterBottom>
+        <Typography variant="display2" component="h5" gutterBottom>
           H5 Mariana Costa
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display2.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
       <li>
-        <CustomTypography variant="display1" component="h6" gutterBottom>
+        <Typography variant="display1" component="h6" gutterBottom>
           H6 Más Información
-        </CustomTypography>
-        <CustomTypography variant="body1" gutterBottom>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
           {`${theme.typography.display1.fontSize} (desktop)`}
-        </CustomTypography>
+        </Typography>
       </li>
     </ul>
-    <CustomTypography paragraph>
+    <Typography paragraph>
       Para los párrafos la tipografía será
       <span className={classes['bold-text']}>Open Sans</span>
-    </CustomTypography>
-    <CustomTypography paragraph>
+    </Typography>
+    <Typography paragraph>
       El tamaño de la tipografía será:
       <span className={classes['bold-text']}>20px (desktop)</span>
-    </CustomTypography>
-    <CustomTypography paragraph>
+    </Typography>
+    <Typography paragraph>
       Lorem ipsum dolor sit amet, quas reque maiestatis nec ex, vis suas tincidunt te,
       ignota verear virtute id est. Usu cu ullum insolens. Est ne dignissim gloriatur,
       ne vim sanctus habemus sententiae, id mel suas accumsan suscipiantur.
       Mel quaeque tractatos te, per ea gloriatur voluptatum. Sed debitis partiendo tincidunt cu.
-    </CustomTypography>
+    </Typography>
   </section>
 );
 
