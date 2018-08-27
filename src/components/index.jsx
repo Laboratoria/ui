@@ -1,7 +1,10 @@
 import Theme from './Theme';
 import Buttons from './Buttons';
+import { TypographyDisplay5, TypographyDisplay6 } from './Typography';
 
-export default {
+export {
   Theme,
+  TypographyDisplay5,
+  TypographyDisplay6,
   Buttons,
 };
