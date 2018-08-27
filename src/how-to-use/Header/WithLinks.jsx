@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { TypographyDisplay5 } from '../../components/Typography';
 import Header from '../../components/partials/Header';
 import PrimaryButton from '../../components/Buttons';
 
@@ -32,12 +34,21 @@ const HeaderWithLinks = (props) => {
   );
 
   return (
-    <Header
-      image="img/Laboratoria_logo.svg"
-      classes={classes}
-      linkLeft={linkLeft}
-      linkRight={linkRight}
-    />
+    <Grid container>
+      <Grid item xs={12}>
+        <TypographyDisplay5 component="h2" gutterBottom>
+          Header
+        </TypographyDisplay5>
+
+        <Header
+          image="img/Laboratoria_logo.svg"
+          classes={classes}
+          linkLeft={linkLeft}
+          linkRight={linkRight}
+        />
+      </Grid>
+    </Grid>
+
   );
 };
 
