@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { withTheme, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import CustomTypography from '../partials/CustomTypography';
+import Typography from '@material-ui/core/Typography';
+import { TypographyDisplay5 } from '../../components/Typography';
 
 const styles = theme => ({
   paper: {
@@ -86,20 +87,20 @@ ColorPalette.propTypes = {
 
 const Colors = ({ theme, classes }) => (
   <section>
-    <CustomTypography variant="display5" gutterBottom component="h2">
+    <TypographyDisplay5 gutterBottom component="h2">
       Brand Colors
-    </CustomTypography>
-    <CustomTypography variant="display4" gutterBottom component="h3">
+    </TypographyDisplay5>
+    <Typography variant="display4" gutterBottom component="h3">
       Yellow
-    </CustomTypography>
+    </Typography>
     <ColorPalette classes={classes} color="primary" theme={theme} />
-    <CustomTypography variant="display4" gutterBottom component="h3">
+    <Typography variant="display4" gutterBottom component="h3">
       Mint
-    </CustomTypography>
+    </Typography>
     <ColorPalette classes={classes} color="mint" theme={theme} />
-    <CustomTypography variant="display4" gutterBottom component="h3">
+    <Typography variant="display4" gutterBottom component="h3">
       Magenta
-    </CustomTypography>
+    </Typography>
     <ColorPalette classes={classes} color="magenta" theme={theme} />
   </section>
 );
