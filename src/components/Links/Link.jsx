@@ -5,9 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    color: 'inherit',
     fontFamily: 'Open Sans',
+    fontSize: '0.8rem',
+    fontWeight: 300,
     textDecoration: 'inherit',
+  },
+  default: {
+    color: 'inherit',
     '&:hover': {
       color: '#404040',
     },
@@ -46,6 +50,9 @@ function Link(props) {
       className={classNames(
         classes.root,
         {
+          [classes.default]: variant === 'default',
+        },
+        {
           [classes.primary]: variant === 'primary',
         },
         {
@@ -63,11 +70,16 @@ function Link(props) {
   );
 }
 
+Link.defaultProps = {
+  className: '',
+  variant: 'default',
+};
+
 Link.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.shape().isRequired,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'magenta', 'mint']),
+  variant: PropTypes.oneOf(['default', 'primary', 'magenta', 'mint']),
 };
 
 export default withStyles(styles)(Link);
