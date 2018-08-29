@@ -8,6 +8,7 @@ import HeaderWithLinks from './how-to-use/Header/WithLinks';
 import Colors from './how-to-use/Brand/Colors';
 import Font from './how-to-use/Brand/Font';
 import Buttons from './how-to-use/Buttons';
+import GraduatedCard from './how-to-use/Cards';
 
 const styles = {
   container: {
@@ -31,6 +32,8 @@ const App = ({ classes }) => (
       <Buttons />
       <Divider />
       <HeaderWithLinks />
+      <Divider />
+      <GraduatedCard />
     </div>
   </React.Fragment>
 );
