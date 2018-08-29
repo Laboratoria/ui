@@ -9,6 +9,7 @@ import Colors from './how-to-use/Brand/Colors';
 import Font from './how-to-use/Brand/Font';
 import Buttons from './how-to-use/Buttons';
 import GraduatedCard from './how-to-use/Cards';
+import Links from './how-to-use/Links';
 
 const styles = {
   container: {
@@ -32,6 +33,8 @@ const App = ({ classes }) => (
       <Buttons />
       <Divider />
       <HeaderWithLinks />
+      <Divider />
+      <Links />
       <Divider />
       <GraduatedCard />
     </div>
