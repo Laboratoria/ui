@@ -7,15 +7,19 @@ const styles = theme => ({
   body1: theme.typography.display6,
 });
 
-const TypographyDisplay6 = ({ classes, ...props }) => (
-  <Typography
-    classes={{
-      body1: classes.body1,
-    }}
-    variant="body1"
-    {...props}
-  />
-);
+const TypographyDisplay6 = (props) => {
+  const { classes } = props;
+
+  return (
+    <Typography
+      classes={{
+        body1: classes.body1,
+      }}
+      variant="body1"
+      {...props}
+    />
+  );
+};
 
 TypographyDisplay6.propTypes = {
   classes: PropTypes.shape().isRequired,
