@@ -19,7 +19,7 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: '"Open Sans", Arial, sans-serif',
+    fontFamily: 'Open Sans, Arial, sans-serif',
     fontWeightMedium: 600,
     display6: {
       color: '#000',
