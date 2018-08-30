@@ -86,7 +86,7 @@ ColorPalette.propTypes = {
 };
 
 const Colors = ({ theme, classes }) => (
-  <section>
+  <section id="colors">
     <TypographyDisplay5 gutterBottom component="h2">
       Brand Colors
     </TypographyDisplay5>

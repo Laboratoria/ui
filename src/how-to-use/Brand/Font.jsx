@@ -20,7 +20,7 @@ const styles = {
 };
 
 const Font = ({ classes, theme }) => (
-  <section>
+  <section id="typography">
     <TypographyDisplay5 component="h2" gutterBottom>
       Typography
     </TypographyDisplay5>
