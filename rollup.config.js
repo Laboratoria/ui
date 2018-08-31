@@ -1,44 +1,93 @@
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import nodeGlobals from 'rollup-plugin-node-globals';
-import jsx from 'rollup-plugin-jsx';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import svg from 'rollup-plugin-svg';
+import { uglify } from 'rollup-plugin-uglify';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import pkg from './package.json';
+
+// treat as externals not relative, not absolute and not reserved rollup paths
+const external = id => !id.startsWith('\0') && !id.startsWith('.') && !id.startsWith('/');
 
 const input = './src/components/index.jsx';
-const name = 'laboratoria-ui';
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  '@material-ui/core/styles': '@material-ui/core/styles',
-  '@material-ui/core': '@material-ui/core',
+  'prop-types': 'PropTypes',
 };
-const babelOptions = {
-  exclude: './node_modules/**',
-};
+
+const getBabelOptions = ({ useESModules }) => ({
+  exclude: 'node_modules/**',
+  runtimeHelpers: true,
+  plugins: [
+    ['@babel/transform-runtime', { useESModules }],
+  ],
+});
+
 const commonjsOptions = {
-  ignoreGlobal: true,
-  include: ['./node_modules/**'],
+  include: 'node_modules/**',
 };
 
 export default [
   {
     input,
-    output: {
-      file: `dist/umd/${name}.production.min.js`,
-      format: 'umd',
-      name,
-      globals,
-    },
-    external: Object.keys(globals),
+    external,
+    output: { file: pkg.main, format: 'cjs', sourcemap: true },
     plugins: [
-      nodeResolve({
-        extensions: ['.js', '.jsx'],
-      }),
-      babel(babelOptions),
-      commonjs(commonjsOptions),
-      nodeGlobals(),
-      jsx({ factory: 'React.createElement' }),
+      resolve({ extensions: ['.js', '.jsx'] }),
+      babel(getBabelOptions({ useESModules: false })),
+      svg(),
+      sizeSnapshot(),
     ],
   },
 
+  {
+    input,
+    external,
+    output: { file: pkg.module, format: 'esm', sourcemap: true },
+    plugins: [
+      resolve({ extensions: ['.js', '.jsx'] }),
+      babel(getBabelOptions({ useESModules: true })),
+      svg(),
+      commonjs(commonjsOptions),
+      sizeSnapshot(),
+    ],
+  },
+
+  {
+    input,
+    external: Object.keys(globals),
+    output: {
+      globals,
+      format: 'umd',
+      name: pkg.name,
+      file: 'dist/laboratoria-ui.umd.js',
+    },
+
+    plugins: [
+      resolve({ extensions: ['.js', '.jsx'] }),
+      babel(getBabelOptions({ useESModules: true })),
+      svg(),
+      commonjs(commonjsOptions),
+      sizeSnapshot(),
+    ],
+  },
+
+  {
+    input,
+    external: Object.keys(globals),
+    output: {
+      globals,
+      format: 'umd',
+      name: pkg.name,
+      file: 'dist/laboratoria-ui.umd.min.js',
+    },
+    plugins: [
+      resolve({ extensions: ['.js', '.jsx'] }),
+      babel(getBabelOptions({ useESModules: true })),
+      svg(),
+      commonjs(commonjsOptions),
+      uglify(),
+    ],
+  },
 ];

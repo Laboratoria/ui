@@ -1,14 +1,5 @@
-import Theme from './Theme';
-import Buttons from './Buttons';
-import Header from './partials/Header';
-import { TypographyDisplay5, TypographyDisplay6 } from './Typography';
-import CardMediaGitHub from './Cards';
-
-export {
-  Theme,
-  TypographyDisplay5,
-  TypographyDisplay6,
-  Buttons,
-  Header,
-  CardMediaGitHub,
-};
+export { default as Theme } from './Theme';
+export { default as Buttons } from './Buttons';
+export { default as Header } from './partials/Header';
+export { TypographyDisplay5, TypographyDisplay6 } from './Typography';
+export { default as CardMediaGitHub } from './Cards';
