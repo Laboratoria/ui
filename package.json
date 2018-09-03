@@ -1,18 +1,28 @@
 {
   "name": "laboratoria-ui",
   "version": "2.0.9",
-  "main": "dist/umd/laboratoria-ui.production.min.js",
+  "main": "dist/laboratoria-ui.cjs.js",
+  "module": "dist/laboratoria-ui.esm.js",
   "repository": "https://github.com/Laboratoria/ui.git",
   "author": "Laboratoria Devs Team",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "dist": "rollup -c rollup.config.js",
+    "dist": "rollup -c",
     "test": "./node_modules/.bin/eslint src/**/*.jsx && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
     "@material-ui/core": "^1.4.2",
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -30,11 +40,14 @@
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
     "rollup": "^0.63.4",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.0.2",
     "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-ignore": "^1.0.3",
     "rollup-plugin-jsx": "^1.0.3",
     "rollup-plugin-node-globals": "^1.2.1",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-size-snapshot": "^0.6.1",
+    "rollup-plugin-svg": "^1.0.1",
+    "rollup-plugin-uglify": "^5.0.2"
   }
 }

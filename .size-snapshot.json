@@ -1,0 +1,26 @@
+{
+  "dist/laboratoria-ui.cjs.js": {
+    "bundled": 24170,
+    "minified": 22117,
+    "gzipped": 7415
+  },
+  "dist/laboratoria-ui.esm.js": {
+    "bundled": 23698,
+    "minified": 21757,
+    "gzipped": 7330,
+    "treeshaked": {
+      "rollup": {
+        "code": 20723,
+        "import_statements": 496
+      },
+      "webpack": {
+        "code": 22233
+      }
+    }
+  },
+  "dist/laboratoria-ui.umd.js": {
+    "bundled": 358158,
+    "minified": 148718,
+    "gzipped": 39229
+  }
+}
