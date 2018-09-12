@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import * as Flags from '../SVG/flags';
 
 const styles = {
   paragraph: {
@@ -25,12 +23,6 @@ const styles = {
     height: '62px',
     position: 'relative',
   },
-  flag: {
-    width: '20px',
-    position: 'absolute',
-    bottom: '7px',
-    right: '7px',
-  },
   description: {
     flexGrow: 1,
     paddingTop: 0,
@@ -39,7 +31,13 @@ const styles = {
 };
 
 const CardMediaGitHub = (props) => {
-  const { data, classes, action } = props;
+  const {
+    classes,
+    action,
+    title,
+    subtitle,
+    thumbnail,
+  } = props;
 
   return (
     <Card
@@ -48,18 +46,13 @@ const CardMediaGitHub = (props) => {
         root: classes.root,
       }}
     >
-
-      <CardMedia
-        className={classes.thumbnail}
-        image={`https://github.com/${data.github}.png?size=300`}
-        title={data.name}
-      >
-        <img src={Flags[data.campus]} alt={data.campus} className={classes.flag} />
-      </CardMedia>
+      <div className={classes.thumbnail}>
+        {thumbnail}
+      </div>
 
       <CardContent className={classes.description}>
         <Typography variant="display3" component="h2" gutterBottom>
-          { data.name }
+          { title }
         </Typography>
         <Typography
           paragraph
@@ -67,7 +60,7 @@ const CardMediaGitHub = (props) => {
             paragraph: classes.paragraph,
           }}
         >
-          {data.recomendedAs}
+          { subtitle }
         </Typography>
       </CardContent>
 
@@ -80,8 +73,10 @@ const CardMediaGitHub = (props) => {
 };
 
 CardMediaGitHub.propTypes = {
-  data: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  subtitle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
