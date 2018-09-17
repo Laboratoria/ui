@@ -5,16 +5,17 @@ import Header from '../../components/partials/Header';
 
 const styles = {
   root: {
-    flexGrow: 1,
-    padding: '2% 0',
     backgroundColor: '#fff',
-    textAlign: 'center',
+    flexGrow: 1,
+    padding: '1rem 0',
   },
   header: {
     maxWidth: '1220px',
   },
-  linkRight: {
-    textAlign: 'right',
+  image: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };
 
