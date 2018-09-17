@@ -2,20 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import Link from '../../components/Links';
 import { TypographyDisplay5 } from '../../components/Typography';
 import Header from '../../components/partials/Header';
 import PrimaryButton from '../../components/Buttons';
 
 const styles = {
   root: {
-    flexGrow: 1,
-    padding: '2% 0',
     backgroundColor: '#fff',
-    textAlign: 'center',
+    flexGrow: 1,
+    padding: '1rem 0',
   },
   header: {
     maxWidth: '1220px',
+  },
+  image: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  linkLeft: {
+    display: 'flex',
+    alignItems: 'center',
   },
   linkRight: {
     textAlign: 'right',
@@ -25,7 +33,9 @@ const styles = {
 const HeaderWithLinks = (props) => {
   const { classes } = props;
   const linkLeft = (
-    <Button component="a">Regresar</Button>
+    <Link href="#links">
+      Regresar
+    </Link>
   );
   const linkRight = (
     <PrimaryButton tag="a">

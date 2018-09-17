@@ -23,10 +23,10 @@ const Header = (props) => {
         justify="space-between"
         className={classes.header}
       >
-        <Grid item md={4}>
+        <Grid item md={4} className={classes.linkLeft}>
           { linkLeft }
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={4} className={classes.image}>
           <img src={image} alt="Laboratoria" />
         </Grid>
         <Grid item md={4} className={classes.linkRight}>

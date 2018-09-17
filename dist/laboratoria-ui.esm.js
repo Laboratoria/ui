@@ -1,10 +1,11 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import _extends from '@babel/runtime/helpers/esm/extends';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Button from '@material-ui/core/Button';
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
+import classNames from 'classnames';
 import Grid from '@material-ui/core/Grid';
-import _extends from '@babel/runtime/helpers/esm/extends';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -85,38 +86,104 @@ var theme = createMuiTheme({
 
 var styles = function styles(theme) {
   return {
-    contained: {
+    root: {
       backgroundColor: theme.palette.primary.main,
-      fontSize: '1rem',
-      fontWeight: 900,
-      padding: '14px 21px',
+      border: 0,
+      borderRadius: theme.shape.borderRadius,
       boxShadow: 'none',
+      display: 'inline-block',
+      fontFamily: theme.typography.fontFamily,
+      fontSize: '0.8rem',
+      fontWeight: 800,
+      padding: '14px 21px',
+      textTransform: 'uppercase',
       '&:hover': {
-        backgroundColor: theme.palette.primary.light
+        backgroundColor: theme.palette.primary.light,
+        cursor: 'pointer'
       }
     }
   };
 };
 
 var PrimaryButton = function PrimaryButton(props) {
-  var children = props.children,
-      classes = props.classes,
+  var classes = props.classes,
       tag = props.tag;
-  return React.createElement(Button, {
-    variant: "contained",
-    component: tag,
-    classes: {
-      contained: classes.contained
-    }
-  }, children);
+  var TagName = tag;
+  return React.createElement(TagName, _extends({
+    className: classes.root
+  }, props));
 };
 
 PrimaryButton.propTypes = {
   children: PropTypes.string.isRequired,
-  classes: PropTypes.shape().isRequired,
-  tag: PropTypes.string.isRequired
+  classes: PropTypes.shape().isRequired
 };
 var PrimaryButton$1 = withStyles(styles)(PrimaryButton);
+
+var styles$1 = function styles(theme) {
+  return {
+    root: {
+      fontFamily: 'Open Sans',
+      fontSize: '0.8rem',
+      fontWeight: 300,
+      textDecoration: 'inherit'
+    },
+    default: {
+      borderBottom: 'solid 1px #000',
+      color: 'inherit',
+      '&:hover': {
+        color: '#404040'
+      }
+    },
+    primary: {
+      borderBottom: "solid 1px " + theme.palette.primary.main,
+      color: theme.palette.primary.main,
+      '&:hover': {
+        color: theme.palette.primary.light
+      }
+    },
+    magenta: {
+      borderBottom: "solid 1px " + theme.palette.magenta.main,
+      color: theme.palette.magenta.main,
+      '&:hover': {
+        color: theme.palette.magenta.light
+      }
+    },
+    mint: {
+      borderBottom: "solid 1px " + theme.palette.mint.main,
+      color: theme.palette.mint.main,
+      '&:hover': {
+        color: theme.palette.mint.light
+      }
+    }
+  };
+};
+
+function Link(props) {
+  var _classNames, _classNames2, _classNames3, _classNames4;
+
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      variant = props.variant,
+      other = _objectWithoutPropertiesLoose(props, ["children", "classes", "className", "variant"]);
+
+  return React.createElement("a", _extends({
+    className: classNames(classes.root, (_classNames = {}, _classNames[classes.default] = variant === 'default', _classNames), (_classNames2 = {}, _classNames2[classes.primary] = variant === 'primary', _classNames2), (_classNames3 = {}, _classNames3[classes.magenta] = variant === 'magenta', _classNames3), (_classNames4 = {}, _classNames4[classes.mint] = variant === 'mint', _classNames4), className)
+  }, other), children);
+}
+
+Link.defaultProps = {
+  className: '',
+  variant: 'default'
+};
+Link.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.shape().isRequired,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'primary', 'magenta', 'mint'])
+};
+var Link$1 = withStyles(styles$1)(Link);
 
 var Header = function Header(props) {
   var classes = props.classes,
@@ -135,10 +202,12 @@ var Header = function Header(props) {
     className: classes.header
   }, React.createElement(Grid, {
     item: true,
-    md: 4
+    md: 4,
+    className: classes.linkLeft
   }, linkLeft), React.createElement(Grid, {
     item: true,
-    md: 4
+    md: 4,
+    className: classes.image
   }, React.createElement("img", {
     src: image,
     alt: "Laboratoria"
@@ -160,7 +229,7 @@ Header.propTypes = {
   linkRight: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
-var styles$1 = function styles(theme) {
+var styles$2 = function styles(theme) {
   return {
     body1: theme.typography.display5
   };
@@ -179,9 +248,9 @@ var TypographyDisplay5 = function TypographyDisplay5(props) {
 TypographyDisplay5.propTypes = {
   classes: PropTypes.shape().isRequired
 };
-var TypographyDisplay5$1 = withStyles(styles$1)(TypographyDisplay5);
+var TypographyDisplay5$1 = withStyles(styles$2)(TypographyDisplay5);
 
-var styles$2 = function styles(theme) {
+var styles$3 = function styles(theme) {
   return {
     body1: theme.typography.display6
   };
@@ -200,9 +269,9 @@ var TypographyDisplay6 = function TypographyDisplay6(props) {
 TypographyDisplay6.propTypes = {
   classes: PropTypes.shape().isRequired
 };
-var TypographyDisplay6$1 = withStyles(styles$2)(TypographyDisplay6);
+var TypographyDisplay6$1 = withStyles(styles$3)(TypographyDisplay6);
 
-var styles$3 = {
+var styles$4 = {
   paragraph: {
     marginBottom: 0
   },
@@ -262,7 +331,7 @@ CardMediaGitHub.propTypes = {
   thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 };
-var CardMediaGitHub$1 = withStyles(styles$3)(CardMediaGitHub);
+var CardMediaGitHub$1 = withStyles(styles$4)(CardMediaGitHub);
 
 var peru = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRjRCNTU7IiBkPSJNMzguMzQ1LDg4LjI3M0MxNy4xNjcsODguMjczLDAsMTA1LjQ0LDAsMTI2LjYxOHYyNTguNzU5YzAsMjEuMTc3LDE3LjE2NywzOC4zNDUsMzguMzQ1LDM4LjM0NQ0KCWgxMzIuMzIyVjg4LjI3M0gzOC4zNDV6Ii8+DQo8cmVjdCB4PSIxNzAuNjciIHk9Ijg4LjI3NyIgc3R5bGU9ImZpbGw6I0Y1RjVGNTsiIHdpZHRoPSIxNzAuNjciIGhlaWdodD0iMzM1LjQ1Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkY0QjU1OyIgZD0iTTQ3My42NTUsODguMjczSDM0MS4zMzN2MzM1LjQ0OGgxMzIuMzIyYzIxLjE3NywwLDM4LjM0NS0xNy4xNjcsMzguMzQ1LTM4LjM0NVYxMjYuNjE4DQoJQzUxMiwxMDUuNDQsNDk0LjgzMyw4OC4yNzMsNDczLjY1NSw4OC4yNzN6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4=';
 
@@ -274,5 +343,5 @@ var brazil = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0i
 
 // São Paulo
 
-export { theme as Theme, PrimaryButton$1 as Buttons, Header, TypographyDisplay5$1 as TypographyDisplay5, TypographyDisplay6$1 as TypographyDisplay6, CardMediaGitHub$1 as CardMediaGitHub, peru as aqp, peru as lim, mexico as gdl, mexico as cdmx, chile as scl, brazil as sp };
+export { theme as Theme, PrimaryButton$1 as Button, Link$1 as Link, Header, TypographyDisplay5$1 as TypographyDisplay5, TypographyDisplay6$1 as TypographyDisplay6, CardMediaGitHub$1 as CardMediaGitHub, peru as aqp, peru as lim, mexico as gdl, mexico as cdmx, chile as scl, brazil as sp };
 //# sourceMappingURL=laboratoria-ui.esm.js.map
