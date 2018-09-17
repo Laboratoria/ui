@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
   root: {
@@ -11,24 +11,28 @@ const styles = theme => ({
     textDecoration: 'inherit',
   },
   default: {
+    borderBottom: 'solid 1px #000',
     color: 'inherit',
     '&:hover': {
       color: '#404040',
     },
   },
   primary: {
+    borderBottom: `solid 1px ${theme.palette.primary.main}`,
     color: theme.palette.primary.main,
     '&:hover': {
       color: theme.palette.primary.light,
     },
   },
   magenta: {
+    borderBottom: `solid 1px ${theme.palette.magenta.main}`,
     color: theme.palette.magenta.main,
     '&:hover': {
       color: theme.palette.magenta.light,
     },
   },
   mint: {
+    borderBottom: `solid 1px ${theme.palette.mint.main}`,
     color: theme.palette.mint.main,
     '&:hover': {
       color: theme.palette.mint.light,
