@@ -31,7 +31,7 @@ const PrimaryButton = (props) => {
 };
 
 PrimaryButton.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   classes: PropTypes.shape().isRequired,
 };
 
