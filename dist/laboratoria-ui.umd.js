@@ -1512,7 +1512,7 @@
 	    display4: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
-	      fontSize: '1.4rem',
+	      fontSize: '1.2rem',
 	      letterSpacing: 'normal',
 	      lineHeight: 'normal'
 	    },
@@ -1543,7 +1543,7 @@
 	    },
 	    body1: {
 	      color: '#000',
-	      fontSize: '1rem',
+	      fontSize: '.85rem',
 	      lineHeight: '1.3em'
 	    }
 	  }
