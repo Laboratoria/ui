@@ -71,6 +71,9 @@ const theme = createMuiTheme({
       lineHeight: '1.3em',
     },
   },
+  spacing: {
+    container: 21,
+  },
 });
 
 export default theme;
