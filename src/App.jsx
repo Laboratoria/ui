@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
-import { withStyles } from '@material-ui/core/styles';
-import { TypographyDisplay6 } from './components/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import HeaderSimple from './how-to-use/Header/Simple';
 import HeaderWithLinks from './how-to-use/Header/WithLinks';
 import Colors from './how-to-use/Brand/Colors';
@@ -23,9 +23,9 @@ const App = ({ classes }) => (
   <React.Fragment>
     <HeaderSimple />
     <div className={classes.container}>
-      <TypographyDisplay6 gutterBottom align="center" component="h1">
+      <Typography variant="h1" align="center" gutterBottom>
         Laboratoria-ui Styleguide
-      </TypographyDisplay6>
+      </Typography>
       <Colors />
       <Divider />
       <Font />

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 import CardMediaGitHub from '../../components/Cards';
-import { TypographyDisplay5 } from '../../components/Typography';
 import {
   aqp,
   lim,
@@ -103,9 +103,9 @@ const GraduatedCard = ({ classes }) => {
 
   return (
     <section>
-      <TypographyDisplay5 component="h2" gutterBottom>
+      <Typography variant="h2" gutterBottom>
         Graduated Card
-      </TypographyDisplay5>
+      </Typography>
 
       <CardMediaGitHub
         data={graduated}

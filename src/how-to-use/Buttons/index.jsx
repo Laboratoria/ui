@@ -1,12 +1,12 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import PrimaryButton from '../../components/Buttons';
-import { TypographyDisplay5 } from '../../components/Typography';
 
 const Buttons = () => (
   <section id="buttons">
-    <TypographyDisplay5 component="h2" gutterBottom>
+    <Typography variant="h2" gutterBottom>
       Buttons
-    </TypographyDisplay5>
+    </Typography>
     <PrimaryButton tag="a">
       Publica una posición
     </PrimaryButton>

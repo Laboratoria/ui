@@ -1,12 +1,12 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import Link from '../../components/Links';
-import { TypographyDisplay5 } from '../../components/Typography';
 
 const Links = () => (
   <section id="links">
-    <TypographyDisplay5 component="h2" gutterBottom>
+    <Typography variant="h2" gutterBottom>
       Links
-    </TypographyDisplay5>
+    </Typography>
     <Link href="#links">
       Default
     </Link>
