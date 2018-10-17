@@ -12,10 +12,10 @@ var withStyles = _interopDefault(require('@material-ui/core/styles/withStyles'))
 var _objectWithoutPropertiesLoose = _interopDefault(require('@babel/runtime/helpers/objectWithoutPropertiesLoose'));
 var classNames = _interopDefault(require('classnames'));
 var Grid = _interopDefault(require('@material-ui/core/Grid'));
-var Typography = _interopDefault(require('@material-ui/core/Typography'));
 var Card = _interopDefault(require('@material-ui/core/Card'));
 var CardContent = _interopDefault(require('@material-ui/core/CardContent'));
 var CardActions = _interopDefault(require('@material-ui/core/CardActions'));
+var Typography = _interopDefault(require('@material-ui/core/Typography'));
 
 var theme = createMuiTheme({
   palette: {
@@ -36,57 +36,74 @@ var theme = createMuiTheme({
     }
   },
   typography: {
+    useNextVariants: true,
     fontFamily: 'Open Sans, Arial, sans-serif',
     fontWeightMedium: 600,
-    display6: {
+    h1: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '2.5rem',
-      fontWeight: 400
+      fontWeight: 700,
+      letterSpacing: 'normal',
+      lineHeight: 'normal'
     },
-    display5: {
+    h2: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '1.8rem',
-      fontWeight: 400
+      fontWeight: 700,
+      letterSpacing: 'normal',
+      lineHeight: 'normal'
     },
-    display4: {
+    h3: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '1.4rem',
+      fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal'
     },
-    display3: {
+    h4: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '1.2rem',
+      fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal'
     },
-    display2: {
+    h5: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '1rem',
+      fontWeight: 700,
+      letterSpacing: 'normal',
       lineHeight: 'normal'
     },
-    display1: {
+    h6: {
       color: '#000',
       fontFamily: 'Bitter,serif',
       fontSize: '0.8rem',
+      fontWeight: 700,
+      letterSpacing: 'normal',
       lineHeight: 'normal'
+    },
+    body1: {
+      color: '#000',
+      fontSize: '0.8rem',
+      fontWeight: 300,
+      letterSpacing: 'normal',
+      lineHeight: '1.35em'
     },
     body2: {
       color: '#000',
       fontSize: '1rem',
-      fontWeight: 600,
-      lineHeight: '1.3em'
-    },
-    body1: {
-      color: '#000',
-      fontSize: '1rem',
-      lineHeight: '1.3em'
+      fontWeight: 300,
+      letterSpacing: 'normal',
+      lineHeight: '1.35em'
     }
+  },
+  spacing: {
+    container: 21
   }
 });
 
@@ -235,59 +252,14 @@ Header.propTypes = {
   linkRight: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
-var styles$2 = function styles(theme) {
-  return {
-    body1: theme.typography.display5
-  };
-};
-
-var TypographyDisplay5 = function TypographyDisplay5(props) {
-  var classes = props.classes;
-  return React.createElement(Typography, _extends({
-    classes: {
-      body1: classes.body1
-    },
-    variant: "body1"
-  }, props));
-};
-
-TypographyDisplay5.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-var TypographyDisplay5$1 = withStyles(styles$2)(TypographyDisplay5);
-
-var styles$3 = function styles(theme) {
-  return {
-    body1: theme.typography.display6
-  };
-};
-
-var TypographyDisplay6 = function TypographyDisplay6(props) {
-  var classes = props.classes;
-  return React.createElement(Typography, _extends({
-    classes: {
-      body1: classes.body1
-    },
-    variant: "body1"
-  }, props));
-};
-
-TypographyDisplay6.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-var TypographyDisplay6$1 = withStyles(styles$3)(TypographyDisplay6);
-
-var styles$4 = {
-  paragraph: {
-    marginBottom: 0
-  },
+var styles$2 = {
   root: {
     boxShadow: '1px 1px 0 1px #e1e1e1'
   },
   card: {
     display: 'flex',
     alignItems: 'center',
-    padding: '22px'
+    padding: '21px'
   },
   thumbnail: {
     width: '62px',
@@ -317,14 +289,11 @@ var CardMediaGitHub = function CardMediaGitHub(props) {
   }, thumbnail), React.createElement(CardContent, {
     className: classes.description
   }, React.createElement(Typography, {
-    variant: "display3",
+    variant: "h5",
     component: "h2",
     gutterBottom: true
   }, title), React.createElement(Typography, {
-    paragraph: true,
-    classes: {
-      paragraph: classes.paragraph
-    }
+    variant: "body1"
   }, subtitle)), React.createElement(CardActions, {
     disableActionSpacing: true
   }, action));
@@ -337,7 +306,7 @@ CardMediaGitHub.propTypes = {
   thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 };
-var CardMediaGitHub$1 = withStyles(styles$4)(CardMediaGitHub);
+var CardMediaGitHub$1 = withStyles(styles$2)(CardMediaGitHub);
 
 var peru = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRjRCNTU7IiBkPSJNMzguMzQ1LDg4LjI3M0MxNy4xNjcsODguMjczLDAsMTA1LjQ0LDAsMTI2LjYxOHYyNTguNzU5YzAsMjEuMTc3LDE3LjE2NywzOC4zNDUsMzguMzQ1LDM4LjM0NQ0KCWgxMzIuMzIyVjg4LjI3M0gzOC4zNDV6Ii8+DQo8cmVjdCB4PSIxNzAuNjciIHk9Ijg4LjI3NyIgc3R5bGU9ImZpbGw6I0Y1RjVGNTsiIHdpZHRoPSIxNzAuNjciIGhlaWdodD0iMzM1LjQ1Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkY0QjU1OyIgZD0iTTQ3My42NTUsODguMjczSDM0MS4zMzN2MzM1LjQ0OGgxMzIuMzIyYzIxLjE3NywwLDM4LjM0NS0xNy4xNjcsMzguMzQ1LTM4LjM0NVYxMjYuNjE4DQoJQzUxMiwxMDUuNDQsNDk0LjgzMyw4OC4yNzMsNDczLjY1NSw4OC4yNzN6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4=';
 
@@ -353,8 +322,6 @@ exports.Theme = theme;
 exports.Button = PrimaryButton$1;
 exports.Link = Link$1;
 exports.Header = Header;
-exports.TypographyDisplay5 = TypographyDisplay5$1;
-exports.TypographyDisplay6 = TypographyDisplay6$1;
 exports.CardMediaGitHub = CardMediaGitHub$1;
 exports.aqp = peru;
 exports.lim = peru;

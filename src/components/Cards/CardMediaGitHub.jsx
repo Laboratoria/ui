@@ -7,16 +7,13 @@ import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-  paragraph: {
-    marginBottom: 0,
-  },
   root: {
     boxShadow: '1px 1px 0 1px #e1e1e1',
   },
   card: {
     display: 'flex',
     alignItems: 'center',
-    padding: '22px',
+    padding: '21px',
   },
   thumbnail: {
     width: '62px',
@@ -51,15 +48,10 @@ const CardMediaGitHub = (props) => {
       </div>
 
       <CardContent className={classes.description}>
-        <Typography variant="display3" component="h2" gutterBottom>
+        <Typography variant="h5" component="h2" gutterBottom>
           { title }
         </Typography>
-        <Typography
-          paragraph
-          classes={{
-            paragraph: classes.paragraph,
-          }}
-        >
+        <Typography variant="body1">
           { subtitle }
         </Typography>
       </CardContent>
