@@ -39,7 +39,7 @@ import Button from '@material-ui/core/Button';
 ReactDOM.render(
   <MuiThemeProvider theme={Theme}>
     <div>
-      <Typography variant="display4" align="center">
+      <Typography variant="h1" align="center">
         Hola
       </Typography>
 
