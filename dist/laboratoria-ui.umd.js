@@ -1,11 +1,11 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('prop-types'), require('react'), require('react-dom')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'prop-types', 'react', 'react-dom'], factory) :
-	(factory((global['laboratoria-ui'] = {}),global.PropTypes,global.React,global.ReactDOM));
-}(this, (function (exports,PropTypes,React,reactDom) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('prop-types'), require('react-dom')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'prop-types', 'react-dom'], factory) :
+	(factory((global['laboratoria-ui'] = {}),global.React,global.PropTypes,global.ReactDOM));
+}(this, (function (exports,React,PropTypes,reactDom) { 'use strict';
 
-	PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
 	React = React && React.hasOwnProperty('default') ? React['default'] : React;
+	PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
 	reactDom = reactDom && reactDom.hasOwnProperty('default') ? reactDom['default'] : reactDom;
 
 	var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -1078,15 +1078,26 @@
 
 	var _deepmerge = interopRequireDefault(require$$3);
 
+	var _warning = interopRequireDefault(warning_1);
+
 	// < 1kb payload overhead when lodash/merge is > 3kb.
 	function round(value) {
 	  return Math.round(value * 1e5) / 1e5;
 	}
 
+	var caseAllCaps = {
+	  textTransform: 'uppercase'
+	};
+	var defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
+	/**
+	 * @see @link{https://material.io/design/typography/the-type-system.html}
+	 * @see @link{https://material.io/design/typography/understanding-typography.html}
+	 */
+
 	function createTypography(palette, typography) {
 	  var _ref = typeof typography === 'function' ? typography(palette) : typography,
 	      _ref$fontFamily = _ref.fontFamily,
-	      fontFamily = _ref$fontFamily === void 0 ? '"Roboto", "Helvetica", "Arial", sans-serif' : _ref$fontFamily,
+	      fontFamily = _ref$fontFamily === void 0 ? defaultFontFamiliy : _ref$fontFamily,
 	      _ref$fontSize = _ref.fontSize,
 	      fontSize = _ref$fontSize === void 0 ? 14 : _ref$fontSize,
 	      _ref$fontWeightLight = _ref.fontWeightLight,
@@ -1097,23 +1108,50 @@
 	      fontWeightMedium = _ref$fontWeightMedium === void 0 ? 500 : _ref$fontWeightMedium,
 	      _ref$htmlFontSize = _ref.htmlFontSize,
 	      htmlFontSize = _ref$htmlFontSize === void 0 ? 16 : _ref$htmlFontSize,
+	      _ref$useNextVariants = _ref.useNextVariants,
+	      useNextVariants = _ref$useNextVariants === void 0 ? Boolean(commonjsGlobal.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__) : _ref$useNextVariants,
+	      _ref$suppressWarning = _ref.suppressWarning,
+	      suppressWarning = _ref$suppressWarning === void 0 ? false : _ref$suppressWarning,
 	      allVariants = _ref.allVariants,
-	      other = (0, _objectWithoutProperties2.default)(_ref, ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "htmlFontSize", "allVariants"]);
+	      other = (0, _objectWithoutProperties2.default)(_ref, ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "htmlFontSize", "useNextVariants", "suppressWarning", "allVariants"]);
 
+	  process.env.NODE_ENV !== "production" ? (0, _warning.default)(useNextVariants || suppressWarning, 'Material-UI: you are using the deprecated typography variants ' + 'that will be removed in the next major release.' + '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2') : void 0;
 	  var coef = fontSize / 14;
 
-	  function pxToRem(value) {
-	    return "".concat(value / htmlFontSize * coef, "rem");
-	  }
+	  var pxToRem = function pxToRem(size) {
+	    return "".concat(size / htmlFontSize * coef, "rem");
+	  };
 
-	  return (0, _deepmerge.default)({
-	    pxToRem: pxToRem,
-	    round: round,
-	    fontFamily: fontFamily,
-	    fontSize: fontSize,
-	    fontWeightLight: fontWeightLight,
-	    fontWeightRegular: fontWeightRegular,
-	    fontWeightMedium: fontWeightMedium,
+	  var buildVariant = function buildVariant(fontWeight, size, lineHeight, letterSpacing, casing) {
+	    return (0, _extends2.default)({
+	      color: palette.text.primary,
+	      fontFamily: fontFamily,
+	      fontWeight: fontWeight,
+	      fontSize: pxToRem(size),
+	      // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+	      lineHeight: lineHeight
+	    }, fontFamily === defaultFontFamiliy ? {
+	      letterSpacing: "".concat(round(letterSpacing / size), "em")
+	    } : {}, casing, allVariants);
+	  };
+
+	  var nextVariants = {
+	    h1: buildVariant(fontWeightLight, 96, 1, -1.5),
+	    h2: buildVariant(fontWeightLight, 60, 1, -0.5),
+	    h3: buildVariant(fontWeightRegular, 48, 1.04, 0),
+	    h4: buildVariant(fontWeightRegular, 34, 1.17, 0.25),
+	    h5: buildVariant(fontWeightRegular, 24, 1.33, 0),
+	    h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
+	    subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
+	    subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
+	    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+	    body2Next: buildVariant(fontWeightRegular, 14, 1.5, 0.15),
+	    buttonNext: buildVariant(fontWeightMedium, 14, 1.5, 0.4, caseAllCaps),
+	    captionNext: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
+	    overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps)
+	  }; // To remove in v4
+
+	  var oldVariants = {
 	    display4: (0, _extends2.default)({
 	      fontSize: pxToRem(112),
 	      fontWeight: fontWeightLight,
@@ -1196,7 +1234,23 @@
 	      fontFamily: fontFamily,
 	      color: palette.text.primary
 	    }, allVariants)
-	  }, other, {
+	  };
+	  return (0, _deepmerge.default)((0, _extends2.default)({
+	    pxToRem: pxToRem,
+	    round: round,
+	    fontFamily: fontFamily,
+	    fontSize: fontSize,
+	    fontWeightLight: fontWeightLight,
+	    fontWeightRegular: fontWeightRegular,
+	    fontWeightMedium: fontWeightMedium
+	  }, oldVariants, nextVariants, useNextVariants ? {
+	    body1: nextVariants.body1Next,
+	    body2: nextVariants.body2Next,
+	    button: nextVariants.buttonNext,
+	    caption: nextVariants.captionNext
+	  } : {}, {
+	    useNextVariants: useNextVariants
+	  }), other, {
 	    clone: false // No need to clone deep
 
 	  });
@@ -1495,57 +1549,74 @@
 	    }
 	  },
 	  typography: {
+	    useNextVariants: true,
 	    fontFamily: 'Open Sans, Arial, sans-serif',
 	    fontWeightMedium: 600,
-	    display6: {
+	    h1: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '2.5rem',
-	      fontWeight: 400
+	      fontWeight: 700,
+	      letterSpacing: 'normal',
+	      lineHeight: 'normal'
 	    },
-	    display5: {
+	    h2: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '1.8rem',
-	      fontWeight: 400
+	      fontWeight: 700,
+	      letterSpacing: 'normal',
+	      lineHeight: 'normal'
 	    },
-	    display4: {
+	    h3: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '1.4rem',
+	      fontWeight: 700,
 	      letterSpacing: 'normal',
 	      lineHeight: 'normal'
 	    },
-	    display3: {
+	    h4: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '1.2rem',
+	      fontWeight: 700,
 	      letterSpacing: 'normal',
 	      lineHeight: 'normal'
 	    },
-	    display2: {
+	    h5: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '1rem',
+	      fontWeight: 700,
+	      letterSpacing: 'normal',
 	      lineHeight: 'normal'
 	    },
-	    display1: {
+	    h6: {
 	      color: '#000',
 	      fontFamily: 'Bitter,serif',
 	      fontSize: '0.8rem',
+	      fontWeight: 700,
+	      letterSpacing: 'normal',
 	      lineHeight: 'normal'
+	    },
+	    body1: {
+	      color: '#000',
+	      fontSize: '0.8rem',
+	      fontWeight: 300,
+	      letterSpacing: 'normal',
+	      lineHeight: '1.35em'
 	    },
 	    body2: {
 	      color: '#000',
 	      fontSize: '1rem',
-	      fontWeight: 600,
-	      lineHeight: '1.3em'
-	    },
-	    body1: {
-	      color: '#000',
-	      fontSize: '1rem',
-	      lineHeight: '1.3em'
+	      fontWeight: 300,
+	      letterSpacing: 'normal',
+	      lineHeight: '1.35em'
 	    }
+	  },
+	  spacing: {
+	    container: 21
 	  }
 	});
 
@@ -1566,37 +1637,6 @@
 
 	  return _extends.apply(this, arguments);
 	}
-
-	var interopRequireWildcard = createCommonjsModule(function (module) {
-	function _interopRequireWildcard(obj) {
-	  if (obj && obj.__esModule) {
-	    return obj;
-	  } else {
-	    var newObj = {};
-
-	    if (obj != null) {
-	      for (var key in obj) {
-	        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-	          var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-
-	          if (desc.get || desc.set) {
-	            Object.defineProperty(newObj, key, desc);
-	          } else {
-	            newObj[key] = obj[key];
-	          }
-	        }
-	      }
-	    }
-
-	    newObj.default = obj;
-	    return newObj;
-	  }
-	}
-
-	module.exports = _interopRequireWildcard;
-	});
-
-	unwrapExports(interopRequireWildcard);
 
 	function _classCallCheck(instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
@@ -1772,11 +1812,21 @@
 
 	var hoistNonReactStatics_cjs = hoistNonReactStatics;
 
+	var interopRequireDefault$2 = createCommonjsModule(function (module) {
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : {
+	    default: obj
+	  };
+	}
+
+	module.exports = _interopRequireDefault;
+	});
+
+	unwrapExports(interopRequireDefault$2);
+
 	var getDisplayName_1 = createCommonjsModule(function (module, exports) {
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+	exports.__esModule = true;
 	exports.default = void 0;
 
 	var getDisplayName = function getDisplayName(Component) {
@@ -1797,25 +1847,11 @@
 
 	unwrapExports(getDisplayName_1);
 
-	var interopRequireDefault$2 = createCommonjsModule(function (module) {
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : {
-	    default: obj
-	  };
-	}
-
-	module.exports = _interopRequireDefault;
-	});
-
-	unwrapExports(interopRequireDefault$2);
-
 	var wrapDisplayName_1 = createCommonjsModule(function (module, exports) {
 
 
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+	exports.__esModule = true;
 	exports.default = void 0;
 
 	var _getDisplayName = interopRequireDefault$2(getDisplayName_1);
@@ -1829,80 +1865,6 @@
 	});
 
 	unwrapExports(wrapDisplayName_1);
-
-	var ns = createCommonjsModule(function (module, exports) {
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * Namespaces to avoid conflicts on the context.
-	 */
-	var jss = exports.jss = '64a55d578f856d258dc345b094a2a2b3';
-	var sheetsRegistry = exports.sheetsRegistry = 'd4bd0baacbc52bbd48bbb9eb24344ecd';
-	var managers = exports.managers = 'b768b78919504fba9de2c03545c5cd3a';
-	var sheetOptions = exports.sheetOptions = '6fc570d6bd61383819d0f9e7407c452d';
-	});
-
-	unwrapExports(ns);
-	var ns_1 = ns.jss;
-	var ns_2 = ns.sheetsRegistry;
-	var ns_3 = ns.managers;
-	var ns_4 = ns.sheetOptions;
-
-	var propTypes = createCommonjsModule(function (module, exports) {
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-
-
-	exports['default'] = {
-	  jss: (0, PropTypes.shape)({
-	    options: (0, PropTypes.shape)({
-	      createGenerateClassName: PropTypes.func.isRequired
-	    }).isRequired,
-	    createStyleSheet: PropTypes.func.isRequired,
-	    removeStyleSheet: PropTypes.func.isRequired
-	  }),
-	  registry: (0, PropTypes.shape)({
-	    add: PropTypes.func.isRequired,
-	    toString: PropTypes.func.isRequired
-	  })
-	};
-	});
-
-	unwrapExports(propTypes);
-
-	var contextTypes = createCommonjsModule(function (module, exports) {
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _ns$jss$ns$sheetOptio;
-
-
-
-
-
-	var ns$$1 = _interopRequireWildcard(ns);
-
-
-
-	var _propTypes3 = _interopRequireDefault(propTypes);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	exports['default'] = (_ns$jss$ns$sheetOptio = {}, _defineProperty(_ns$jss$ns$sheetOptio, ns$$1.jss, _propTypes3['default'].jss), _defineProperty(_ns$jss$ns$sheetOptio, ns$$1.sheetOptions, PropTypes.object), _defineProperty(_ns$jss$ns$sheetOptio, ns$$1.sheetsRegistry, _propTypes3['default'].registry), _defineProperty(_ns$jss$ns$sheetOptio, ns$$1.managers, PropTypes.object), _ns$jss$ns$sheetOptio);
-	});
-
-	unwrapExports(contextTypes);
 
 	var getDynamicStyles_1 = createCommonjsModule(function (module, exports) {
 
@@ -4832,6 +4794,25 @@
 	var lib_7 = lib.toCssValue;
 	var lib_8 = lib.getDynamicStyles;
 
+	var reactJssContext = createCommonjsModule(function (module, exports) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	// Share the same values than in
+	// https://github.com/cssinjs/jss/blob/master/packages/react-jss/src/ns.js
+	var ns = {
+	  jss: '64a55d578f856d258dc345b094a2a2b3',
+	  sheetsRegistry: 'd4bd0baacbc52bbd48bbb9eb24344ecd',
+	  sheetOptions: '6fc570d6bd61383819d0f9e7407c452d'
+	};
+	var _default = ns;
+	exports.default = _default;
+	});
+
+	unwrapExports(reactJssContext);
+
 	var lib$1 = createCommonjsModule(function (module, exports) {
 
 	Object.defineProperty(exports, "__esModule", {
@@ -5854,6 +5835,43 @@
 
 	unwrapExports(jssPreset_1);
 
+	var getDisplayName_1$1 = createCommonjsModule(function (module, exports) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getFunctionName = getFunctionName;
+	exports.default = void 0;
+	// Fork of recompose/getDisplayName with added IE11 support
+	// Simplified polyfill for IE11 support
+	// https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
+	var fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
+
+	function getFunctionName(fn) {
+	  var match = "".concat(fn).match(fnNameMatchRegex);
+	  var name = match && match[1];
+	  return name || '';
+	}
+
+	function getDisplayName(Component) {
+	  if (typeof Component === 'string') {
+	    return Component;
+	  }
+
+	  if (!Component) {
+	    return undefined;
+	  }
+
+	  return Component.displayName || Component.name || getFunctionName(Component) || 'Component';
+	}
+
+	var _default = getDisplayName;
+	exports.default = _default;
+	});
+
+	unwrapExports(getDisplayName_1$1);
+	var getDisplayName_2 = getDisplayName_1$1.getFunctionName;
+
 	var mergeClasses_1 = createCommonjsModule(function (module, exports) {
 
 
@@ -5867,22 +5885,20 @@
 
 	var _warning = interopRequireDefault(warning_1);
 
-	var _getDisplayName = interopRequireDefault(getDisplayName_1);
+	var _getDisplayName = interopRequireDefault(getDisplayName_1$1);
 
 	function mergeClasses() {
 	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var baseClasses = options.baseClasses,
 	      newClasses = options.newClasses,
-	      Component = options.Component,
-	      _options$noBase = options.noBase,
-	      noBase = _options$noBase === void 0 ? false : _options$noBase;
+	      Component = options.Component;
 
 	  if (!newClasses) {
 	    return baseClasses;
 	  }
 
 	  return (0, _extends2.default)({}, baseClasses, Object.keys(newClasses).reduce(function (accumulator, key) {
-	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(baseClasses[key] || noBase, ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not implemented in ".concat((0, _getDisplayName.default)(Component), "."), "You can only override one of the following: ".concat(Object.keys(baseClasses).join(','))].join('\n')) : void 0;
+	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(baseClasses[key] || !newClasses[key], ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not implemented in ".concat((0, _getDisplayName.default)(Component), "."), "You can only override one of the following: ".concat(Object.keys(baseClasses).join(','))].join('\n')) : void 0;
 	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(!newClasses[key] || typeof newClasses[key] === 'string', ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not valid for ".concat((0, _getDisplayName.default)(Component), "."), "You need to provide a non empty string instead of: ".concat(newClasses[key], ".")].join('\n')) : void 0;
 
 	    if (newClasses[key]) {
@@ -5899,6 +5915,39 @@
 
 	unwrapExports(mergeClasses_1);
 
+	var multiKeyStore_1 = createCommonjsModule(function (module, exports) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	// Used https://github.com/thinkloop/multi-key-cache as inspiration
+	var multiKeyStore = {
+	  set: function set(cache, key1, key2, value) {
+	    var subCache = cache.get(key1);
+
+	    if (!subCache) {
+	      subCache = new Map();
+	      cache.set(key1, subCache);
+	    }
+
+	    subCache.set(key2, value);
+	  },
+	  get: function get(cache, key1, key2) {
+	    var subCache = cache.get(key1);
+	    return subCache ? subCache.get(key2) : undefined;
+	  },
+	  delete: function _delete(cache, key1, key2) {
+	    var subCache = cache.get(key1);
+	    subCache.delete(key2);
+	  }
+	};
+	var _default = multiKeyStore;
+	exports.default = _default;
+	});
+
+	unwrapExports(multiKeyStore_1);
+
 	var themeListener_1 = createCommonjsModule(function (module, exports) {
 
 
@@ -5910,13 +5959,11 @@
 
 	var _defineProperty2 = interopRequireDefault(defineProperty);
 
-	var _propTypes = interopRequireDefault(PropTypes);
-
 	// Same value used by react-jss
 	var CHANNEL = '__THEMING__';
 	exports.CHANNEL = CHANNEL;
 	var themeListener = {
-	  contextTypes: (0, _defineProperty2.default)({}, CHANNEL, _propTypes.default.object),
+	  contextTypes: (0, _defineProperty2.default)({}, CHANNEL, function () {}),
 	  initial: function initial(context) {
 	    if (!context[CHANNEL]) {
 	      return null;
@@ -5956,9 +6003,6 @@
 	var _warning = interopRequireDefault(warning_1);
 
 	/* eslint-disable no-underscore-dangle */
-	// People might bundle this classname generator twice.
-	// We need to use a global.
-	commonjsGlobal.__MUI_GENERATOR_COUNTER__ = 0;
 	var escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
 	function safePrefix(classNamePrefix) {
@@ -5979,21 +6023,10 @@
 	  var _options$dangerouslyU = options.dangerouslyUseGlobalCSS,
 	      dangerouslyUseGlobalCSS = _options$dangerouslyU === void 0 ? false : _options$dangerouslyU,
 	      _options$productionPr = options.productionPrefix,
-	      productionPrefix = _options$productionPr === void 0 ? 'jss' : _options$productionPr;
-	  var ruleCounter = 0; // - HMR can lead to many class name generators being instantiated,
-	  // so the warning is only triggered in production.
-	  // - We expect a class name generator to be instantiated per new request on the server,
-	  // so the warning is only triggered client side.
-
-	  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-	    commonjsGlobal.__MUI_GENERATOR_COUNTER__ += 1;
-
-	    if (commonjsGlobal.__MUI_GENERATOR_COUNTER__ > 2) {
-	      // eslint-disable-next-line no-console
-	      console.error(['Material-UI: we have detected more than needed creation of the class name generator.', 'You should only use one class name generator on the client side.', 'If you do otherwise, you take the risk to have conflicting class names in production.'].join('\n'));
-	    }
-	  }
-
+	      productionPrefix = _options$productionPr === void 0 ? 'jss' : _options$productionPr,
+	      _options$seed = options.seed,
+	      seed = _options$seed === void 0 ? '' : _options$seed;
+	  var ruleCounter = 0;
 	  return function (rule, styleSheet) {
 	    ruleCounter += 1;
 	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(ruleCounter < 1e10, ['Material-UI: you might have a memory leak.', 'The ruleCounter is not supposed to grow that much.'].join('')) : void 0; // Code branch the whole block at the expense of more code.
@@ -6006,28 +6039,28 @@
 
 	        if (styleSheet.options.classNamePrefix && process.env.NODE_ENV !== 'production') {
 	          var prefix = safePrefix(styleSheet.options.classNamePrefix);
-	          return "".concat(prefix, "-").concat(rule.key, "-").concat(ruleCounter);
+	          return "".concat(prefix, "-").concat(rule.key, "-").concat(seed).concat(ruleCounter);
 	        }
 	      }
 
 	      if (process.env.NODE_ENV === 'production') {
-	        return "".concat(productionPrefix).concat(ruleCounter);
+	        return "".concat(productionPrefix).concat(seed).concat(ruleCounter);
 	      }
 
-	      return "".concat(rule.key, "-").concat(ruleCounter);
+	      return "".concat(rule.key, "-").concat(seed).concat(ruleCounter);
 	    }
 
 	    if (process.env.NODE_ENV === 'production') {
-	      return "".concat(productionPrefix).concat(ruleCounter);
+	      return "".concat(productionPrefix).concat(seed).concat(ruleCounter);
 	    }
 
 	    if (styleSheet && styleSheet.options.classNamePrefix) {
 	      var _prefix = safePrefix(styleSheet.options.classNamePrefix);
 
-	      return "".concat(_prefix, "-").concat(rule.key, "-").concat(ruleCounter);
+	      return "".concat(_prefix, "-").concat(rule.key, "-").concat(seed).concat(ruleCounter);
 	    }
 
-	    return "".concat(rule.key, "-").concat(ruleCounter);
+	    return "".concat(rule.key, "-").concat(seed).concat(ruleCounter);
 	  };
 	}
 	});
@@ -6099,15 +6132,28 @@
 	});
 	exports.default = void 0;
 
+	/* eslint-disable no-restricted-syntax */
 	function getThemeProps(params) {
 	  var theme = params.theme,
-	      name = params.name;
+	      name = params.name,
+	      props = params.props;
 
-	  if (!name || !theme.props || !theme.props[name]) {
-	    return {};
+	  if (!theme.props || !name || !theme.props[name]) {
+	    return props;
+	  } // Resolve default props, code borrow from React source.
+	  // https://github.com/facebook/react/blob/15a8f031838a553e41c0b66eb1bcf1da8448104d/packages/react/src/ReactElement.js#L221
+
+
+	  var defaultProps = theme.props[name];
+	  var propName;
+
+	  for (propName in defaultProps) {
+	    if (props[propName] === undefined) {
+	      props[propName] = defaultProps[propName];
+	    }
 	  }
 
-	  return theme.props[name];
+	  return props;
 	}
 
 	var _default = getThemeProps;
@@ -6120,14 +6166,14 @@
 
 
 
-
-
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = exports.sheetsManager = void 0;
 
-	var _extends2 = interopRequireDefault(_extends_1);
+	var _defineProperty2 = interopRequireDefault(defineProperty);
+
+	var _extends3 = interopRequireDefault(_extends_1);
 
 	var _classCallCheck2 = interopRequireDefault(classCallCheck);
 
@@ -6149,19 +6195,17 @@
 
 	var _hoistNonReactStatics = interopRequireDefault(hoistNonReactStatics_cjs);
 
-	var _getDisplayName = interopRequireDefault(getDisplayName_1);
-
 	var _wrapDisplayName = interopRequireDefault(wrapDisplayName_1);
 
-	var _contextTypes = interopRequireDefault(contextTypes);
 
 
-
-	var ns$$1 = interopRequireWildcard(ns);
+	var _reactJssContext = interopRequireDefault(reactJssContext);
 
 	var _jssPreset = interopRequireDefault(jssPreset_1);
 
 	var _mergeClasses = interopRequireDefault(mergeClasses_1);
+
+	var _multiKeyStore = interopRequireDefault(multiKeyStore_1);
 
 	var _createMuiTheme = interopRequireDefault(createMuiTheme_1);
 
@@ -6171,10 +6215,15 @@
 
 	var _getStylesCreator = interopRequireDefault(getStylesCreator_1);
 
+	var _getDisplayName = interopRequireDefault(getDisplayName_1$1);
+
 	var _getThemeProps = interopRequireDefault(getThemeProps_1);
 
 	// Default JSS instance.
 	var jss = (0, lib.create)((0, _jssPreset.default)()); // Use a singleton or the provided one by the context.
+	//
+	// The counter-based approach doesn't tolerate any mistake.
+	// It's much safer to use the same counter everywhere.
 
 	var generateClassName = (0, _createGenerateClassName.default)(); // Global index counter to preserve source order.
 	// We create the style sheet during at the creation of the component,
@@ -6199,7 +6248,11 @@
 	    return defaultTheme;
 	  }
 
-	  defaultTheme = (0, _createMuiTheme.default)();
+	  defaultTheme = (0, _createMuiTheme.default)({
+	    typography: {
+	      suppressWarning: true
+	    }
+	  });
 	  return defaultTheme;
 	} // Link a style sheet with a component.
 	// It does not modify the component passed to it;
@@ -6209,6 +6262,8 @@
 	var withStyles = function withStyles(stylesOrCreator) {
 	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  return function (Component) {
+	    var _extends2;
+
 	    var _options$withTheme = options.withTheme,
 	        withTheme = _options$withTheme === void 0 ? false : _options$withTheme,
 	        _options$flip = options.flip,
@@ -6216,10 +6271,10 @@
 	        name = options.name,
 	        styleSheetOptions = (0, _objectWithoutProperties2.default)(options, ["withTheme", "flip", "name"]);
 	    var stylesCreator = (0, _getStylesCreator.default)(stylesOrCreator);
-	    var listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
+	    var listenToTheme = stylesCreator.themingEnabled || typeof name === 'string' || withTheme;
 	    indexCounter += 1;
 	    stylesCreator.options.index = indexCounter;
-	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(indexCounter < 0, ['Material-UI: you might have a memory leak.', 'The indexCounter is not supposed to grow that much.'].join(' ')) : void 0;
+	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(indexCounter < 0, ['Material-UI: you might have a memory leak.', 'The indexCounter is not supposed to grow that much.'].join('\n')) : void 0;
 
 	    var WithStyles =
 	    /*#__PURE__*/
@@ -6231,15 +6286,9 @@
 
 	        (0, _classCallCheck2.default)(this, WithStyles);
 	        _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(WithStyles).call(this, props, context));
-	        _this.disableStylesGeneration = false;
-	        _this.jss = null;
-	        _this.sheetOptions = null;
+	        _this.jss = context[_reactJssContext.default.jss] || jss;
 	        _this.sheetsManager = sheetsManager;
-	        _this.stylesCreatorSaved = null;
-	        _this.theme = null;
 	        _this.unsubscribeId = null;
-	        _this.state = {};
-	        _this.jss = context[ns$$1.jss] || jss;
 	        var muiThemeProviderOptions = context.muiThemeProviderOptions;
 
 	        if (muiThemeProviderOptions) {
@@ -6247,6 +6296,7 @@
 	            _this.sheetsManager = muiThemeProviderOptions.sheetsManager;
 	          }
 
+	          _this.sheetsCache = muiThemeProviderOptions.sheetsCache;
 	          _this.disableStylesGeneration = muiThemeProviderOptions.disableStylesGeneration;
 	        } // Attach the stylesCreator to the instance of the component as in the context
 	        // of react-hot-loader the hooks can be executed in a different closure context:
@@ -6254,9 +6304,9 @@
 
 
 	        _this.stylesCreatorSaved = stylesCreator;
-	        _this.sheetOptions = (0, _extends2.default)({
+	        _this.sheetOptions = (0, _extends3.default)({
 	          generateClassName: generateClassName
-	        }, context[ns$$1.sheetOptions]); // We use || as the function call is lazy evaluated.
+	        }, context[_reactJssContext.default.sheetOptions]); // We use || as the function call is lazy evaluated.
 
 	        _this.theme = listenToTheme ? _themeListener.default.initial(context) || getDefaultTheme() : noopTheme;
 
@@ -6320,18 +6370,19 @@
 	      }, {
 	        key: "getClasses",
 	        value: function getClasses() {
-	          // Tracks if either the rendered classes or classes prop has changed,
+	          if (this.disableStylesGeneration) {
+	            return this.props.classes || {};
+	          } // Tracks if either the rendered classes or classes prop has changed,
 	          // requiring the generation of a new finalized classes object.
+
+
 	          var generate = false;
 
-	          if (!this.disableStylesGeneration) {
-	            var sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
-	            var sheetsManagerTheme = sheetManager.get(this.theme);
+	          var sheetManager = _multiKeyStore.default.get(this.sheetsManager, this.stylesCreatorSaved, this.theme);
 
-	            if (sheetsManagerTheme.sheet.classes !== this.cacheClasses.lastJSS) {
-	              this.cacheClasses.lastJSS = sheetsManagerTheme.sheet.classes;
-	              generate = true;
-	            }
+	          if (sheetManager.sheet.classes !== this.cacheClasses.lastJSS) {
+	            this.cacheClasses.lastJSS = sheetManager.sheet.classes;
+	            generate = true;
 	          }
 
 	          if (this.props.classes !== this.cacheClasses.lastProp) {
@@ -6343,8 +6394,7 @@
 	            this.cacheClasses.value = (0, _mergeClasses.default)({
 	              baseClasses: this.cacheClasses.lastJSS,
 	              newClasses: this.props.classes,
-	              Component: Component,
-	              noBase: this.disableStylesGeneration
+	              Component: Component
 	            });
 	          }
 
@@ -6358,50 +6408,64 @@
 	          }
 
 	          var stylesCreatorSaved = this.stylesCreatorSaved;
-	          var sheetManager = this.sheetsManager.get(stylesCreatorSaved);
+
+	          var sheetManager = _multiKeyStore.default.get(this.sheetsManager, stylesCreatorSaved, theme);
 
 	          if (!sheetManager) {
-	            sheetManager = new Map();
-	            this.sheetsManager.set(stylesCreatorSaved, sheetManager);
-	          }
-
-	          var sheetManagerTheme = sheetManager.get(theme);
-
-	          if (!sheetManagerTheme) {
-	            sheetManagerTheme = {
+	            sheetManager = {
 	              refs: 0,
 	              sheet: null
 	            };
-	            sheetManager.set(theme, sheetManagerTheme);
+
+	            _multiKeyStore.default.set(this.sheetsManager, stylesCreatorSaved, theme, sheetManager);
 	          }
 
-	          if (sheetManagerTheme.refs === 0) {
-	            var styles = stylesCreatorSaved.create(theme, name);
-	            var meta = name;
+	          if (sheetManager.refs === 0) {
+	            var sheet;
 
-	            if (process.env.NODE_ENV !== 'production' && !meta) {
-	              meta = (0, _getDisplayName.default)(Component);
-	              process.env.NODE_ENV !== "production" ? (0, _warning.default)(typeof meta === 'string', ['Material-UI: the component displayName is invalid. It needs to be a string.', "Please fix the following component: ".concat(Component, ".")].join('\n')) : void 0;
+	            if (this.sheetsCache) {
+	              sheet = _multiKeyStore.default.get(this.sheetsCache, stylesCreatorSaved, theme);
 	            }
 
-	            var sheet = this.jss.createStyleSheet(styles, (0, _extends2.default)({
-	              meta: meta,
-	              classNamePrefix: meta,
-	              flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
-	              link: false
-	            }, this.sheetOptions, stylesCreatorSaved.options, {
-	              name: name
-	            }, styleSheetOptions));
-	            sheetManagerTheme.sheet = sheet;
-	            sheet.attach();
-	            var sheetsRegistry = this.context[ns$$1.sheetsRegistry];
+	            if (!sheet) {
+	              sheet = this.createSheet(theme);
+	              sheet.attach();
+
+	              if (this.sheetsCache) {
+	                _multiKeyStore.default.set(this.sheetsCache, stylesCreatorSaved, theme, sheet);
+	              }
+	            }
+
+	            sheetManager.sheet = sheet;
+	            var sheetsRegistry = this.context[_reactJssContext.default.sheetsRegistry];
 
 	            if (sheetsRegistry) {
 	              sheetsRegistry.add(sheet);
 	            }
 	          }
 
-	          sheetManagerTheme.refs += 1;
+	          sheetManager.refs += 1;
+	        }
+	      }, {
+	        key: "createSheet",
+	        value: function createSheet(theme) {
+	          var styles = this.stylesCreatorSaved.create(theme, name);
+	          var meta = name;
+
+	          if (process.env.NODE_ENV !== 'production' && !meta) {
+	            meta = (0, _getDisplayName.default)(Component);
+	            process.env.NODE_ENV !== "production" ? (0, _warning.default)(typeof meta === 'string', ['Material-UI: the component displayName is invalid. It needs to be a string.', "Please fix the following component: ".concat(Component, ".")].join('\n')) : void 0;
+	          }
+
+	          var sheet = this.jss.createStyleSheet(styles, (0, _extends3.default)({
+	            meta: meta,
+	            classNamePrefix: meta,
+	            flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
+	            link: false
+	          }, this.sheetOptions, this.stylesCreatorSaved.options, {
+	            name: name
+	          }, styleSheetOptions));
+	          return sheet;
 	        }
 	      }, {
 	        key: "detach",
@@ -6410,18 +6474,18 @@
 	            return;
 	          }
 
-	          var stylesCreatorSaved = this.stylesCreatorSaved;
-	          var sheetManager = this.sheetsManager.get(stylesCreatorSaved);
-	          var sheetManagerTheme = sheetManager.get(theme);
-	          sheetManagerTheme.refs -= 1;
+	          var sheetManager = _multiKeyStore.default.get(this.sheetsManager, this.stylesCreatorSaved, theme);
 
-	          if (sheetManagerTheme.refs === 0) {
-	            sheetManager.delete(theme);
-	            this.jss.removeStyleSheet(sheetManagerTheme.sheet);
-	            var sheetsRegistry = this.context[ns$$1.sheetsRegistry];
+	          sheetManager.refs -= 1;
+
+	          if (sheetManager.refs === 0) {
+	            _multiKeyStore.default.delete(this.sheetsManager, this.stylesCreatorSaved, theme);
+
+	            this.jss.removeStyleSheet(sheetManager.sheet);
+	            var sheetsRegistry = this.context[_reactJssContext.default.sheetsRegistry];
 
 	            if (sheetsRegistry) {
-	              sheetsRegistry.remove(sheetManagerTheme.sheet);
+	              sheetsRegistry.remove(sheetManager.sheet);
 	            }
 	          }
 	        }
@@ -6434,18 +6498,19 @@
 	              other = (0, _objectWithoutProperties2.default)(_this$props, ["classes", "innerRef"]);
 	          var more = (0, _getThemeProps.default)({
 	            theme: this.theme,
-	            name: name
+	            name: name,
+	            props: other
 	          }); // Provide the theme to the wrapped component.
 	          // So we don't have to use the `withTheme()` Higher-order Component.
 
-	          if (withTheme) {
+	          if (withTheme && !more.theme) {
 	            more.theme = this.theme;
 	          }
 
-	          return _react.default.createElement(Component, (0, _extends2.default)({}, more, {
+	          return _react.default.createElement(Component, (0, _extends3.default)({}, more, {
 	            classes: this.getClasses(),
 	            ref: innerRef
-	          }, other));
+	          }));
 	        }
 	      }]);
 	      return WithStyles;
@@ -6462,9 +6527,9 @@
 	       */
 	      innerRef: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.object])
 	    } : {};
-	    WithStyles.contextTypes = (0, _extends2.default)({
+	    WithStyles.contextTypes = (0, _extends3.default)((_extends2 = {
 	      muiThemeProviderOptions: _propTypes.default.object
-	    }, _contextTypes.default, listenToTheme ? _themeListener.default.contextTypes : {});
+	    }, (0, _defineProperty2.default)(_extends2, _reactJssContext.default.jss, _propTypes.default.object), (0, _defineProperty2.default)(_extends2, _reactJssContext.default.sheetOptions, _propTypes.default.object), (0, _defineProperty2.default)(_extends2, _reactJssContext.default.sheetsRegistry, _propTypes.default.object), _extends2), listenToTheme ? _themeListener.default.contextTypes : {});
 
 	    if (process.env.NODE_ENV !== 'production') {
 	      WithStyles.displayName = (0, _wrapDisplayName.default)(Component, 'WithStyles');
@@ -6752,10 +6817,10 @@
 	        maxWidth: 'none'
 	      };
 	      return;
-	    } // Only keep 6 significant numbers.
+	    } // Keep 7 significant numbers.
 
 
-	    var width = "".concat(Math.round(size / 12 * 10e6) / 10e4, "%"); // Close to the bootstrap implementation:
+	    var width = "".concat(Math.round(size / 12 * 10e7) / 10e5, "%"); // Close to the bootstrap implementation:
 	    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
 
 	    styles[key] = {
@@ -7164,412 +7229,6 @@
 	  linkRight: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 	};
 
-	var helpers = createCommonjsModule(function (module, exports) {
-
-
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.capitalize = capitalize;
-	exports.contains = contains;
-	exports.findIndex = findIndex;
-	exports.find = find;
-	exports.createChainedFunction = createChainedFunction;
-
-	var _typeof2 = interopRequireDefault(_typeof_1);
-
-	var _warning = interopRequireDefault(warning_1);
-
-	function capitalize(string) {
-	  if (process.env.NODE_ENV !== 'production' && typeof string !== 'string') {
-	    throw new Error('Material-UI: capitalize(string) expects a string argument.');
-	  }
-
-	  return string.charAt(0).toUpperCase() + string.slice(1);
-	}
-
-	function contains(obj, pred) {
-	  return Object.keys(pred).every(function (key) {
-	    return obj.hasOwnProperty(key) && obj[key] === pred[key];
-	  });
-	}
-
-	function findIndex(arr, pred) {
-	  var predType = (0, _typeof2.default)(pred);
-
-	  for (var i = 0; i < arr.length; i += 1) {
-	    if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
-	      return i;
-	    }
-
-	    if (predType === 'object' && contains(arr[i], pred)) {
-	      return i;
-	    }
-
-	    if (['string', 'number', 'boolean'].indexOf(predType) !== -1) {
-	      return arr.indexOf(pred);
-	    }
-	  }
-
-	  return -1;
-	}
-
-	function find(arr, pred) {
-	  var index = findIndex(arr, pred);
-	  return index > -1 ? arr[index] : undefined;
-	}
-	/**
-	 * Safe chained function
-	 *
-	 * Will only create a new function if needed,
-	 * otherwise will pass back existing functions or null.
-	 *
-	 * @param {function} functions to chain
-	 * @returns {function|null}
-	 */
-
-
-	function createChainedFunction() {
-	  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
-	    funcs[_key] = arguments[_key];
-	  }
-
-	  return funcs.reduce(function (acc, func) {
-	    if (func == null) {
-	      return acc;
-	    }
-
-	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(typeof func === 'function', 'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.') : void 0;
-	    return function chainedFunction() {
-	      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-	        args[_key2] = arguments[_key2];
-	      }
-
-	      acc.apply(this, args);
-	      func.apply(this, args);
-	    };
-	  }, function () {});
-	}
-	});
-
-	unwrapExports(helpers);
-	var helpers_1 = helpers.capitalize;
-	var helpers_2 = helpers.contains;
-	var helpers_3 = helpers.findIndex;
-	var helpers_4 = helpers.find;
-	var helpers_5 = helpers.createChainedFunction;
-
-	var Typography_1 = createCommonjsModule(function (module, exports) {
-
-
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = exports.styles = void 0;
-
-	var _extends2 = interopRequireDefault(_extends_1);
-
-	var _defineProperty2 = interopRequireDefault(defineProperty);
-
-	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
-
-	var _react = interopRequireDefault(React);
-
-	var _propTypes = interopRequireDefault(PropTypes);
-
-	var _classnames = interopRequireDefault(classnames);
-
-	var _withStyles = interopRequireDefault(withStyles_1);
-
-
-
-	var styles = function styles(theme) {
-	  return {
-	    /* Styles applied to the root element. */
-	    root: {
-	      display: 'block',
-	      margin: 0
-	    },
-
-	    /* Styles applied to the root element if `variant="display4"`. */
-	    display4: theme.typography.display4,
-
-	    /* Styles applied to the root element if `variant="display3"`. */
-	    display3: theme.typography.display3,
-
-	    /* Styles applied to the root element if `variant="display2"`. */
-	    display2: theme.typography.display2,
-
-	    /* Styles applied to the root element if `variant="display1"`. */
-	    display1: theme.typography.display1,
-
-	    /* Styles applied to the root element if `variant="headline"`. */
-	    headline: theme.typography.headline,
-
-	    /* Styles applied to the root element if `variant="title"`. */
-	    title: theme.typography.title,
-
-	    /* Styles applied to the root element if `variant="subheading"`. */
-	    subheading: theme.typography.subheading,
-
-	    /* Styles applied to the root element if `variant="body2"`. */
-	    body2: theme.typography.body2,
-
-	    /* Styles applied to the root element if `variant="body1"`. */
-	    body1: theme.typography.body1,
-
-	    /* Styles applied to the root element if `variant="caption"`. */
-	    caption: theme.typography.caption,
-
-	    /* Styles applied to the root element if `variant="button"`. */
-	    button: theme.typography.button,
-
-	    /* Styles applied to the root element if `align="left"`. */
-	    alignLeft: {
-	      textAlign: 'left'
-	    },
-
-	    /* Styles applied to the root element if `align="center"`. */
-	    alignCenter: {
-	      textAlign: 'center'
-	    },
-
-	    /* Styles applied to the root element if `align="right"`. */
-	    alignRight: {
-	      textAlign: 'right'
-	    },
-
-	    /* Styles applied to the root element if `align="justify"`. */
-	    alignJustify: {
-	      textAlign: 'justify'
-	    },
-
-	    /* Styles applied to the root element if `align="nowrap"`. */
-	    noWrap: {
-	      overflow: 'hidden',
-	      textOverflow: 'ellipsis',
-	      whiteSpace: 'nowrap'
-	    },
-
-	    /* Styles applied to the root element if `gutterBottom={true}`. */
-	    gutterBottom: {
-	      marginBottom: '0.35em'
-	    },
-
-	    /* Styles applied to the root element if `paragraph={true}`. */
-	    paragraph: {
-	      marginBottom: 16
-	    },
-
-	    /* Styles applied to the root element if `color="inherit"`. */
-	    colorInherit: {
-	      color: 'inherit'
-	    },
-
-	    /* Styles applied to the root element if `color="primary"`. */
-	    colorPrimary: {
-	      color: theme.palette.primary.main
-	    },
-
-	    /* Styles applied to the root element if `color="secondary"`. */
-	    colorSecondary: {
-	      color: theme.palette.secondary.main
-	    },
-
-	    /* Styles applied to the root element if `color="textPrimary"`. */
-	    colorTextPrimary: {
-	      color: theme.palette.text.primary
-	    },
-
-	    /* Styles applied to the root element if `color="textSecondary"`. */
-	    colorTextSecondary: {
-	      color: theme.palette.text.secondary
-	    },
-
-	    /* Styles applied to the root element if `color="error"`. */
-	    colorError: {
-	      color: theme.palette.error.main
-	    }
-	  };
-	};
-
-	exports.styles = styles;
-
-	function Typography(props) {
-	  var _classNames;
-
-	  var align = props.align,
-	      classes = props.classes,
-	      classNameProp = props.className,
-	      color = props.color,
-	      componentProp = props.component,
-	      gutterBottom = props.gutterBottom,
-	      headlineMapping = props.headlineMapping,
-	      noWrap = props.noWrap,
-	      paragraph = props.paragraph,
-	      variant = props.variant,
-	      other = (0, _objectWithoutProperties2.default)(props, ["align", "classes", "className", "color", "component", "gutterBottom", "headlineMapping", "noWrap", "paragraph", "variant"]);
-	  var className = (0, _classnames.default)(classes.root, classes[variant], (_classNames = {}, (0, _defineProperty2.default)(_classNames, classes["color".concat((0, helpers.capitalize)(color))], color !== 'default'), (0, _defineProperty2.default)(_classNames, classes.noWrap, noWrap), (0, _defineProperty2.default)(_classNames, classes.gutterBottom, gutterBottom), (0, _defineProperty2.default)(_classNames, classes.paragraph, paragraph), (0, _defineProperty2.default)(_classNames, classes["align".concat((0, helpers.capitalize)(align))], align !== 'inherit'), _classNames), classNameProp);
-	  var Component = componentProp || (paragraph ? 'p' : headlineMapping[variant]) || 'span';
-	  return _react.default.createElement(Component, (0, _extends2.default)({
-	    className: className
-	  }, other));
-	}
-
-	Typography.propTypes = process.env.NODE_ENV !== "production" ? {
-	  /**
-	   * Set the text-align on the component.
-	   */
-	  align: _propTypes.default.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
-
-	  /**
-	   * The content of the component.
-	   */
-	  children: _propTypes.default.node,
-
-	  /**
-	   * Override or extend the styles applied to the component.
-	   * See [CSS API](#css-api) below for more details.
-	   */
-	  classes: _propTypes.default.object.isRequired,
-
-	  /**
-	   * @ignore
-	   */
-	  className: _propTypes.default.string,
-
-	  /**
-	   * The color of the component. It supports those theme colors that make sense for this component.
-	   */
-	  color: _propTypes.default.oneOf(['default', 'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary']),
-
-	  /**
-	   * The component used for the root node.
-	   * Either a string to use a DOM element or a component.
-	   * By default, it maps the variant to a good default headline component.
-	   */
-	  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func, _propTypes.default.object]),
-
-	  /**
-	   * If `true`, the text will have a bottom margin.
-	   */
-	  gutterBottom: _propTypes.default.bool,
-
-	  /**
-	   * We are empirically mapping the variant property to a range of different DOM element types.
-	   * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
-	   * Alternatively, you can use the `component` property.
-	   */
-	  headlineMapping: _propTypes.default.object,
-
-	  /**
-	   * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
-	   */
-	  noWrap: _propTypes.default.bool,
-
-	  /**
-	   * If `true`, the text will have a bottom margin.
-	   */
-	  paragraph: _propTypes.default.bool,
-
-	  /**
-	   * Applies the theme typography styles.
-	   */
-	  variant: _propTypes.default.oneOf(['display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'])
-	} : {};
-	Typography.defaultProps = {
-	  align: 'inherit',
-	  color: 'default',
-	  gutterBottom: false,
-	  headlineMapping: {
-	    display4: 'h1',
-	    display3: 'h1',
-	    display2: 'h1',
-	    display1: 'h1',
-	    headline: 'h1',
-	    title: 'h2',
-	    subheading: 'h3',
-	    body2: 'aside',
-	    body1: 'p'
-	  },
-	  noWrap: false,
-	  paragraph: false,
-	  variant: 'body1'
-	};
-
-	var _default = (0, _withStyles.default)(styles, {
-	  name: 'MuiTypography'
-	})(Typography);
-
-	exports.default = _default;
-	});
-
-	unwrapExports(Typography_1);
-	var Typography_2 = Typography_1.styles;
-
-	var Typography$1 = createCommonjsModule(function (module, exports) {
-
-
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	Object.defineProperty(exports, "default", {
-	  enumerable: true,
-	  get: function get() {
-	    return _Typography.default;
-	  }
-	});
-
-	var _Typography = interopRequireDefault(Typography_1);
-	});
-
-	var Typography$2 = unwrapExports(Typography$1);
-
-	var styles$2 = function styles(theme) {
-	  return {
-	    body1: theme.typography.display5
-	  };
-	};
-
-	var TypographyDisplay5 = function TypographyDisplay5(props) {
-	  var classes = props.classes;
-	  return React.createElement(Typography$2, _extends({
-	    classes: {
-	      body1: classes.body1
-	    },
-	    variant: "body1"
-	  }, props));
-	};
-
-	TypographyDisplay5.propTypes = {
-	  classes: PropTypes.shape().isRequired
-	};
-	var TypographyDisplay5$1 = withStyles(styles$2)(TypographyDisplay5);
-
-	var styles$3 = function styles(theme) {
-	  return {
-	    body1: theme.typography.display6
-	  };
-	};
-
-	var TypographyDisplay6 = function TypographyDisplay6(props) {
-	  var classes = props.classes;
-	  return React.createElement(Typography$2, _extends({
-	    classes: {
-	      body1: classes.body1
-	    },
-	    variant: "body1"
-	  }, props));
-	};
-
-	TypographyDisplay6.propTypes = {
-	  classes: PropTypes.shape().isRequired
-	};
-	var TypographyDisplay6$1 = withStyles(styles$3)(TypographyDisplay6);
-
 	var Paper_1 = createCommonjsModule(function (module, exports) {
 
 
@@ -7900,7 +7559,7 @@
 	exports.cloneElementWithClassName = cloneElementWithClassName;
 	exports.cloneChildrenWithClassName = cloneChildrenWithClassName;
 	exports.isMuiElement = isMuiElement;
-	exports.isMuiComponent = isMuiComponent;
+	exports.setRef = setRef;
 
 	var _react = interopRequireDefault(React);
 
@@ -7923,8 +7582,12 @@
 	  return _react.default.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
 	}
 
-	function isMuiComponent(element, muiNames) {
-	  return muiNames.indexOf(element.muiName) !== -1;
+	function setRef(ref, value) {
+	  if (typeof ref === 'function') {
+	    ref(value);
+	  } else if (ref) {
+	    ref.current = value;
+	  }
 	}
 	});
 
@@ -7932,7 +7595,7 @@
 	var reactHelpers_1 = reactHelpers.cloneElementWithClassName;
 	var reactHelpers_2 = reactHelpers.cloneChildrenWithClassName;
 	var reactHelpers_3 = reactHelpers.isMuiElement;
-	var reactHelpers_4 = reactHelpers.isMuiComponent;
+	var reactHelpers_4 = reactHelpers.setRef;
 
 	var keycode = createCommonjsModule(function (module, exports) {
 	// Source: http://jsfiddle.net/vWx8V/
@@ -8156,6 +7819,200 @@
 	});
 
 	unwrapExports(ownerWindow_1);
+
+	var exactProp_1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.specialProperty = void 0;
+
+	var _defineProperty2 = interopRequireDefault(defineProperty);
+
+	var _extends3 = interopRequireDefault(_extends_1);
+
+	// This module is based on https://github.com/airbnb/prop-types-exact repository.
+	// However, in order to reduce the number of dependencies and to remove some extra safe checks
+	// the module was forked.
+	// Only exported for test purposes.
+	var specialProperty = "exact-prop: \u200B";
+	exports.specialProperty = specialProperty;
+
+	function exactProp(propTypes) {
+	  /* istanbul ignore if */
+	  if (process.env.NODE_ENV === 'production') {
+	    return propTypes;
+	  }
+
+	  return (0, _extends3.default)({}, propTypes, (0, _defineProperty2.default)({}, specialProperty, function (props) {
+	    var unsupportedProps = Object.keys(props).filter(function (prop) {
+	      return !propTypes.hasOwnProperty(prop);
+	    });
+
+	    if (unsupportedProps.length > 0) {
+	      return new Error("The following properties are not supported: ".concat(unsupportedProps.map(function (prop) {
+	        return "`".concat(prop, "`");
+	      }).join(', '), ". Please remove them."));
+	    }
+
+	    return null;
+	  }));
+	}
+
+	var _default = exactProp;
+	exports.default = _default;
+	});
+
+	unwrapExports(exactProp_1);
+	var exactProp_2 = exactProp_1.specialProperty;
+
+	var NoSsr_1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+
+	var _classCallCheck2 = interopRequireDefault(classCallCheck);
+
+	var _createClass2 = interopRequireDefault(createClass);
+
+	var _possibleConstructorReturn2 = interopRequireDefault(possibleConstructorReturn);
+
+	var _getPrototypeOf3 = interopRequireDefault(getPrototypeOf);
+
+	var _inherits2 = interopRequireDefault(inherits);
+
+	var _react = interopRequireDefault(React);
+
+	var _propTypes = interopRequireDefault(PropTypes);
+
+	var _exactProp = interopRequireDefault(exactProp_1);
+
+	/**
+	 * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
+	 *
+	 * This component can be useful in a variety of situations:
+	 * - Escape hatch for broken dependencies not supporting SSR.
+	 * - Improve the time-to-first paint on the client by only rendering above the fold.
+	 * - Reduce the rendering time on the server.
+	 * - Under too heavy server load, you can turn on service degradation.
+	 */
+	var NoSsr =
+	/*#__PURE__*/
+	function (_React$Component) {
+	  (0, _inherits2.default)(NoSsr, _React$Component);
+
+	  function NoSsr() {
+	    var _getPrototypeOf2;
+
+	    var _this;
+
+	    (0, _classCallCheck2.default)(this, NoSsr);
+
+	    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(NoSsr)).call.apply(_getPrototypeOf2, [this].concat(args)));
+	    _this.mounted = false;
+	    _this.state = {
+	      mounted: false
+	    };
+	    return _this;
+	  }
+
+	  (0, _createClass2.default)(NoSsr, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      this.mounted = true;
+
+	      if (this.props.defer) {
+	        // Wondering why we use two RAFs? Check this video out:
+	        // https://www.youtube.com/watch?v=cCOL7MC4Pl0
+	        requestAnimationFrame(function () {
+	          // The browser should be about to render the DOM that React commited at this point.
+	          // We don't want to interrupt. Let's wait the next raf.
+	          requestAnimationFrame(function () {
+	            if (_this2.mounted) {
+	              _this2.setState({
+	                mounted: true
+	              });
+	            }
+	          });
+	        });
+	      } else {
+	        this.setState({
+	          mounted: true
+	        }); // eslint-disable-line react/no-did-mount-set-state
+	      }
+	    }
+	  }, {
+	    key: "componentWillUnmount",
+	    value: function componentWillUnmount() {
+	      this.mounted = false;
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this$props = this.props,
+	          children = _this$props.children,
+	          fallback = _this$props.fallback;
+	      return this.state.mounted ? children : fallback;
+	    }
+	  }]);
+	  return NoSsr;
+	}(_react.default.Component);
+
+	NoSsr.propTypes = process.env.NODE_ENV !== "production" ? {
+	  children: _propTypes.default.node.isRequired,
+
+	  /**
+	   * If `true`, the component will not only prevent server side rendering.
+	   * It will also defer the rendering of the children into a different screen frame.
+	   */
+	  defer: _propTypes.default.bool,
+
+	  /**
+	   * The fallback content to display.
+	   */
+	  fallback: _propTypes.default.node
+	} : {};
+	NoSsr.propTypes = process.env.NODE_ENV !== "production" ? (0, _exactProp.default)(NoSsr.propTypes) : {};
+	NoSsr.defaultProps = {
+	  defer: false,
+	  fallback: null
+	};
+	var _default = NoSsr;
+	exports.default = _default;
+	});
+
+	unwrapExports(NoSsr_1);
+
+	var NoSsr$1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _NoSsr.default;
+	  }
+	});
+
+	var _NoSsr = interopRequireDefault(NoSsr_1);
+	});
+
+	unwrapExports(NoSsr$1);
 
 	var focusVisible = createCommonjsModule(function (module, exports) {
 
@@ -9749,9 +9606,6 @@
 	    }
 
 	    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(TouchRipple)).call.apply(_getPrototypeOf2, [this].concat(args)));
-	    _this.ignoringMouseDown = false;
-	    _this.startTimer = null;
-	    _this.startTimerCommit = null;
 	    _this.state = {
 	      // eslint-disable-next-line react/no-unused-state
 	      nextKey: 0,
@@ -9970,8 +9824,9 @@
 	});
 	exports.default = void 0;
 
-	function createRippleHandler(instance, eventName, action, cb) {
-	  return function handleEvent(event) {
+	/* eslint-disable import/no-mutable-exports */
+	var createRippleHandler = function createRippleHandler(instance, eventName, action, cb) {
+	  return function (event) {
 	    if (cb) {
 	      cb.call(instance, event);
 	    }
@@ -9995,6 +9850,14 @@
 	    }
 
 	    return true;
+	  };
+	};
+	/* istanbul ignore if */
+
+
+	if (typeof window === 'undefined') {
+	  createRippleHandler = function createRippleHandler() {
+	    return function () {};
 	  };
 	}
 
@@ -10044,6 +9907,8 @@
 	var _ownerWindow = interopRequireDefault(ownerWindow_1);
 
 	var _withStyles = interopRequireDefault(withStyles_1);
+
+	var _NoSsr = interopRequireDefault(NoSsr$1);
 
 
 
@@ -10128,10 +9993,8 @@
 	    }
 
 	    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(ButtonBase)).call.apply(_getPrototypeOf2, [this].concat(args)));
-	    _this.ripple = null;
+	    _this.state = {};
 	    _this.keyDown = false;
-	    _this.button = null;
-	    _this.focusVisibleTimeout = null;
 	    _this.focusVisibleCheckTime = 50;
 	    _this.focusVisibleMaxCheckTimes = 5;
 	    _this.handleMouseDown = (0, _createRippleHandler.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), 'MouseDown', 'start', function () {
@@ -10161,7 +10024,6 @@
 	        });
 	      }
 	    });
-	    _this.state = {};
 
 	    _this.onRippleRef = function (node) {
 	      _this.ripple = node;
@@ -10278,7 +10140,6 @@
 	  }, {
 	    key: "componentWillUnmount",
 	    value: function componentWillUnmount() {
-	      this.button = null;
 	      clearTimeout(this.focusVisibleTimeout);
 	    }
 	  }, {
@@ -10315,12 +10176,13 @@
 	          type = _this$props2.type,
 	          other = (0, _objectWithoutProperties2.default)(_this$props2, ["action", "buttonRef", "centerRipple", "children", "classes", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "onBlur", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "type"]);
 	      var className = (0, _classnames.default)(classes.root, (_classNames = {}, (0, _defineProperty2.default)(_classNames, classes.disabled, disabled), (0, _defineProperty2.default)(_classNames, classes.focusVisible, this.state.focusVisible), (0, _defineProperty2.default)(_classNames, focusVisibleClassName, this.state.focusVisible), _classNames), classNameProp);
-	      var buttonProps = {};
 	      var ComponentProp = component;
 
 	      if (ComponentProp === 'button' && other.href) {
 	        ComponentProp = 'a';
 	      }
+
+	      var buttonProps = {};
 
 	      if (ComponentProp === 'button') {
 	        buttonProps.type = type || 'button';
@@ -10330,6 +10192,7 @@
 	      }
 
 	      return _react.default.createElement(ComponentProp, (0, _extends2.default)({
+	        className: className,
 	        onBlur: this.handleBlur,
 	        onFocus: this.handleFocus,
 	        onKeyDown: this.handleKeyDown,
@@ -10340,13 +10203,12 @@
 	        onTouchEnd: this.handleTouchEnd,
 	        onTouchMove: this.handleTouchMove,
 	        onTouchStart: this.handleTouchStart,
-	        tabIndex: disabled ? '-1' : tabIndex,
-	        className: className,
-	        ref: buttonRef
-	      }, buttonProps, other), children, !disableRipple && !disabled ? _react.default.createElement(_TouchRipple.default, (0, _extends2.default)({
+	        ref: buttonRef,
+	        tabIndex: disabled ? '-1' : tabIndex
+	      }, buttonProps, other), children, !disableRipple && !disabled ? _react.default.createElement(_NoSsr.default, null, _react.default.createElement(_TouchRipple.default, (0, _extends2.default)({
 	        innerRef: this.onRippleRef,
 	        center: centerRipple
-	      }, TouchRippleProps)) : null);
+	      }, TouchRippleProps))) : null);
 	    }
 	  }], [{
 	    key: "getDerivedStateFromProps",
@@ -10570,6 +10432,128 @@
 
 	unwrapExports(ButtonBase$1);
 
+	var chainPropTypes_1 = createCommonjsModule(function (module, exports) {
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+
+	function chainPropTypes(propType1, propType2) {
+	  /* istanbul ignore if */
+	  if (process.env.NODE_ENV === 'production') {
+	    return function () {
+	      return null;
+	    };
+	  }
+
+	  return function validate() {
+	    return propType1.apply(void 0, arguments) || propType2.apply(void 0, arguments);
+	  };
+	}
+
+	var _default = chainPropTypes;
+	exports.default = _default;
+	});
+
+	unwrapExports(chainPropTypes_1);
+
+	var helpers = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.capitalize = capitalize;
+	exports.contains = contains;
+	exports.findIndex = findIndex;
+	exports.find = find;
+	exports.createChainedFunction = createChainedFunction;
+
+	var _typeof2 = interopRequireDefault(_typeof_1);
+
+	var _warning = interopRequireDefault(warning_1);
+
+	function capitalize(string) {
+	  if (process.env.NODE_ENV !== 'production' && typeof string !== 'string') {
+	    throw new Error('Material-UI: capitalize(string) expects a string argument.');
+	  }
+
+	  return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+	function contains(obj, pred) {
+	  return Object.keys(pred).every(function (key) {
+	    return obj.hasOwnProperty(key) && obj[key] === pred[key];
+	  });
+	}
+
+	function findIndex(arr, pred) {
+	  var predType = (0, _typeof2.default)(pred);
+
+	  for (var i = 0; i < arr.length; i += 1) {
+	    if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
+	      return i;
+	    }
+
+	    if (predType === 'object' && contains(arr[i], pred)) {
+	      return i;
+	    }
+
+	    if (['string', 'number', 'boolean'].indexOf(predType) !== -1) {
+	      return arr.indexOf(pred);
+	    }
+	  }
+
+	  return -1;
+	}
+
+	function find(arr, pred) {
+	  var index = findIndex(arr, pred);
+	  return index > -1 ? arr[index] : undefined;
+	}
+	/**
+	 * Safe chained function
+	 *
+	 * Will only create a new function if needed,
+	 * otherwise will pass back existing functions or null.
+	 *
+	 * @param {function} functions to chain
+	 * @returns {function|null}
+	 */
+
+
+	function createChainedFunction() {
+	  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+	    funcs[_key] = arguments[_key];
+	  }
+
+	  return funcs.reduce(function (acc, func) {
+	    if (func == null) {
+	      return acc;
+	    }
+
+	    process.env.NODE_ENV !== "production" ? (0, _warning.default)(typeof func === 'function', 'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.') : void 0;
+	    return function chainedFunction() {
+	      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	        args[_key2] = arguments[_key2];
+	      }
+
+	      acc.apply(this, args);
+	      func.apply(this, args);
+	    };
+	  }, function () {});
+	}
+	});
+
+	unwrapExports(helpers);
+	var helpers_1 = helpers.capitalize;
+	var helpers_2 = helpers.contains;
+	var helpers_3 = helpers.findIndex;
+	var helpers_4 = helpers.find;
+	var helpers_5 = helpers.createChainedFunction;
+
 	var Button_1 = createCommonjsModule(function (module, exports) {
 
 
@@ -10597,6 +10581,8 @@
 
 	var _ButtonBase = interopRequireDefault(ButtonBase$1);
 
+	var _chainPropTypes = interopRequireDefault(chainPropTypes_1);
+
 
 
 	// @inheritedComponent ButtonBase
@@ -10604,8 +10590,6 @@
 	  return {
 	    /* Styles applied to the root element. */
 	    root: (0, _extends2.default)({}, theme.typography.button, {
-	      lineHeight: '1.4em',
-	      // Improve readability for multiline button.
 	      boxSizing: 'border-box',
 	      minWidth: 64,
 	      minHeight: 36,
@@ -10686,6 +10670,9 @@
 	      border: "1px solid ".concat((0, colorManipulator.fade)(theme.palette.primary.main, 0.5)),
 	      '&:hover': {
 	        border: "1px solid ".concat(theme.palette.primary.main)
+	      },
+	      '&$disabled': {
+	        border: "1px solid ".concat(theme.palette.action.disabled)
 	      }
 	    },
 
@@ -10694,6 +10681,9 @@
 	      border: "1px solid ".concat((0, colorManipulator.fade)(theme.palette.secondary.main, 0.5)),
 	      '&:hover': {
 	        border: "1px solid ".concat(theme.palette.secondary.main)
+	      },
+	      '&$disabled': {
+	        border: "1px solid ".concat(theme.palette.action.disabled)
 	      }
 	    },
 
@@ -10836,12 +10826,12 @@
 	      color = props.color,
 	      disabled = props.disabled,
 	      disableFocusRipple = props.disableFocusRipple,
-	      fullWidth = props.fullWidth,
 	      focusVisibleClassName = props.focusVisibleClassName,
+	      fullWidth = props.fullWidth,
 	      mini = props.mini,
 	      size = props.size,
 	      variant = props.variant,
-	      other = (0, _objectWithoutProperties2.default)(props, ["children", "classes", "className", "color", "disabled", "disableFocusRipple", "fullWidth", "focusVisibleClassName", "mini", "size", "variant"]);
+	      other = (0, _objectWithoutProperties2.default)(props, ["children", "classes", "className", "color", "disabled", "disableFocusRipple", "focusVisibleClassName", "fullWidth", "mini", "size", "variant"]);
 	  var fab = variant === 'fab' || variant === 'extendedFab';
 	  var contained = variant === 'contained' || variant === 'raised';
 	  var text = variant === 'text' || variant === 'flat' || variant === 'outlined';
@@ -10934,8 +10924,20 @@
 
 	  /**
 	   * The variant to use.
+	   * __WARNING__: `flat` and `raised` are deprecated.
+	   * Instead use `text` and `contained` respectively.
 	   */
-	  variant: _propTypes.default.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab'])
+	  variant: (0, _chainPropTypes.default)(_propTypes.default.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab']), function (props) {
+	    if (props.variant === 'flat') {
+	      return new Error('The `flat` variant will be removed in the next major release. ' + '`text` is equivalent and should be used instead.');
+	    }
+
+	    if (props.variant === 'raised') {
+	      return new Error('The `raised` variant will be removed in the next major release. ' + '`contained` is equivalent and should be used instead.');
+	    }
+
+	    return null;
+	  })
 	} : {};
 	Button.defaultProps = {
 	  color: 'default',
@@ -11093,17 +11095,379 @@
 
 	var CardActions$2 = unwrapExports(CardActions$1);
 
-	var styles$4 = {
-	  paragraph: {
-	    marginBottom: 0
-	  },
+	var Typography_1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.styles = void 0;
+
+	var _extends2 = interopRequireDefault(_extends_1);
+
+	var _defineProperty2 = interopRequireDefault(defineProperty);
+
+	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
+
+	var _react = interopRequireDefault(React);
+
+	var _propTypes = interopRequireDefault(PropTypes);
+
+	var _classnames = interopRequireDefault(classnames);
+
+	var _withStyles = interopRequireDefault(withStyles_1);
+
+
+
+	var _chainPropTypes = interopRequireDefault(chainPropTypes_1);
+
+	var styles = function styles(theme) {
+	  return {
+	    /* Styles applied to the root element. */
+	    root: {
+	      display: 'block',
+	      margin: 0
+	    },
+
+	    /* Styles applied to the root element if `variant="display4"`. */
+	    display4: theme.typography.display4,
+
+	    /* Styles applied to the root element if `variant="display3"`. */
+	    display3: theme.typography.display3,
+
+	    /* Styles applied to the root element if `variant="display2"`. */
+	    display2: theme.typography.display2,
+
+	    /* Styles applied to the root element if `variant="display1"`. */
+	    display1: theme.typography.display1,
+
+	    /* Styles applied to the root element if `variant="headline"`. */
+	    headline: theme.typography.headline,
+
+	    /* Styles applied to the root element if `variant="title"`. */
+	    title: theme.typography.title,
+
+	    /* Styles applied to the root element if `variant="subheading"`. */
+	    subheading: theme.typography.subheading,
+
+	    /* Styles applied to the root element if `variant="body2"`. */
+	    body2: theme.typography.body2,
+
+	    /* Styles applied to the root element if `variant="body1"`. */
+	    body1: theme.typography.body1,
+
+	    /* Styles applied to the root element if `variant="caption"`. */
+	    caption: theme.typography.caption,
+
+	    /* Styles applied to the root element if `variant="button"`. */
+	    button: theme.typography.button,
+
+	    /* Styles applied to the root element if `variant="h1"`. */
+	    h1: theme.typography.h1,
+
+	    /* Styles applied to the root element if `variant="h2"`. */
+	    h2: theme.typography.h2,
+
+	    /* Styles applied to the root element if `variant="h3"`. */
+	    h3: theme.typography.h3,
+
+	    /* Styles applied to the root element if `variant="h4"`. */
+	    h4: theme.typography.h4,
+
+	    /* Styles applied to the root element if `variant="h5"`. */
+	    h5: theme.typography.h5,
+
+	    /* Styles applied to the root element if `variant="h6"`. */
+	    h6: theme.typography.h6,
+
+	    /* Styles applied to the root element if `variant="subtitle1"`. */
+	    subtitle1: theme.typography.subtitle1,
+
+	    /* Styles applied to the root element if `variant="subtitle2"`. */
+	    subtitle2: theme.typography.subtitle2,
+
+	    /* Styles applied to the root element if `variant="overline"`. */
+	    overline: theme.typography.overline,
+
+	    /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
+	    srOnly: {
+	      position: 'absolute',
+	      height: 1,
+	      width: 1,
+	      overflow: 'hidden'
+	    },
+
+	    /* Styles applied to the root element if `align="left"`. */
+	    alignLeft: {
+	      textAlign: 'left'
+	    },
+
+	    /* Styles applied to the root element if `align="center"`. */
+	    alignCenter: {
+	      textAlign: 'center'
+	    },
+
+	    /* Styles applied to the root element if `align="right"`. */
+	    alignRight: {
+	      textAlign: 'right'
+	    },
+
+	    /* Styles applied to the root element if `align="justify"`. */
+	    alignJustify: {
+	      textAlign: 'justify'
+	    },
+
+	    /* Styles applied to the root element if `align="nowrap"`. */
+	    noWrap: {
+	      overflow: 'hidden',
+	      textOverflow: 'ellipsis',
+	      whiteSpace: 'nowrap'
+	    },
+
+	    /* Styles applied to the root element if `gutterBottom={true}`. */
+	    gutterBottom: {
+	      marginBottom: '0.35em'
+	    },
+
+	    /* Styles applied to the root element if `paragraph={true}`. */
+	    paragraph: {
+	      marginBottom: 16
+	    },
+
+	    /* Styles applied to the root element if `color="inherit"`. */
+	    colorInherit: {
+	      color: 'inherit'
+	    },
+
+	    /* Styles applied to the root element if `color="primary"`. */
+	    colorPrimary: {
+	      color: theme.palette.primary.main
+	    },
+
+	    /* Styles applied to the root element if `color="secondary"`. */
+	    colorSecondary: {
+	      color: theme.palette.secondary.main
+	    },
+
+	    /* Styles applied to the root element if `color="textPrimary"`. */
+	    colorTextPrimary: {
+	      color: theme.palette.text.primary
+	    },
+
+	    /* Styles applied to the root element if `color="textSecondary"`. */
+	    colorTextSecondary: {
+	      color: theme.palette.text.secondary
+	    },
+
+	    /* Styles applied to the root element if `color="error"`. */
+	    colorError: {
+	      color: theme.palette.error.main
+	    }
+	  };
+	};
+
+	exports.styles = styles;
+	var nextVariants = {
+	  display4: 'h1',
+	  display3: 'h2',
+	  display2: 'h3',
+	  display1: 'h4',
+	  headline: 'h5',
+	  title: 'h6',
+	  subheading: 'subtitle1'
+	};
+
+	function getVariant(theme, variantProp) {
+	  var typography = theme.typography;
+	  var variant = variantProp;
+
+	  if (!variant) {
+	    variant = typography.useNextVariants ? 'body2' : 'body1';
+	  } // complete v2 switch
+
+
+	  if (typography.useNextVariants) {
+	    variant = nextVariants[variant] || variant;
+	  }
+
+	  return variant;
+	}
+
+	var defaultHeadlineMapping = {
+	  h1: 'h1',
+	  h2: 'h2',
+	  h3: 'h3',
+	  h4: 'h4',
+	  h5: 'h5',
+	  h6: 'h6',
+	  subtitle1: 'h6',
+	  subtitle2: 'h6',
+	  body1: 'p',
+	  body2: 'p',
+	  // deprecated
+	  display4: 'h1',
+	  display3: 'h1',
+	  display2: 'h1',
+	  display1: 'h1',
+	  headline: 'h1',
+	  title: 'h2',
+	  subheading: 'h3'
+	};
+
+	function Typography(props) {
+	  var _classNames;
+
+	  var align = props.align,
+	      classes = props.classes,
+	      classNameProp = props.className,
+	      color = props.color,
+	      componentProp = props.component,
+	      gutterBottom = props.gutterBottom,
+	      headlineMapping = props.headlineMapping,
+	      internalDeprecatedVariant = props.internalDeprecatedVariant,
+	      noWrap = props.noWrap,
+	      paragraph = props.paragraph,
+	      theme = props.theme,
+	      variantProp = props.variant,
+	      other = (0, _objectWithoutProperties2.default)(props, ["align", "classes", "className", "color", "component", "gutterBottom", "headlineMapping", "internalDeprecatedVariant", "noWrap", "paragraph", "theme", "variant"]);
+	  var variant = getVariant(theme, variantProp);
+	  var className = (0, _classnames.default)(classes.root, (_classNames = {}, (0, _defineProperty2.default)(_classNames, classes[variant], variant !== 'inherit'), (0, _defineProperty2.default)(_classNames, classes["color".concat((0, helpers.capitalize)(color))], color !== 'default'), (0, _defineProperty2.default)(_classNames, classes.noWrap, noWrap), (0, _defineProperty2.default)(_classNames, classes.gutterBottom, gutterBottom), (0, _defineProperty2.default)(_classNames, classes.paragraph, paragraph), (0, _defineProperty2.default)(_classNames, classes["align".concat((0, helpers.capitalize)(align))], align !== 'inherit'), _classNames), classNameProp);
+	  var Component = componentProp || (paragraph ? 'p' : headlineMapping[variant] || defaultHeadlineMapping[variant]) || 'span';
+	  return _react.default.createElement(Component, (0, _extends2.default)({
+	    className: className
+	  }, other));
+	}
+
+	Typography.propTypes = process.env.NODE_ENV !== "production" ? {
+	  /**
+	   * Set the text-align on the component.
+	   */
+	  align: _propTypes.default.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+
+	  /**
+	   * The content of the component.
+	   */
+	  children: _propTypes.default.node,
+
+	  /**
+	   * Override or extend the styles applied to the component.
+	   * See [CSS API](#css-api) below for more details.
+	   */
+	  classes: _propTypes.default.object.isRequired,
+
+	  /**
+	   * @ignore
+	   */
+	  className: _propTypes.default.string,
+
+	  /**
+	   * The color of the component. It supports those theme colors that make sense for this component.
+	   */
+	  color: _propTypes.default.oneOf(['default', 'error', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary']),
+
+	  /**
+	   * The component used for the root node.
+	   * Either a string to use a DOM element or a component.
+	   * By default, it maps the variant to a good default headline component.
+	   */
+	  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func, _propTypes.default.object]),
+
+	  /**
+	   * If `true`, the text will have a bottom margin.
+	   */
+	  gutterBottom: _propTypes.default.bool,
+
+	  /**
+	   * We are empirically mapping the variant property to a range of different DOM element types.
+	   * For instance, subtitle1 to `<h6>`.
+	   * If you wish to change that mapping, you can provide your own.
+	   * Alternatively, you can use the `component` property.
+	   * The default mapping is the following:
+	   */
+	  headlineMapping: _propTypes.default.object,
+
+	  /**
+	   * A deprecated variant is used from an internal component. Users don't need
+	   * a deprecation warning here if they switched to the v2 theme. They already
+	   * get the mapping that will be applied in the next major release.
+	   *
+	   * @internal
+	   */
+	  internalDeprecatedVariant: _propTypes.default.bool,
+
+	  /**
+	   * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
+	   */
+	  noWrap: _propTypes.default.bool,
+
+	  /**
+	   * If `true`, the text will have a bottom margin.
+	   */
+	  paragraph: _propTypes.default.bool,
+
+	  /**
+	   * Applies the theme typography styles.
+	   * Use `body1` as the default value with the legacy implementation and `body2` with the new one.
+	   */
+	  variant: (0, _chainPropTypes.default)(_propTypes.default.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'button', 'overline', 'srOnly', 'inherit', // deprecated
+	  'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading']), function (props) {
+	    var deprecatedVariants = ['display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading'];
+
+	    if (props.theme.typography.useNextVariants && !props.internalDeprecatedVariant && deprecatedVariants.indexOf(props.variant) !== -1) {
+	      return new Error('You are using a deprecated typography variant: ' + "`".concat(props.variant, "` that will be removed in the next major release.") + '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2');
+	    }
+
+	    return null;
+	  })
+	} : {};
+	Typography.defaultProps = {
+	  align: 'inherit',
+	  color: 'default',
+	  gutterBottom: false,
+	  headlineMapping: defaultHeadlineMapping,
+	  noWrap: false,
+	  paragraph: false
+	};
+
+	var _default = (0, _withStyles.default)(styles, {
+	  name: 'MuiTypography',
+	  withTheme: true
+	})(Typography);
+
+	exports.default = _default;
+	});
+
+	unwrapExports(Typography_1);
+	var Typography_2 = Typography_1.styles;
+
+	var Typography$1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _Typography.default;
+	  }
+	});
+
+	var _Typography = interopRequireDefault(Typography_1);
+	});
+
+	var Typography$2 = unwrapExports(Typography$1);
+
+	var styles$2 = {
 	  root: {
 	    boxShadow: '1px 1px 0 1px #e1e1e1'
 	  },
 	  card: {
 	    display: 'flex',
 	    alignItems: 'center',
-	    padding: '22px'
+	    padding: '21px'
 	  },
 	  thumbnail: {
 	    width: '62px',
@@ -11133,14 +11497,11 @@
 	  }, thumbnail), React.createElement(CardContent$2, {
 	    className: classes.description
 	  }, React.createElement(Typography$2, {
-	    variant: "display3",
+	    variant: "h5",
 	    component: "h2",
 	    gutterBottom: true
 	  }, title), React.createElement(Typography$2, {
-	    paragraph: true,
-	    classes: {
-	      paragraph: classes.paragraph
-	    }
+	    variant: "body1"
 	  }, subtitle)), React.createElement(CardActions$2, {
 	    disableActionSpacing: true
 	  }, action));
@@ -11153,7 +11514,7 @@
 	  thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 	  action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 	};
-	var CardMediaGitHub$1 = withStyles(styles$4)(CardMediaGitHub);
+	var CardMediaGitHub$1 = withStyles(styles$2)(CardMediaGitHub);
 
 	var peru = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGRjRCNTU7IiBkPSJNMzguMzQ1LDg4LjI3M0MxNy4xNjcsODguMjczLDAsMTA1LjQ0LDAsMTI2LjYxOHYyNTguNzU5YzAsMjEuMTc3LDE3LjE2NywzOC4zNDUsMzguMzQ1LDM4LjM0NQ0KCWgxMzIuMzIyVjg4LjI3M0gzOC4zNDV6Ii8+DQo8cmVjdCB4PSIxNzAuNjciIHk9Ijg4LjI3NyIgc3R5bGU9ImZpbGw6I0Y1RjVGNTsiIHdpZHRoPSIxNzAuNjciIGhlaWdodD0iMzM1LjQ1Ii8+DQo8cGF0aCBzdHlsZT0iZmlsbDojRkY0QjU1OyIgZD0iTTQ3My42NTUsODguMjczSDM0MS4zMzN2MzM1LjQ0OGgxMzIuMzIyYzIxLjE3NywwLDM4LjM0NS0xNy4xNjcsMzguMzQ1LTM4LjM0NVYxMjYuNjE4DQoJQzUxMiwxMDUuNDQsNDk0LjgzMyw4OC4yNzMsNDczLjY1NSw4OC4yNzN6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4=';
 
@@ -11169,8 +11530,6 @@
 	exports.Button = PrimaryButton$1;
 	exports.Link = Link$1;
 	exports.Header = Header;
-	exports.TypographyDisplay5 = TypographyDisplay5$1;
-	exports.TypographyDisplay6 = TypographyDisplay6$1;
 	exports.CardMediaGitHub = CardMediaGitHub$1;
 	exports.aqp = peru;
 	exports.lim = peru;
