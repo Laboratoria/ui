@@ -108,11 +108,11 @@ const GraduatedCard = ({ classes }) => {
       </Typography>
 
       <CardMediaGitHub
+        action={action}
         data={graduated}
         thumbnail={<Thumbnail data={graduated} to="https://app.talento.laboratoria.la/profile/MF0tL4sk8HcBQ0YHLxb0E8D5cD12" />}
         title={<Title text={graduated.name} to="https://app.talento.laboratoria.la/profile/MF0tL4sk8HcBQ0YHLxb0E8D5cD12" />}
         subtitle={<Subtitle text={graduated.recomendedAs} to="https://app.talento.laboratoria.la/profile/MF0tL4sk8HcBQ0YHLxb0E8D5cD12" />}
-        action={action}
       />
     </section>
   );
