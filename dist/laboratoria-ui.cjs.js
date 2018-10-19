@@ -13,11 +13,21 @@ var _objectWithoutPropertiesLoose = _interopDefault(require('@babel/runtime/help
 var classNames = _interopDefault(require('classnames'));
 var Grid = _interopDefault(require('@material-ui/core/Grid'));
 var Card = _interopDefault(require('@material-ui/core/Card'));
-var CardContent = _interopDefault(require('@material-ui/core/CardContent'));
 var CardActions = _interopDefault(require('@material-ui/core/CardActions'));
+var CardContent = _interopDefault(require('@material-ui/core/CardContent'));
 var Typography = _interopDefault(require('@material-ui/core/Typography'));
 
 var theme = createMuiTheme({
+  overrides: {
+    MuiExpansionPanelSummary: {
+      content: {
+        margin: '24px 0',
+        '&$expanded': {
+          margin: '24px 0'
+        }
+      }
+    }
+  },
   palette: {
     primary: {
       light: '#ffea4d',
@@ -254,36 +264,37 @@ Header.propTypes = {
 
 var styles$2 = {
   root: {
-    boxShadow: '1px 1px 0 1px #e1e1e1'
+    boxShadow: '1px 1px 0 1px #e1e1e1',
+    marginBottom: 24
   },
   card: {
     display: 'flex',
     alignItems: 'center',
-    padding: '21px'
+    padding: 24
   },
   thumbnail: {
-    width: '62px',
-    height: '62px',
-    position: 'relative'
+    height: 62,
+    position: 'relative',
+    width: 62
   },
   description: {
     flexGrow: 1,
-    paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    paddingTop: 0
   }
 };
 
 var CardMediaGitHub = function CardMediaGitHub(props) {
-  var classes = props.classes,
-      action = props.action,
+  var action = props.action,
+      classes = props.classes,
+      thumbnail = props.thumbnail,
       title = props.title,
-      subtitle = props.subtitle,
-      thumbnail = props.thumbnail;
+      subtitle = props.subtitle;
   return React.createElement(Card, {
-    className: classes.card,
     classes: {
       root: classes.root
-    }
+    },
+    className: classes.card
   }, React.createElement("div", {
     className: classes.thumbnail
   }, thumbnail), React.createElement(CardContent, {
@@ -300,11 +311,11 @@ var CardMediaGitHub = function CardMediaGitHub(props) {
 };
 
 CardMediaGitHub.propTypes = {
+  action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   classes: PropTypes.shape().isRequired,
-  title: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  subtitle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-  action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  subtitle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 };
 var CardMediaGitHub$1 = withStyles(styles$2)(CardMediaGitHub);
 
