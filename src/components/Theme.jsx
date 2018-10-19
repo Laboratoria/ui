@@ -1,6 +1,16 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiExpansionPanelSummary: {
+      content: {
+        margin: '24px 0',
+        '&$expanded': {
+          margin: '24px 0',
+        },
+      },
+    },
+  },
   palette: {
     primary: {
       light: '#ffea4d',
