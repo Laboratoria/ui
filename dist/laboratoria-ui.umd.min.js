@@ -1531,6 +1531,16 @@
 	var createMuiTheme = unwrapExports(createMuiTheme_1);
 
 	var theme = createMuiTheme({
+	  overrides: {
+	    MuiExpansionPanelSummary: {
+	      content: {
+	        margin: '24px 0',
+	        '&$expanded': {
+	          margin: '24px 0'
+	        }
+	      }
+	    }
+	  },
 	  palette: {
 	    primary: {
 	      light: '#ffea4d',
@@ -7452,103 +7462,6 @@
 
 	var Card$2 = unwrapExports(Card$1);
 
-	var CardContent_1 = createCommonjsModule(function (module, exports) {
-
-
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = exports.styles = void 0;
-
-	var _extends2 = interopRequireDefault(_extends_1);
-
-	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
-
-	var _react = interopRequireDefault(React);
-
-	var _propTypes = interopRequireDefault(PropTypes);
-
-	var _classnames = interopRequireDefault(classnames);
-
-	var _withStyles = interopRequireDefault(withStyles_1);
-
-	var styles = function styles(theme) {
-	  return {
-	    /* Styles applied to the root element. */
-	    root: theme.mixins.gutters({
-	      paddingTop: 16,
-	      paddingBottom: 16,
-	      '&:last-child': {
-	        paddingBottom: 24
-	      }
-	    })
-	  };
-	};
-
-	exports.styles = styles;
-
-	function CardContent(props) {
-	  var classes = props.classes,
-	      className = props.className,
-	      Component = props.component,
-	      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component"]);
-	  return _react.default.createElement(Component, (0, _extends2.default)({
-	    className: (0, _classnames.default)(classes.root, className)
-	  }, other));
-	}
-
-	CardContent.propTypes = process.env.NODE_ENV !== "production" ? {
-	  /**
-	   * Override or extend the styles applied to the component.
-	   * See [CSS API](#css-api) below for more details.
-	   */
-	  classes: _propTypes.default.object.isRequired,
-
-	  /**
-	   * @ignore
-	   */
-	  className: _propTypes.default.string,
-
-	  /**
-	   * The component used for the root node.
-	   * Either a string to use a DOM element or a component.
-	   */
-	  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func, _propTypes.default.object])
-	} : {};
-	CardContent.defaultProps = {
-	  component: 'div'
-	};
-
-	var _default = (0, _withStyles.default)(styles, {
-	  name: 'MuiCardContent'
-	})(CardContent);
-
-	exports.default = _default;
-	});
-
-	unwrapExports(CardContent_1);
-	var CardContent_2 = CardContent_1.styles;
-
-	var CardContent$1 = createCommonjsModule(function (module, exports) {
-
-
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	Object.defineProperty(exports, "default", {
-	  enumerable: true,
-	  get: function get() {
-	    return _CardContent.default;
-	  }
-	});
-
-	var _CardContent = interopRequireDefault(CardContent_1);
-	});
-
-	var CardContent$2 = unwrapExports(CardContent$1);
-
 	var reactHelpers = createCommonjsModule(function (module, exports) {
 
 
@@ -11095,6 +11008,103 @@
 
 	var CardActions$2 = unwrapExports(CardActions$1);
 
+	var CardContent_1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.styles = void 0;
+
+	var _extends2 = interopRequireDefault(_extends_1);
+
+	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
+
+	var _react = interopRequireDefault(React);
+
+	var _propTypes = interopRequireDefault(PropTypes);
+
+	var _classnames = interopRequireDefault(classnames);
+
+	var _withStyles = interopRequireDefault(withStyles_1);
+
+	var styles = function styles(theme) {
+	  return {
+	    /* Styles applied to the root element. */
+	    root: theme.mixins.gutters({
+	      paddingTop: 16,
+	      paddingBottom: 16,
+	      '&:last-child': {
+	        paddingBottom: 24
+	      }
+	    })
+	  };
+	};
+
+	exports.styles = styles;
+
+	function CardContent(props) {
+	  var classes = props.classes,
+	      className = props.className,
+	      Component = props.component,
+	      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "component"]);
+	  return _react.default.createElement(Component, (0, _extends2.default)({
+	    className: (0, _classnames.default)(classes.root, className)
+	  }, other));
+	}
+
+	CardContent.propTypes = process.env.NODE_ENV !== "production" ? {
+	  /**
+	   * Override or extend the styles applied to the component.
+	   * See [CSS API](#css-api) below for more details.
+	   */
+	  classes: _propTypes.default.object.isRequired,
+
+	  /**
+	   * @ignore
+	   */
+	  className: _propTypes.default.string,
+
+	  /**
+	   * The component used for the root node.
+	   * Either a string to use a DOM element or a component.
+	   */
+	  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func, _propTypes.default.object])
+	} : {};
+	CardContent.defaultProps = {
+	  component: 'div'
+	};
+
+	var _default = (0, _withStyles.default)(styles, {
+	  name: 'MuiCardContent'
+	})(CardContent);
+
+	exports.default = _default;
+	});
+
+	unwrapExports(CardContent_1);
+	var CardContent_2 = CardContent_1.styles;
+
+	var CardContent$1 = createCommonjsModule(function (module, exports) {
+
+
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _CardContent.default;
+	  }
+	});
+
+	var _CardContent = interopRequireDefault(CardContent_1);
+	});
+
+	var CardContent$2 = unwrapExports(CardContent$1);
+
 	var Typography_1 = createCommonjsModule(function (module, exports) {
 
 
@@ -11462,36 +11472,37 @@
 
 	var styles$2 = {
 	  root: {
-	    boxShadow: '1px 1px 0 1px #e1e1e1'
+	    boxShadow: '1px 1px 0 1px #e1e1e1',
+	    marginBottom: 24
 	  },
 	  card: {
 	    display: 'flex',
 	    alignItems: 'center',
-	    padding: '21px'
+	    padding: 24
 	  },
 	  thumbnail: {
-	    width: '62px',
-	    height: '62px',
-	    position: 'relative'
+	    height: 62,
+	    position: 'relative',
+	    width: 62
 	  },
 	  description: {
 	    flexGrow: 1,
-	    paddingTop: 0,
-	    paddingBottom: 0
+	    paddingBottom: 0,
+	    paddingTop: 0
 	  }
 	};
 
 	var CardMediaGitHub = function CardMediaGitHub(props) {
-	  var classes = props.classes,
-	      action = props.action,
+	  var action = props.action,
+	      classes = props.classes,
+	      thumbnail = props.thumbnail,
 	      title = props.title,
-	      subtitle = props.subtitle,
-	      thumbnail = props.thumbnail;
+	      subtitle = props.subtitle;
 	  return React.createElement(Card$2, {
-	    className: classes.card,
 	    classes: {
 	      root: classes.root
-	    }
+	    },
+	    className: classes.card
 	  }, React.createElement("div", {
 	    className: classes.thumbnail
 	  }, thumbnail), React.createElement(CardContent$2, {
@@ -11508,11 +11519,11 @@
 	};
 
 	CardMediaGitHub.propTypes = {
+	  action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 	  classes: PropTypes.shape().isRequired,
-	  title: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-	  subtitle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 	  thumbnail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-	  action: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
+	  title: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+	  subtitle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 	};
 	var CardMediaGitHub$1 = withStyles(styles$2)(CardMediaGitHub);
 
