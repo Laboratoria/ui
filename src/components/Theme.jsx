@@ -10,6 +10,13 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiFormHelperText: {
+      error: {
+        color: '#e84040',
+        fontSize: '0.7rem',
+        fontWeight: 100,
+      },
+    },
   },
   palette: {
     primary: {
