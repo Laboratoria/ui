@@ -21,6 +21,7 @@ const Header = (props) => {
       <Grid
         container
         justify="space-between"
+        wrap="nowrap"
         className={classes.header}
       >
         <Grid item md={4} className={classes.linkLeft}>
