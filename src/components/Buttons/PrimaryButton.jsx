@@ -10,7 +10,7 @@ const styles = theme => ({
     boxShadow: 'none',
     display: 'inline-block',
     fontFamily: theme.typography.fontFamily,
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     fontWeight: 800,
     padding: '14px 21px',
     textTransform: 'uppercase',
