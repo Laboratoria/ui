@@ -42,7 +42,7 @@ const theme = createMuiTheme({
     h1: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '2.5rem',
+      fontSize: '3.125rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
@@ -50,7 +50,7 @@ const theme = createMuiTheme({
     h2: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '1.8rem',
+      fontSize: '2.25rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
@@ -58,7 +58,7 @@ const theme = createMuiTheme({
     h3: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '1.4rem',
+      fontSize: '1.75rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
@@ -66,7 +66,7 @@ const theme = createMuiTheme({
     h4: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '1.2rem',
+      fontSize: '1.5rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
@@ -74,7 +74,7 @@ const theme = createMuiTheme({
     h5: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '1rem',
+      fontSize: '1.25rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
@@ -82,21 +82,21 @@ const theme = createMuiTheme({
     h6: {
       color: '#000',
       fontFamily: 'Bitter,serif',
-      fontSize: '0.8rem',
+      fontSize: '1rem',
       fontWeight: 700,
       letterSpacing: 'normal',
       lineHeight: 'normal',
     },
     body1: {
       color: '#000',
-      fontSize: '0.8rem',
+      fontSize: '1rem',
       fontWeight: 300,
       letterSpacing: 'normal',
       lineHeight: '1.35em',
     },
     body2: {
       color: '#000',
-      fontSize: '1rem',
+      fontSize: '1.25rem',
       fontWeight: 300,
       letterSpacing: 'normal',
       lineHeight: '1.35em',
