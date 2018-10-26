@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const styles = theme => ({
   root: {
     fontFamily: 'Open Sans',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     fontWeight: 300,
     textDecoration: 'inherit',
   },
