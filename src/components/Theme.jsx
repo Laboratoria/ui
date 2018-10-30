@@ -11,10 +11,15 @@ const theme = createMuiTheme({
       },
     },
     MuiFormHelperText: {
-      error: {
-        color: '#e84040',
-        fontSize: '0.7rem',
-        fontWeight: 100,
+      root: {
+        fontWeight: 300,
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        '&$error': {
+          color: '#000',
+        },
       },
     },
   },
