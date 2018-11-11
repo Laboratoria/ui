@@ -1,26 +1,26 @@
 {
   "dist/laboratoria-ui.cjs.js": {
-    "bundled": 25793,
-    "minified": 23082,
-    "gzipped": 7612
+    "bundled": 32004,
+    "minified": 29147,
+    "gzipped": 10064
   },
   "dist/laboratoria-ui.esm.js": {
-    "bundled": 25290,
-    "minified": 22701,
-    "gzipped": 7524,
+    "bundled": 31473,
+    "minified": 28744,
+    "gzipped": 9964,
     "treeshaked": {
       "rollup": {
-        "code": 4979,
+        "code": 5084,
         "import_statements": 510
       },
       "webpack": {
-        "code": 6501
+        "code": 6606
       }
     }
   },
   "dist/laboratoria-ui.umd.js": {
-    "bundled": 368840,
-    "minified": 152803,
-    "gzipped": 40852
+    "bundled": 375071,
+    "minified": 158804,
+    "gzipped": 43304
   }
 }
