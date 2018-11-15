@@ -852,7 +852,7 @@
 	var colorManipulator_9 = colorManipulator.darken;
 	var colorManipulator_10 = colorManipulator.lighten;
 
-	var require$$2 = ( es && deepmerge_1 ) || es;
+	var require$$3 = ( es && deepmerge_1 ) || es;
 
 	var createPalette_1 = createCommonjsModule(function (module, exports) {
 
@@ -870,7 +870,7 @@
 
 	var _warning = interopRequireDefault(warning_1);
 
-	var _deepmerge = interopRequireDefault(require$$2);
+	var _deepmerge = interopRequireDefault(require$$3);
 
 	var _indigo = interopRequireDefault(indigo_1);
 
@@ -1076,7 +1076,7 @@
 
 	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
 
-	var _deepmerge = interopRequireDefault(require$$2);
+	var _deepmerge = interopRequireDefault(require$$3);
 
 	var _warning = interopRequireDefault(warning_1);
 
@@ -1462,7 +1462,7 @@
 
 	var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
 
-	var _deepmerge = interopRequireDefault(require$$2);
+	var _deepmerge = interopRequireDefault(require$$3);
 
 	var _isPlainObject = interopRequireDefault(isPlainObject);
 
@@ -6107,7 +6107,7 @@
 
 	var _warning = interopRequireDefault(warning_1);
 
-	var _deepmerge = interopRequireDefault(require$$2);
+	var _deepmerge = interopRequireDefault(require$$3);
 
 	// < 1kb payload overhead when lodash/merge is > 3kb.
 	// Support for the jss-expand plugin.
@@ -11489,7 +11489,10 @@
 	var styles$2 = {
 	  root: {
 	    boxShadow: '1px 1px 0 1px #e1e1e1',
-	    marginBottom: 24
+	    marginBottom: 24,
+	    '&:last-child': {
+	      marginBottom: 0
+	    }
 	  },
 	  card: {
 	    display: 'flex',
