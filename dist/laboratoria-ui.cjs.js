@@ -121,7 +121,10 @@ var theme = createMuiTheme({
       fontSize: '1.25rem',
       fontWeight: 300,
       letterSpacing: 'normal',
-      lineHeight: '1.35em'
+      lineHeight: '1.35em',
+      '& a': {
+        fontSize: '1.25rem'
+      }
     }
   },
   spacing: {
