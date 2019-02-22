@@ -11489,7 +11489,10 @@
 	var styles$2 = {
 	  root: {
 	    boxShadow: '1px 1px 0 1px #e1e1e1',
-	    marginBottom: 24
+	    marginBottom: 24,
+	    '&:last-child': {
+	      marginBottom: 0
+	    }
 	  },
 	  card: {
 	    display: 'flex',
