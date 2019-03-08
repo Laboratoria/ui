@@ -105,10 +105,10 @@ const theme = createMuiTheme({
       fontWeight: 300,
       letterSpacing: 'normal',
       lineHeight: '1.35em',
-      'word-wrap': 'break-word',
+      wordWrap: 'break-word',
       '& a': {
         fontSize: '1.25rem',
-      }
+      },
     },
   },
   spacing: {
