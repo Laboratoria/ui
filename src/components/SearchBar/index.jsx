@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import classNames from 'classnames';
+import { debounce } from 'throttle-debounce';
 
 const styles = {
   searbBar: {
@@ -45,45 +46,39 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: [],
-      filteredOptions: [],
       inputValue: '',
+      showFiltered: true,
     };
     this.handleOnInput = this.handleOnInput.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  static getDerivedStateFromProps(props) {
-    const { options } = props;
-    return {
-      options,
-    };
+    this.debounce = debounce(700, () => props.onInput(this.state.inputValue))
+    this.filteredOptions = (options, value) => value.length > 0
+      ? options.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) > -1)
+      : [];
   }
 
   handleOnInput(event) {
-    const { options } = this.state;
-    const { onInput } = this.props;
     const { target: { value } } = event;
-    const filteredOptions = options.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) > -1);
-    onInput(value);
     this.setState({
-      filteredOptions,
+      showFiltered: true,
       inputValue: value,
     });
   }
 
   handleSelect(event) {
-    const { currentTarget } = event;
+    const { currentTarget: { innerText } } = event;
     const { onSelectValue } = this.props;
-    onSelectValue(currentTarget.innerText);
+    onSelectValue(innerText);
     this.setState({
-      filteredOptions: [],
+      showFiltered: false,
+      inputValue: innerText,
     });
   }
 
   render() {
-    const { filteredOptions, inputValue } = this.state;
-    const { classes, show } = this.props;
+    const { inputValue, showFiltered } = this.state;
+    const { classes, show, options, placeholder } = this.props;
+    const filteredOptions = this.filteredOptions(options, inputValue);
     return (
       <section>
         <Paper
@@ -97,12 +92,16 @@ class SearchBar extends React.Component {
           <SearchIcon className={classes.icon} />
           <InputBase
             className={classes.input}
-            placeholder="Search term"
+            placeholder={placeholder}
             onChange={this.handleOnInput}
             fullWidth
+            inputProps={{
+              onKeyDown: this.debounce
+            }}
+            value={inputValue}
           />
         </Paper>
-        { filteredOptions.length > 0 && inputValue.length > 0
+        { showFiltered === true && filteredOptions.length > 0
           && (
             <Paper className={classes.list}>
               {
@@ -127,6 +126,8 @@ class SearchBar extends React.Component {
 SearchBar.defaultProps = {
   show: true,
   onInput: () => null,
+  options: [],
+  placeholder: 'Search term'
 };
 
 
@@ -135,6 +136,8 @@ SearchBar.propTypes = {
   onSelectValue: PropTypes.func.isRequired,
   onInput: PropTypes.func,
   show: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.string),
+  placeholder: PropTypes.string,
 };
 
 export default withStyles(styles)(SearchBar);
