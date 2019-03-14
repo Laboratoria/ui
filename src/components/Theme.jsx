@@ -22,6 +22,12 @@ const theme = createMuiTheme({
         },
       },
     },
+    MuiPaper: {
+      root: {
+        background: '#FAFAFA',
+        boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12)',
+      },
+    },
   },
   palette: {
     primary: {
@@ -105,10 +111,10 @@ const theme = createMuiTheme({
       fontWeight: 300,
       letterSpacing: 'normal',
       lineHeight: '1.35em',
-      'word-wrap': 'break-word',
+      wordWrap: 'break-word',
       '& a': {
         fontSize: '1.25rem',
-      }
+      },
     },
   },
   spacing: {

@@ -11,7 +11,7 @@ import {
   gdl,
   cdmx,
   scl,
-  sp,
+  spl,
 } from '../../components/SVG/flags';
 
 const Flags = {
@@ -20,7 +20,7 @@ const Flags = {
   gdl,
   cdmx,
   scl,
-  sp,
+  spl,
 };
 
 const graduated = {

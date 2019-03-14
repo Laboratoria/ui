@@ -10,6 +10,7 @@ import Font from './how-to-use/Brand/Font';
 import Buttons from './how-to-use/Buttons';
 import GraduatedCard from './how-to-use/Cards';
 import Links from './how-to-use/Links';
+import SearchBarExample from './how-to-use/SearchBar';
 
 const styles = {
   container: {
@@ -37,6 +38,8 @@ const App = ({ classes }) => (
       <Links />
       <Divider />
       <GraduatedCard />
+      <Divider />
+      <SearchBarExample />
     </div>
   </React.Fragment>
 );
