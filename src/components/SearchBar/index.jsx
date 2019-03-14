@@ -9,8 +9,6 @@ import { debounce } from 'throttle-debounce';
 
 const styles = {
   searbBar: {
-    background: '#FAFAFA',
-    boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12)',
     display: 'none',
     alignItems: 'center',
     height: 50,
