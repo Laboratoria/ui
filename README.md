@@ -45,8 +45,14 @@ ReactDOM.render(
 
       <Button variant="contained" color="primary">
         Button
-      </Button>    
-  </MuiThemeProvider>, 
+      </Button>
+  </MuiThemeProvider>,
   document.getElementById('app'),
 );
+```
+
+## How to run Storybook
+
+```shell
+yarn run storybook
 ```
