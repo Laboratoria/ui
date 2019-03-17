@@ -60,6 +60,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@storybook/addon-actions": "^5.0.2",
     "@storybook/react": "^5.0.2",
     "babel-loader": "^8.0.5"
   }
