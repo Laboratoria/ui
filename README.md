@@ -5,13 +5,7 @@ Laboratoria UI it's a custom theme of the [Material UI](https://material-ui.com/
 
 ## How to use Laboratoria UI
 
-### Install
-
-```shell
-yarn add https://github.com/Laboratoria/ui.git
-```
-
-## How to integrate with  your React Application
+## Integrate with  your React Application
 
 ### First import our fonts
 
@@ -21,7 +15,7 @@ yarn add https://github.com/Laboratoria/ui.git
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700|Open+Sans:400,400i,700" />
 ```
 
-### Lastly, import  `laboratoria-ui` material-ui theme
+### Lastly, import  `laboratoria-ui` Material-UI theme
 
 ```javascript
 import React from 'react';
