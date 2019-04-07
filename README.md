@@ -47,6 +47,14 @@ ReactDOM.render(
 
 ## How to run Storybook
 
+### Install the project
+
 ```shell
-yarn run storybook
+yarn
+```
+
+### Run Storybook
+
+```shell
+yarn start
 ```
