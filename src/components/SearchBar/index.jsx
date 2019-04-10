@@ -66,7 +66,7 @@ class SearchBar extends React.Component {
   handleSelect(event) {
     const { currentTarget: { innerText } } = event;
     const { onSelectValue } = this.props;
-    onSelectValue(innerText);
+    onSelectValue(event);
     this.setState({
       showFiltered: false,
       inputValue: innerText,
