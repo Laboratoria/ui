@@ -58,3 +58,7 @@ yarn
 ```shell
 yarn start
 ```
+
+## Heroku deployment
+
+The deployment happen automatically, every push to master will deploy a new version of this app on Heroku.
