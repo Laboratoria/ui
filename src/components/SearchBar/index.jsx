@@ -4,18 +4,13 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import classNames from 'classnames';
-import { debounce } from 'throttle-debounce';
 
 const styles = {
-  searbBar: {
-    display: 'none',
+  searchBar: {
+    display: 'flex',
     alignItems: 'center',
     height: 50,
     width: '100%',
-  },
-  show: {
-    display: 'flex',
   },
   list: {
     background: '#FAFAFA',
@@ -24,6 +19,7 @@ const styles = {
   item: {
     background: '#F7F7F7',
     boxShadow: '1px 1px 0px #E5E5E5',
+    cursor: 'pointer',
     padding: 14,
     borderRadius: 0,
     margin: '20px 0',
@@ -40,102 +36,66 @@ const styles = {
   },
 };
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      showFiltered: true,
-    };
-    this.handleOnInput = this.handleOnInput.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.debounce = debounce(700, () => props.onInput(this.state.inputValue))
-    this.filteredOptions = (options, value) => value.length > 0
-      ? options.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) > -1)
-      : [];
-  }
+const SearchBar = (props) => {
+  const {
+    classes,
+    inputProps,
+    onChange,
+    onSelectValue,
+    options,
+    placeholder,
+    showOptions,
+    value,
+  } = props;
 
-  handleOnInput(event) {
-    const { target: { value } } = event;
-    this.setState({
-      showFiltered: true,
-      inputValue: value,
-    });
-  }
-
-  handleSelect(event) {
-    const { currentTarget: { innerText } } = event;
-    const { onSelectValue } = this.props;
-    onSelectValue(event);
-    this.setState({
-      showFiltered: false,
-      inputValue: innerText,
-    });
-  }
-
-  render() {
-    const { inputValue, showFiltered } = this.state;
-    const { classes, show, options, placeholder } = this.props;
-    const filteredOptions = this.filteredOptions(options, inputValue);
-    return (
-      <section>
-        <Paper
-          className={
-            classNames(
-              classes.searbBar,
-              { [classes.show]: show },
-            )
-          }
-        >
-          <SearchIcon className={classes.icon} />
-          <InputBase
-            className={classes.input}
-            placeholder={placeholder}
-            onChange={this.handleOnInput}
-            fullWidth
-            inputProps={{
-              onKeyDown: this.debounce
-            }}
-            value={inputValue}
-          />
-        </Paper>
-        { showFiltered === true && filteredOptions.length > 0
-          && (
-            <Paper className={classes.list}>
-              {
-                filteredOptions.map(option => (
-                  <Paper
-                    className={classes.item}
-                    key={option}
-                    onClick={this.handleSelect}
-                  >
-                    {option}
-                  </Paper>
-                ))
-              }
-            </Paper>
-          )
-        }
-      </section>
-    );
-  }
-}
-
-SearchBar.defaultProps = {
-  show: true,
-  onInput: () => null,
-  options: [],
-  placeholder: 'Search term'
+  return (
+    <>
+      <Paper className={classes.searchBar}>
+        <SearchIcon className={classes.icon} />
+        <InputBase
+          className={classes.input}
+          placeholder={placeholder}
+          onChange={onChange}
+          fullWidth
+          inputProps={{...inputProps}}
+          value={value}
+        />
+      </Paper>
+      { showOptions === true && options.length > 0
+        && (
+          <Paper className={classes.list}>
+            {
+              options.map((option, index) => (
+                <Paper
+                  className={classes.item}
+                  key={index}
+                  onClick={onSelectValue}
+                >
+                  {option}
+                </Paper>
+              ))
+            }
+          </Paper>
+        )
+      }
+    </>
+  );
 };
 
+SearchBar.defaultProps = {
+  placeholder: 'Search term',
+  showOptions: false,
+};
 
 SearchBar.propTypes = {
   classes: PropTypes.shape().isRequired,
+  inputProps: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
   onSelectValue: PropTypes.func.isRequired,
-  onInput: PropTypes.func,
-  show: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholder: PropTypes.string,
+  showOptions: PropTypes.bool,
+  value: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(SearchBar);
