@@ -47,8 +47,7 @@
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-size-snapshot": "^0.8.0",
     "rollup-plugin-svg": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.2",
-    "throttle-debounce": "^2.1.0"
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "browserslist": [
     ">0.2%",
