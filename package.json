@@ -47,7 +47,8 @@
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-size-snapshot": "^0.8.0",
     "rollup-plugin-svg": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "throttle-debounce": "^2.1.0"
   },
   "browserslist": [
     ">0.2%",
@@ -57,6 +58,7 @@
   ],
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.2",
+    "@storybook/addon-console": "^1.1.0",
     "@storybook/react": "^5.0.2",
     "babel-loader": "^8.0.5"
   }
