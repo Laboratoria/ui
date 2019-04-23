@@ -36,7 +36,7 @@ const styles = {
   },
 };
 
-const SearchBar = (props) => {
+const SearchBarUI = (props) => {
   const {
     classes,
     inputProps,
@@ -82,12 +82,12 @@ const SearchBar = (props) => {
   );
 };
 
-SearchBar.defaultProps = {
+SearchBarUI.defaultProps = {
   placeholder: 'Search term',
   showOptions: false,
 };
 
-SearchBar.propTypes = {
+SearchBarUI.propTypes = {
   classes: PropTypes.shape().isRequired,
   inputProps: PropTypes.object,
   onChange: PropTypes.func.isRequired,
@@ -98,4 +98,4 @@ SearchBar.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SearchBar);
+export default withStyles(styles)(SearchBarUI);
