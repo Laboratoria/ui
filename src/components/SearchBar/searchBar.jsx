@@ -13,9 +13,8 @@ class SearchBar extends React.Component {
     };
 
     const { debounceTime, debounceCallback } = props;
-
     this.debounce = debounce(debounceTime, debounceCallback);
-
+    
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -67,10 +66,10 @@ SearchBar.propTypes = {
   debounceTime: PropTypes.number,
   debounceCallback: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  options: PropTypes.shape().isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelectValue: PropTypes.func.isRequired,
   onChange: PropTypes.func,
-  inputProps: PropTypes.arrayOf(PropTypes.string)
+  inputProps: PropTypes.object,
 };
 
 export default SearchBar;
