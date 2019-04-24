@@ -1,15 +1,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import PrimaryButton from '../../components/Buttons';
+import Button from '../../components/Button';
 
 const Buttons = () => (
   <section id="buttons">
     <Typography variant="h2" gutterBottom>
       Buttons
     </Typography>
-    <PrimaryButton tag="a">
+    <Button>
       Publica una posición
-    </PrimaryButton>
+    </Button>
   </section>
 );
 

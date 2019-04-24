@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '../../components/Links';
 import Header from '../../components/partials/Header';
-import PrimaryButton from '../../components/Buttons';
+import Button from '../../components/Button';
 
 const styles = {
   root: {
@@ -38,9 +38,9 @@ const HeaderWithLinks = (props) => {
     </Link>
   );
   const linkRight = (
-    <PrimaryButton tag="a">
+    <Button>
       Publica una posición
-    </PrimaryButton>
+    </Button>
   );
 
   return (
