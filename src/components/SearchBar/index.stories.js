@@ -2,11 +2,25 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import SearchBar  from './';
+import SearchBarUI  from './';
+import SearchBar  from './searchBar';
 
-storiesOf('SearchBar', module)
-  .add('searchBar', () => (
+storiesOf('SearchBarUI', module)
+  .add('searchBarUI closed', () => (
+    <SearchBarUI options={['Andrea', 'Guilherme', 'Dení', 'Rafael', 'Cesar']}
+      onSelectValue={action("onSelectValue")}
+      onChange={action('onChange')}
+      value={'Example'} />
+  ))
+  .add('searchBarUI opened', () => (
+    <SearchBarUI options={['Andrea', 'Guilherme', 'Dení', 'Rafael', 'Cesar']}
+      onSelectValue={action("onSelectValue")}
+      onChange={action('onChange')}
+      value={'Example'}
+      showOptions={true} />
+  ))
+  .add('SearchBar', () => (
     <SearchBar options={['Andrea', 'Guilherme', 'Dení', 'Rafael', 'Cesar']}
-      onSelectValue={action("selectedValue")}
-      onInput={action('onInput')} />
+      debounceCallback={action("debounceCallback")}
+      onSelectValue={action("onSelectValue")} />
   ));
