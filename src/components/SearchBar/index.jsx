@@ -57,7 +57,7 @@ const SearchBarUI = (props) => {
           placeholder={placeholder}
           onChange={onChange}
           fullWidth
-          inputProps={{...inputProps}}
+          inputProps={{ ...inputProps }}
           value={value}
         />
       </Paper>
@@ -65,10 +65,10 @@ const SearchBarUI = (props) => {
         && (
           <Paper className={classes.list}>
             {
-              options.map((option, index) => (
+              options.map(option => (
                 <Paper
                   className={classes.item}
-                  key={index}
+                  key={option.key}
                   onClick={onSelectValue}
                 >
                   {option}
@@ -89,10 +89,10 @@ SearchBarUI.defaultProps = {
 
 SearchBarUI.propTypes = {
   classes: PropTypes.shape().isRequired,
-  inputProps: PropTypes.object,
+  inputProps: PropTypes.shape().isRequired,
   onChange: PropTypes.func.isRequired,
   onSelectValue: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.node.isRequired,
   placeholder: PropTypes.string,
   showOptions: PropTypes.bool,
   value: PropTypes.string.isRequired,

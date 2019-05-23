@@ -2,35 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
 
-import SearchBarUI from './';
+import SearchBarUI from ".";
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      showOptions: false
+      showOptions: false,
     };
 
     const { debounceTime, debounceCallback } = props;
     this.debounce = debounce(debounceTime, debounceCallback);
-    
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectedValue = this.handleSelectedValue.bind(this);
   }
 
   handleChange(event) {
     event.stopPropagation();
     const { target: { value } } = event;
     const { onChange } = this.props;
-    this.setState({ 
+    this.setState({
       value,
-      showOptions: true
+      showOptions: true,
     });
     onChange(event);
     this.debounce();
   }
 
-  handleSelectedValue = (event) => {
+  handleSelectedValue(event) {
     event.stopPropagation();
     const { onSelectValue } = this.props;
     this.setState({
@@ -50,7 +51,7 @@ class SearchBar extends React.Component {
         options={options}
         onChange={this.handleChange}
         onSelectValue={this.handleSelectedValue}
-        inputProps={{...inputProps}}
+        inputProps={{ ...inputProps }}
         value={value}
         showOptions={showOptions}
       />
@@ -59,17 +60,17 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.defaultProps = {
-  debounceTime: 700
+  debounceTime: 700,
 };
 
 SearchBar.propTypes = {
   debounceTime: PropTypes.number,
   debounceCallback: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placeholder: PropTypes.string.isRequired,
+  options: PropTypes.node.isRequired,
   onSelectValue: PropTypes.func.isRequired,
-  onChange: PropTypes.func,
-  inputProps: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
+  inputProps: PropTypes.shape().isRequired,
 };
 
 export default SearchBar;
