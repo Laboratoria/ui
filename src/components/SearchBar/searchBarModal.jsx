@@ -12,7 +12,7 @@ const SearchBarModal = (props) => {
         onClick={onCloseClick}
         role="dialog"
       >
-        <SearchBar {...props}/>
+        <SearchBar {...props} />
       </div>
     );
   }
@@ -20,12 +20,9 @@ const SearchBarModal = (props) => {
 };
 
 SearchBarModal.propTypes = {
-  debounceTime: PropTypes.number,
+  classname: PropTypes.string.isRequired,
   debounceCallback: PropTypes.func.isRequired,
-  inputProps: PropTypes.object,
-  placeholder: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func,
+  options: PropTypes.node.isRequired,
   onCloseClick: PropTypes.func.isRequired,
   onSelectValue: PropTypes.func.isRequired,
   showSearchBar: PropTypes.bool.isRequired,
