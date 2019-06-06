@@ -6,5 +6,6 @@ export { default as CardMediaGitHub } from './Cards';
 export { default as SearchBarUI } from './SearchBar';
 export { default as SearchBar } from './SearchBar/searchBar';
 export { default as SearchBarModal } from './SearchBar/searchBarModal';
+export { default as Alert } from './Alerts/Alert';
 export * from './SVG/flags';
 export * from './SVG/icons';
