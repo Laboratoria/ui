@@ -13,24 +13,17 @@ const styles = theme => ({
   text: {
     color: '#fff',
     fontWeight: 600,
-    fontSize: '.80rem',
+    fontSize: theme.typography.pxToRem(12),
   },
 });
 
-const Alert = (props) => {
-  const {
-    text,
-    classes,
-  } = props;
-
-  return (
-    <Paper className={classes.root}>
-      <Typography component="p" className={classes.text} align="center">
-        { text }
-      </Typography>
-    </Paper>
-  );
-};
+const Alert = ({ text, classes }) => (
+  <Paper className={classes.root}>
+    <Typography component="p" className={classes.text} align="center">
+      { text }
+    </Typography>
+  </Paper>
+);
 
 Alert.defaultProps = {
   text: '',
