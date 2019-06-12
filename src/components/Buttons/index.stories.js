@@ -1,12 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import PrimaryButton  from './';
+import PrimaryButton from './index';
 
-storiesOf('PrimaryButton', module)
-  .add('all buttons', () => (
-    <>
-      <PrimaryButton tag="a"> Click me </PrimaryButton>
-      <PrimaryButton tag="button"> Click me </PrimaryButton>
-    </>
-  ));
+storiesOf('Buttons', module)
+  .add('Primary as a link', () => <PrimaryButton tag="a"> Click me </PrimaryButton>)
+  .add('Primary as a button', () => <PrimaryButton tag="button"> Click me </PrimaryButton>);
