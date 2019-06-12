@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
@@ -8,7 +8,7 @@ import PrimaryButton from '../Buttons';
 import Link from '../Links';
 import TextField from '../Inputs/TextField';
 
-const useStyles = makeStyles({
+const style = {
   root: {
     flexGrow: 1,
     '& a': {
@@ -24,68 +24,64 @@ const useStyles = makeStyles({
     marginTop: 20,
     marginBottom: 20,
   },
-});
+};
 
 const Login = ({
-  onSubmit, onBlur, labels, recoveryPass, createAccount,
-}) => {
-  const classes = useStyles();
-
-  return (
-    <Grid container justify="center" className={classes.root}>
-      <Grid
-        item
-        xs={12}
-        component="form"
-        autoComplete="true"
-        onSubmit={(event) => {
-          event.preventDefault();
-          const data = new FormData(event.target);
-          onSubmit(data);
+  onSubmit, onBlur, labels, recoveryPass, createAccount, classes,
+}) => (
+  <Grid container justify="center" className={classes.root}>
+    <Grid
+      item
+      xs={12}
+      component="form"
+      autoComplete="true"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        onSubmit(data);
+      }}
+    >
+      <TextField
+        label={labels.email}
+        inputProps={{
+          id: 'email',
+          type: 'email',
+          required: true,
+          onBlur: event => onBlur(event),
         }}
+      />
+      <TextField
+        label={labels.pass}
+        inputProps={{
+          id: 'password',
+          type: 'password',
+          required: true,
+          onBlur: event => onBlur(event),
+        }}
+      />
+
+      <Typography
+        component="p"
+        align="right"
       >
-        <TextField
-          label={labels.email}
-          inputProps={{
-            id: 'email',
-            type: 'email',
-            required: true,
-            onBlur: event => onBlur(event),
-          }}
-        />
-        <TextField
-          label={labels.pass}
-          inputProps={{
-            id: 'password',
-            type: 'password',
-            required: true,
-            onBlur: event => onBlur(event),
-          }}
-        />
+        { recoveryPass }
+      </Typography>
 
-        <Typography
-          component="p"
-          align="right"
-        >
-          { recoveryPass }
-        </Typography>
+      <div className={classes.action}>
+        <PrimaryButton tag="button" type="submit">
+          {labels.submit}
+        </PrimaryButton>
+      </div>
 
-        <div className={classes.action}>
-          <PrimaryButton tag="button" type="submit">
-            {labels.submit}
-          </PrimaryButton>
-        </div>
-
-        <Typography
-          component="p"
-          align="center"
-        >
-          { createAccount }
-        </Typography>
-      </Grid>
+      <Typography
+        component="p"
+        align="center"
+      >
+        { createAccount }
+      </Typography>
     </Grid>
-  );
-};
+  </Grid>
+);
 
 Login.defaultProps = {
   onSubmit: () => {
@@ -118,6 +114,7 @@ Login.defaultProps = {
 };
 
 Login.propTypes = {
+  classes: PropTypes.shape().isRequired,
   onSubmit: PropTypes.func,
   onBlur: PropTypes.func,
   labels: PropTypes.shape({
@@ -129,4 +126,4 @@ Login.propTypes = {
   createAccount: PropTypes.node,
 };
 
-export default Login;
+export default withStyles(style)(Login);
