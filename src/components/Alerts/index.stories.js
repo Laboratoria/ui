@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Alert from './';
+import Alert from ".";
 
-storiesOf('Alert', module)
-  .add('alert', () => (
+storiesOf('Alerts', module)
+  .add('Warning', () => (
     <>
       <Alert text="Ejemplo de uso de una alerta" />
     </>
