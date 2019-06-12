@@ -118,9 +118,9 @@ Login.propTypes = {
   onSubmit: PropTypes.func,
   onBlur: PropTypes.func,
   labels: PropTypes.shape({
-    email: PropTypes.oneOf([PropTypes.node, PropTypes.string]),
-    pass: PropTypes.oneOf([PropTypes.node, PropTypes.string]),
-    submit: PropTypes.oneOf([PropTypes.node, PropTypes.string]),
+    email: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+    pass: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+    submit: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   }),
   recoveryPass: PropTypes.node,
   createAccount: PropTypes.node,
