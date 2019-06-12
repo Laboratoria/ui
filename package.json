@@ -1,6 +1,6 @@
 {
   "name": "laboratoria-ui",
-  "version": "2.3.15",
+  "version": "2.3.16",
   "main": "dist/laboratoria-ui.cjs.js",
   "module": "dist/laboratoria-ui.esm.js",
   "repository": "https://github.com/Laboratoria/ui.git",
