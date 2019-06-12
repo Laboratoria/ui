@@ -7,6 +7,6 @@ export { default as SearchBarUI } from './SearchBar';
 export { default as SearchBar } from './SearchBar/searchBar';
 export { default as SearchBarModal } from './SearchBar/searchBarModal';
 export { default as Alert } from './Alerts/Alert';
-export { default as Form } from './Login';
+export { default as Login } from './Login';
 export * from './SVG/flags';
 export * from './SVG/icons';
