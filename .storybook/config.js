@@ -6,7 +6,9 @@ import Theme from '../src/components/Theme';
 
 addDecorator(storyFn => (
   <MuiThemeProvider theme={Theme}>
-    {storyFn()}
+    <div style={{ background: '#EEEEEE', padding: 20 }}>
+      {storyFn()}
+    </div>
   </MuiThemeProvider>
 ));
 
