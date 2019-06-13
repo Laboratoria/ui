@@ -4,6 +4,7 @@
     "browser": true,
     "node": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "jsx-a11y/click-events-have-key-events": 0,
