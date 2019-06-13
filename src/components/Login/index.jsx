@@ -91,14 +91,14 @@ Login.defaultProps = {
     console.log('OnBlur');
   },
   labels: {
-    email: 'Correo eletrónico',
+    email: 'Correo electrónico',
     pass: 'Contraseña',
     submit: 'Ingresa',
   },
   recoveryPass: (
     <Link href="/recovery-pass">
       <strong>
-        Olvidaste tu Contraseña?
+        ¿Olvidaste tu Contraseña?
       </strong>
     </Link>
   ),
@@ -107,7 +107,7 @@ Login.defaultProps = {
       ¿No tienes una cuenta?
       {' '}
       <strong>
-        Registre
+        Regístrate
       </strong>
     </Link>
   ),
