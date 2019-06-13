@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'throttle-debounce';
 
-import SearchBarUI from ".";
+import SearchBarUI from '.';
 
 class SearchBar extends React.Component {
   constructor(props) {
