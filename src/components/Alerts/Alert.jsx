@@ -9,10 +9,11 @@ const styles = theme => ({
     backgroundColor: theme.palette.magenta.main,
     padding: 10,
     marginTop: 12,
+    borderRadius: 0,
   },
   text: {
     color: '#fff',
-    fontWeight: 600,
+    fontWeight: 300,
     fontSize: theme.typography.pxToRem(12),
   },
 });
