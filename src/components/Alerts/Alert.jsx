@@ -18,21 +18,17 @@ const styles = theme => ({
   },
 });
 
-const Alert = ({ text, classes }) => (
+const Alert = ({ children, classes }) => (
   <Paper className={classes.root}>
     <Typography component="p" className={classes.text} align="center">
-      { text }
+      { children }
     </Typography>
   </Paper>
 );
 
-Alert.defaultProps = {
-  text: '',
-};
-
 Alert.propTypes = {
   classes: PropTypes.shape().isRequired,
-  text: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default withStyles(styles)(Alert);

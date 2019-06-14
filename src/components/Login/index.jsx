@@ -37,14 +37,14 @@ const Login = ({
       autoComplete="true"
       onSubmit={(event) => {
         event.preventDefault();
-        const data = new FormData(event.target);
-        onSubmit(data);
+        onSubmit(event.target);
       }}
     >
       <TextField
         label={labels.email}
         inputProps={{
           id: 'email',
+          name: 'email',
           type: 'email',
           required: true,
           onBlur: event => onBlur(event),
@@ -54,6 +54,7 @@ const Login = ({
         label={labels.pass}
         inputProps={{
           id: 'password',
+          name: 'password',
           type: 'password',
           required: true,
           onBlur: event => onBlur(event),
@@ -77,7 +78,7 @@ const Login = ({
         component="p"
         align="center"
       >
-        { createAccount }
+        { createAccount && createAccount }
       </Typography>
     </Grid>
   </Grid>
