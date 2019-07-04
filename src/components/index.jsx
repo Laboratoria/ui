@@ -9,5 +9,6 @@ export { default as SearchBarModal } from './SearchBar/searchBarModal';
 export { default as Alert } from './Alerts/Alert';
 export { default as TextField } from './Inputs/TextField';
 export { default as Login } from './Login';
+export { default as RecoveryPassword } from './Login/recoveryPassword';
 export * from './SVG/flags';
 export * from './SVG/icons';
