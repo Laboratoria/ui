@@ -1,17 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import LoginReadme from './README.md';
+
 import Login from './index';
-import RecoveryPassword from './recoveryPassword';
 
 storiesOf('Login', module)
+  .addParameters({
+    readme: {
+      content: LoginReadme,
+    },
+  })
   .add('Login', () => (
     <>
       <Login />
-    </>
-  ))
-  .add('RecoveryPassword', () => (
-    <>
-      <RecoveryPassword />
     </>
   ));

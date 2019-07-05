@@ -28,7 +28,7 @@ const style = {
   },
 };
 
-const RecoveryPassword = ({
+const PasswordRecovery = ({
   onSubmit, onBlur, labels, classes,
 }) => (
   <Grid container justify="center" className={classes.root}>
@@ -71,7 +71,7 @@ const RecoveryPassword = ({
   </Grid>
 );
 
-RecoveryPassword.defaultProps = {
+PasswordRecovery.defaultProps = {
   onSubmit: () => {
     console.log('OnSubmit');
   },
@@ -84,7 +84,7 @@ RecoveryPassword.defaultProps = {
   },
 };
 
-RecoveryPassword.propTypes = {
+PasswordRecovery.propTypes = {
   classes: PropTypes.shape().isRequired,
   onSubmit: PropTypes.func,
   onBlur: PropTypes.func,
@@ -94,4 +94,4 @@ RecoveryPassword.propTypes = {
   }),
 };
 
-export default withStyles(style)(RecoveryPassword);
+export default withStyles(style)(PasswordRecovery);
