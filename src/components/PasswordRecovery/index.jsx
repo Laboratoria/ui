@@ -47,8 +47,7 @@ const PasswordRecovery = ({
         component="p"
         align="center"
       >
-        Ingresa tu correo electrónico y te enviaremos un mensaje
-        a tu buzón con los pasos para recuperar tu contraseña.
+        { labels.text }
       </Typography>
 
       <TextField
@@ -81,6 +80,7 @@ PasswordRecovery.defaultProps = {
   labels: {
     email: 'Correo electrónico',
     submit: 'Enviar',
+    text: 'Ingresa tu correo electrónico y te enviaremos un mensaje a tu buzón con los pasos para recuperar tu contraseña.',
   },
 };
 
