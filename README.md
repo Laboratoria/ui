@@ -1,21 +1,21 @@
 # Laboratoria UI
 
 
-Laboratoria UI it's a custom theme of the [Material UI](https://material-ui.com/) with some our custom components.
+Laboratoria UI es un tema personalizado de [Material UI](https://material-ui.com/) con algunos de nuestros componentes personalizados con nuestra marca.
 
-## How to use Laboratoria UI
+## Cómo usar Laboratoria UI en algún proyecto
 
-## Integrate with  your React Application
+## Integre con su aplicación React
 
-### First import our fonts
+### Primero, importa nuestras fuentes
 
-**Bitter** for titles and **Open Sans** for texts
+**Bitter** para los títulos y **Open Sans** para los textos
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700|Open+Sans:400,400i,700" />
 ```
 
-### Lastly, import  `laboratoria-ui` Material-UI theme
+### Por último, importe laboratoria-ui, tema de Material-UI
 
 ```javascript
 import React from 'react';
@@ -28,37 +28,51 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Theme } from 'laboratoria-ui';
 
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Login from 'laboratoria-ui';
 
 ReactDOM.render(
   <MuiThemeProvider theme={Theme}>
     <div>
       <Typography variant="h1" align="center">
-        Hola
+        ¡Hola!
       </Typography>
 
-      <Button variant="contained" color="primary">
-        Button
-      </Button>
-  </MuiThemeProvider>,
+      <Login/>
+    </div> 
+  </MuiThemeProvider>
   document.getElementById('app'),
 );
 ```
 
-## How to run Storybook
+## Cómo arrancar el Storybook para poder aportar nuevos componenetes
 
-### Install the project
-
-```shell
-yarn
-```
-
-### Run Storybook
+### Instala el proyecto
 
 ```shell
+# clona repo desde tu fork
+git clone git@github.com:<github-username>/ui.git
+
+# entra en directorio de tu copia local del repo
+cd ui
+
+# instala las dependencias de Node.js declaradas en `package.json`
+yarn install
+
+# arranca localmente
 yarn start
 ```
 
-## Heroku deployment
+Esto arrancará la aplicacion en  `localhost:8080`, verás el Storybook que es donde se enlistan todos los componentes que tenemos hasta el momento.
 
-The deployment happen automatically, every push to master will deploy a new version of this app on Heroku.
+## Más detalles
+
+Si deseas obtener más información sobre el proceso de desarrollo, el flujo de trabajo, etc. Consulta la documentación completa en la [Wiki](https://github.com/Laboratoria/ui/wiki).
+
+
+## Team
+
+Devs: Todo el equipo de [developers](https://github.com/orgs/Laboratoria/teams/developers) de Laboratoria
+
+## Soporte
+
+Si encuentras algún *bug*, abre un *issue* aquí https://github.com/Laboratoria/ui/issues

@@ -10,6 +10,6 @@ import { Alert } from 'laboratoria-ui';
 
 ```js
 <Alert>
-  Mensagem de erro
+  Ejemplo de uso de una alerta
 </Alert>
 ```
