@@ -13,9 +13,10 @@ const style = {
     flexGrow: 1,
     '& a': {
       border: 'none',
+      fontSize: '14px'
     },
     '& strong': {
-      fontWeight: 400,
+      fontWeight: 700,
     },
   },
   action: {
