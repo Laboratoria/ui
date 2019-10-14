@@ -13,15 +13,16 @@ const style = {
     flexGrow: 1,
     '& a': {
       border: 'none',
+      fontSize: '14px'
     },
     '& strong': {
-      fontWeight: 400,
+      fontWeight: 700,
     },
   },
   action: {
     width: '100%',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 20,
   },
 };
