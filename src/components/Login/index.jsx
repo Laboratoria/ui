@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
 import PrimaryButton from '../Buttons';
 import Link from '../Links';
 import TextField from '../Inputs/TextField';
 
-const style = {
+const style = theme => ({
   root: {
     flexGrow: 1,
     '& a': {
       border: 'none',
+      [theme.breakpoints.only('xs')]: {
+        fontSize: 14,
+      },
     },
     '& strong': {
       fontWeight: 400,
@@ -20,11 +23,16 @@ const style = {
   },
   action: {
     width: '100%',
-    textAlign: 'center',
     marginTop: 20,
     marginBottom: 20,
   },
-};
+  textCenter: {
+    textAlign: 'center',
+  },
+  textRight: {
+    textAlign: 'right',
+  },
+});
 
 const Login = ({
   onSubmit, onBlur, labels, recoveryPass, createAccount, classes,
@@ -61,25 +69,15 @@ const Login = ({
         }}
       />
 
-      <Typography
-        component="p"
-        align="right"
-      >
-        { recoveryPass }
-      </Typography>
+      <div className={classes.textRight}>{recoveryPass}</div>
 
-      <div className={classes.action}>
+      <div className={classNames(classes.textCenter, classes.action)}>
         <PrimaryButton tag="button" type="submit">
           {labels.submit}
         </PrimaryButton>
       </div>
 
-      <Typography
-        component="p"
-        align="center"
-      >
-        { createAccount && createAccount }
-      </Typography>
+      <div className={classes.textCenter}>{createAccount}</div>
     </Grid>
   </Grid>
 );
