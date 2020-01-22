@@ -5,6 +5,12 @@ export default {
     display: 'flex',
     marginBottom: 20,
   },
+  label: {
+    color: '#000',
+    '& + [class*="MuiInput-formControl"]': {
+      marginTop: 20,
+    },
+  },
   input: {
     background: 'white',
     marginTop: 20,
