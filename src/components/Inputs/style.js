@@ -12,10 +12,9 @@ export default {
     },
   },
   input: {
-    background: 'white',
-    marginTop: 20,
-    padding: 17,
-    color: '#979797',
+    background: '#f7f7f7',
+    color: '#000',
     fontSize: 20,
+    padding: 16,
   },
 };
