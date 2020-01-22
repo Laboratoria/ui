@@ -1,7 +1,7 @@
 export default {
   root: {
-    boxSizing: 'border-box',
     borderRadius: 2,
+    boxSizing: 'border-box',
     display: 'flex',
     marginBottom: 20,
   },
