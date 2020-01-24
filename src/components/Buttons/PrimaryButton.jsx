@@ -18,6 +18,9 @@ const styles = theme => ({
       backgroundColor: theme.palette.primary.light,
       cursor: 'pointer',
     },
+    [theme.breakpoints.only('xs')]: {
+      width: '100%',
+    },
   },
 });
 
