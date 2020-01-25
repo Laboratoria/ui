@@ -26,7 +26,7 @@ class TextField extends Component {
     const { label, classes, inputProps } = this.props;
     return (
       <FormControl className={classes.root}>
-        <InputLabel shrink htmlFor={inputProps.id}>
+        <InputLabel className={classes.label} shrink htmlFor={inputProps.id}>
           { label }
         </InputLabel>
         <Input
