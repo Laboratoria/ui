@@ -72,7 +72,7 @@ const Login = ({
       <div className={classes.textRight}>{recoveryPass}</div>
 
       <div className={classNames(classes.textCenter, classes.action)}>
-        <PrimaryButton tag="button" type="submit">
+        <PrimaryButton tag="button" type="submit" id="buttonLogin">
           {labels.submit}
         </PrimaryButton>
       </div>

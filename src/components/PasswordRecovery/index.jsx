@@ -62,7 +62,7 @@ const PasswordRecovery = ({
       />
 
       <div className={classes.action}>
-        <PrimaryButton tag="button" type="submit">
+        <PrimaryButton tag="button" type="submit" id="buttonRecoveryPass">
           {labels.submit}
         </PrimaryButton>
       </div>

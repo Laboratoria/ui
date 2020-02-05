@@ -83,7 +83,7 @@ const SingUp = ({
       />
 
       <div className={classes.action}>
-        <PrimaryButton tag="button" type="submit">
+        <PrimaryButton tag="button" type="submit" id="buttonSignUp">
           {labels.submit}
         </PrimaryButton>
       </div>
