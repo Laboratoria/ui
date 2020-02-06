@@ -10,6 +10,8 @@ export { default as Alert } from './Alerts/Alert';
 export { default as TextField } from './Inputs/TextField';
 export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
+export { default as MainNav } from './MainNav';
 export { default as PasswordRecovery } from './PasswordRecovery';
 export * from './SVG/flags';
 export * from './SVG/icons';
+export * from './SVG/logos';
