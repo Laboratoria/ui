@@ -11,7 +11,7 @@ import {
 } from './flags';
 
 import { iconGithub, iconLinkedin, iconPortfolio } from './icons';
-import { isotipo, logo } from './logos';
+import { isotipo, isotipoYellow, logo, logoWhite, menuLogo } from './logos';
 
 storiesOf('SVG', module)
   .add('Flags', () => (
@@ -33,7 +33,13 @@ storiesOf('SVG', module)
     <>
       <img src={logo} alt="Logo" width="100" />
       <br />
-      <img src={isotipo} alt="Isotipo" width="50" />
+      <img src={logoWhite} alt="LogoWhite" width="100" />
+      <br />
+      <img src={isotipo} alt="Isotipo" width="100" />
+      <br />
+      <img src={isotipoYellow} alt="IsotipoYellow" width="50" />
+      <br />
+      <img src={menuLogo} alt="MenuLogo" width="50" />
     </>
   ))
   .add('Icons', () => (
