@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
+import clsx from 'clsx';
+import withStyles from '@material-ui/core/styles/withStyles';import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Avatar from '@material-ui/core/Avatar';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
@@ -15,239 +22,163 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { logo } from '../SVG/logos';
 
+const drawerWidth = 240;
 
 const styles = theme => ({
-  list: {
-    width: theme.leftDrawerWidth,
-    color: theme.palette.common.white,
-    backgroundColor: theme.palette.common.black,
-    position: 'static',
-    height: 'calc(100% - 180px)',
-    overflowY: 'auto',
+  root: {
+    display: 'flex',
   },
-  logo: {
-    height: 20,
-    display: 'block',
-    margin: 'auto',
-    padding: 10,
+  appBar: {
+    backgroundColor: '#EEEEEE',
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
-  profileBadge: {
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
-    backgroundColor: theme.palette.background.secondary,
+  appBarShift: {
+    backgroundColor: '#EEEEEE',
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
-  active: {
-    opacity: 1,
+  menuButton: {
+    marginLeft: `${theme.spacing.unit * 8}px`,
   },
-  open: {
-    right: 0,
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  close: {
-    left: '62px',
+  drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    overflowX: 'hidden',
+    width: `${theme.spacing.unit * 7}px`,
+    [theme.breakpoints.up('sm')]: {
+      width: `${theme.spacing.unit * 9}px`,
+    },
   },
-  // bottom: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   width: '320px',
-  // },
-  signoutBtn: {
-    backgroundColor: theme.palette.common.black,
-    minHeight: '90px',
-    padding: theme.spacing.unit * 2,
-    borderTop: '1px solid #f1f1f1',
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: `${theme.spacing.unit * 1}`,
+    ...theme.mixins.toolbar,
   },
-  divider: {
-    backgroundColor: theme.palette.background.default,
-  },
-  listItemIcon: {
-    color: theme.palette.common.white,
-    marginLeft: theme.spacing.unit,
-    opacity: 'inherit',
-  },
-  avatar: {
-    width: `${theme.spacing.unit * 5}px`,
-    height: `${theme.spacing.unit * 5}px`,
-    borderRadius: 0,
-    background: '#56f89a',
-    color: theme.palette.primary.secondary,
-  },
-  primary: {
-    color: 'inherit',
-    fontWeight: 500,
-  },
-  root: {
-    paddingLeft: theme.spacing.unit,
-  },
-  item: {
-    opacity: 0.7,
-  },
-  triangle: {
-    width: 0,
-    height: 0,
-    borderRight: '10px solid #f7f7f7',
-    borderTop: '10px solid transparent',
-    borderBottom: '10px solid transparent',
-    position: 'absolute',
-  },
-  expanded: {
-    left: '310px',
-    transition: theme.transitions.create(['right', 'right'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  collapsed: {
-    left: '62px',
-    transition: theme.transitions.create(['left', 'left'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+  content: {
+    flexGrow: 1,
+    padding: `${theme.spacing.unit * 3}px`,
   },
 });
 
-const MainNav = (props) => (
-  <>
-    <List className={props.classes.list}>
-      <img src={logo} alt="Logo" width="100" />
-      <ListItem className={props.classes.profileBadge}>
-        <Avatar className={props.classes.avatar} >
-          AS
-        </Avatar>
-        <ListItemText
-          classes={{ primary: props.classes.primary }}
-          primary="Name"
-          secondary="Email"
-        />
-      </ListItem>
-      <Divider className={props.classes.divider} />
-      <ListItem
-        // style={{ display: 'none' }}
-        button
-        // onClick={() => props.history.push('/')}
-      >
-        <ListItemIcon className={props.classes.listItemIcon}>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText
-          className="mainNav-text"
-          primary="Dashboard"
-        />
-      </ListItem>
-      <ListItem
-        button
-        onClick={() => props.history.push('/courses')}
-        style={{ maxHeight: '48px', padding: '16px', marginTop: '16px' }}
-        // className={isActive(props, 'courses') ? props.classes.active : props.classes.item}
-      >
-        <ListItemIcon className={props.classes.listItemIcon}>
-          <LocalLibraryIcon />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ primary: props.classes.primary }}
-          primary="texto"
-          style={{ paddingLeft: '8px' }}
-        />
-      </ListItem>
-      {/* {props.profile && props.profile.roles && props.profile.roles.admin && */}
-        <ListItem
-          button
-          onClick={() => props.history.push('/cohorts')}
-          style={{ maxHeight: '48px', padding: '16px' }}
-          // className={isActive(props, 'cohorts') ? props.classes.active : props.classes.item}
-        >
-          <ListItemIcon className={props.classes.listItemIcon}>
-            <GroupIcon />
-          </ListItemIcon>
-          <ListItemText
-            classes={{ primary: props.classes.primary }}
-            primary="Cohorts"
-            style={{ paddingLeft: '8px' }}
-          />
-          {/* <div className={!isActive(props, 'cohorts') ? '' : isSelect(props)} /> */}
-        </ListItem>
-      <ListItem
-        button
-        onClick={() => props.history.push('/settings')}
-        style={{ maxHeight: '48px', padding: '16px' }}
-        // className={isActive(props, 'settings') ? props.classes.active : props.classes.item}
-      >
-        <ListItemIcon className={props.classes.listItemIcon}>
-          <SettingsIcon />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ primary: props.classes.primary }}
-          primary="text2"
-          style={{ paddingLeft: '8px' }}
-        />
-        {/* <div className={!isActive(props, 'settings') ? '' : isSelect(props)} /> */}
-      </ListItem>
+const MainNav = (props, theme) => {
+  const [open, setOpen] = React.useState(false);
 
-      <Divider className={props.classes.divider} />
-      <ListItem
-        button
-        className={props.classes.signoutBtn}
-        onClick={() => props.firebase.logout()}
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div className={props.classes.root}>
+      <AppBar
+        position="fixed"
+        className={clsx(props.classes.appBar, {
+          [props.classes.appBarShift]: open,
+        })}
       >
-        <ListItemIcon className={props.classes.listItemIcon}>
-          <ExitToAppIcon />
-        </ListItemIcon>
-        <ListItemText
-          classes={{ primary: props.classes.primary }}
-          primary="EXIT"
-          style={{ paddingLeft: '8px' }}
-        />
-      </ListItem>
-    </List>
-  </>
-);
-
-
-MainNav.propTypes = {
-  // auth: PropTypes.shape({
-  //   displayName: PropTypes.string,
-  //   email: PropTypes.string.isRequired,
-  // }).isRequired,
-  // profile: PropTypes.shape({
-  //   name: PropTypes.string,
-  //   github: PropTypes.string,
-  //   roles: PropTypes.shape({
-  //     admin: PropTypes.bool,
-  //   }),
-  // }),
-  classes: PropTypes.shape({
-    list: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    profileBadge: PropTypes.string.isRequired,
-    active: PropTypes.string.isRequired,
-    bottom: PropTypes.string.isRequired,
-    signoutBtn: PropTypes.string.isRequired,
-    divider: PropTypes.string.isRequired,
-    listItemIcon: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    primary: PropTypes.string.isRequired,
-    item: PropTypes.string.isRequired,
-    triangle: PropTypes.string.isRequired,
-    collapsed: PropTypes.string.isRequired,
-    expanded: PropTypes.string.isRequired,
-  }).isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
-  // match: PropTypes.shape({
-  //   path: PropTypes.string.isRequired,
-  // }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  // firebase: PropTypes.shape({
-  //   logout: PropTypes.func.isRequired,
-  // }).isRequired,
-};
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(props.classes.menuButton, {
+              [props.classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(props.classes.drawer, {
+          [props.classes.drawerOpen]: open,
+          [props.classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [props.classes.drawerOpen]: open,
+            [props.classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <div className={props.classes.toolbar}>
+          <IconButton
+            onClick={handleDrawerClose}
+            className={clsx(props.classes.menuButton, {
+              [props.classes.hide]: !open,
+            })}
+          >
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <LocalLibraryIcon /> : <SettingsIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam', 'Trash'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <DashboardIcon /> : <GroupIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <main className={props.classes.content}>
+        <div className={props.classes.toolbar} />
+        <Typography paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+          donec massa sapien faucibus et molestie ac.
+        </Typography>
+      </main>
+    </div>
+  );
+}
 
 
 export default withStyles(styles)(MainNav);
