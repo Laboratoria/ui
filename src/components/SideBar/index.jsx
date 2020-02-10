@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import PersonIcon from '@material-ui/icons/Person';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { logoWhite, menuLogo } from '../SVG/logos';
+import { logoWhite, isotypeWhite } from '../SVG/logos';
 
 const drawerWidth = '25%';
 
@@ -55,7 +55,6 @@ const styles = theme => ({
     width: '100%',
   },
   content: {
-    // flexGrow: 1,
     padding: `${theme.spacing.unit * 3}px`,
   },
   divider: {
@@ -193,7 +192,7 @@ const SideBar = (props, theme) => {
         }}
       >
         <div className={props.classes.toolbar}>
-          { open ? <img src={logoWhite} alt="Logo" width="75%" /> : <img src={menuLogo} alt="Isotipo" width="75%" /> }
+          { open ? <img src={logoWhite} alt="Logo" width="75%" /> : <img src={isotypeWhite} alt="Isotipo" width="75%" /> }
         </div>
         <Divider />
         <List className={props.classes.list}>
