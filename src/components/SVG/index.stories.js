@@ -10,8 +10,19 @@ import {
   spl,
 } from './flags';
 
-import { iconGithub, iconLinkedin, iconPortfolio } from './icons';
-import { isotipo, isotipoYellow, logo, logoWhite, menuLogo } from './logos';
+import {
+  iconGithub,
+  iconLinkedin,
+  iconPortfolio,
+} from './icons';
+
+import {
+  isotype,
+  isotypeYellow,
+  isotypeWhite,
+  logo,
+  logoWhite,
+} from './logos';
 
 storiesOf('SVG', module)
   .add('Flags', () => (
@@ -31,15 +42,15 @@ storiesOf('SVG', module)
   ))
   .add('Logos', () => (
     <>
-      <img src={logo} alt="Logo" width="100" />
+      <img src={logo} alt="Logo" width="200" />
       <br />
-      <img src={logoWhite} alt="LogoWhite" width="100" />
+      <img src={logoWhite} alt="LogoWhite" width="200" />
       <br />
-      <img src={isotipo} alt="Isotipo" width="100" />
+      <img src={isotypeWhite} alt="Isotipo" width="100" />
       <br />
-      <img src={isotipoYellow} alt="IsotipoYellow" width="50" />
+      <img src={isotypeYellow} alt="IsotipoYellow" width="100" />
       <br />
-      <img src={menuLogo} alt="MenuLogo" width="50" />
+      <img src={isotype} alt="MenuLogo" width="100" />
     </>
   ))
   .add('Icons', () => (
