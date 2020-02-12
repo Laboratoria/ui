@@ -138,13 +138,14 @@ const styles = theme => ({
 });
 
 const nameToInitials = 'NA';
-  const name = 'Nombre Apellido';
-  const email = 'nombre.apellido@dominio.la';
-  const itemsArray = ['Vacantes', 'Talento'];
-  const iconsArray = [<DescriptionIcon />, <PersonIcon />];
+const name = 'Nombre Apellido';
+const email = 'nombre.apellido@dominio.la';
+const itemsArray = ['Vacantes', 'Talento'];
+const iconsArray = [<DescriptionIcon />, <PersonIcon />];
 
 
 const SideBar = (props, theme) => {
+  const { classes, main, firebase } = props;
   const [open, setOpen] = React.useState(false);
   
   const handleDrawerOpen = () => {
@@ -156,12 +157,12 @@ const SideBar = (props, theme) => {
   };
 
   return (
-    <div className={props.classes.root}>
+    <div className={classes.root}>
       <AppBar
         position="fixed"
         elevation={0}
-        className={clsx(props.classes.appBar, {
-          [props.classes.appBarShift]: open,
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
@@ -170,8 +171,8 @@ const SideBar = (props, theme) => {
             aria-label="open drawer"
             onClick={open ? handleDrawerClose : handleDrawerOpen }
             edge="start"
-            className={clsx(props.classes.menuButton, {
-              [props.classes.menuButtonOpen]: open,
+            className={clsx(classes.menuButton, {
+              [classes.menuButtonOpen]: open,
             })}
           >
             <MenuIcon />
@@ -180,33 +181,33 @@ const SideBar = (props, theme) => {
       </AppBar>
       <Drawer
         variant="permanent"
-        className={clsx(props.classes.drawer, {
-          [props.classes.drawerOpen]: open,
-          [props.classes.drawerClose]: !open,
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
         })}
         classes={{
           paper: clsx({
-            [props.classes.drawerOpen]: open,
-            [props.classes.drawerClose]: !open,
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
           }),
         }}
       >
-        <div className={props.classes.toolbar}>
+        <div className={classes.toolbar}>
           { open ? <img src={logoWhite} alt="Logo" width="75%" /> : <img src={isotypeWhite} alt="Isotipo" width="75%" /> }
         </div>
         <Divider />
-        <List className={props.classes.list}>
-          <ListItem className={props.classes.profileBadge}>
-            <Avatar className={props.classes.avatar} >
+        <List className={classes.list}>
+          <ListItem className={classes.profileBadge}>
+            <Avatar className={classes.avatar} >
               { nameToInitials }
             </Avatar>
             <ListItemText
-              classes={{ primary: props.classes.primary, secondary: props.classes.secondary }}
+              classes={{ primary: classes.primary, secondary: classes.secondary }}
               primary={ name }
               secondary={ email }
             />
           </ListItem>
-          <Divider className={props.classes.divider} />
+          <Divider className={classes.divider} />
           {itemsArray.map((text, index) => (
             <ListItem
               button
@@ -214,27 +215,27 @@ const SideBar = (props, theme) => {
               key={text}
               onClick
             >
-              <ListItemIcon className={props.classes.listItemIcon}>
+              <ListItemIcon className={classes.listItemIcon}>
                 {iconsArray[index]}
               </ListItemIcon>
               <ListItemText
-                classes={{ primary: props.classes.primary }}
+                classes={{ primary: classes.primary }}
                 style={{ paddingLeft: '8px' }}
                 primary={text} />
             </ListItem>
           ))}
-          <div className={props.classes.bottom}>
-            <Divider className={props.classes.divider} />
+          <div className={classes.bottom}>
+            <Divider className={classes.divider} />
             <ListItem
               button
-              className={props.classes.signoutBtn}
-              onClick={() => props.firebase.logout()}
+              className={classes.signoutBtn}
+              onClick={() => firebase.logout()}
             >
-              <ListItemIcon className={props.classes.listItemIcon}>
+              <ListItemIcon className={classes.listItemIcon}>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText
-                classes={{ primary: props.classes.primary }}
+                classes={{ primary: classes.primary }}
                 primary="Cerrar Sesión"
                 style={{ paddingLeft: '8px' }}
               />
@@ -242,6 +243,9 @@ const SideBar = (props, theme) => {
           </div> 
         </List>
       </Drawer>
+      <main className={classes.content}>	
+        { main }
+      </main>
     </div>
   );
 }
@@ -285,6 +289,7 @@ SideBar.propTypes = {
       admin: PropTypes.bool,
     }),
   }),
+  main: PropTypes.node,
 };
 
 SideBar.defaultProps = {
