@@ -243,9 +243,7 @@ const SideBar = (props, theme) => {
           </div> 
         </List>
       </Drawer>
-      <main className={classes.content}>	
-        { main }
-      </main>
+      <main className={classes.content}>{main}</main>
     </div>
   );
 }
