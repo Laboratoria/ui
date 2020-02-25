@@ -16,7 +16,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { logoWhite, isotypeWhite } from '../SVG/logos';
 
@@ -194,7 +193,7 @@ const SideBar = (props, theme) => {
     classes,
     container,
     items,
-    logout,
+    logoutItem,
     main,
     user: { name, email },
   } = props;
@@ -248,14 +247,13 @@ const SideBar = (props, theme) => {
           <ListItem
             button
             className={classes.signOutBtn}
-            onClick={logout}
+            key={logoutItem.id}
+            onClick={logoutItem.onClick}
           >
-            <ListItemIcon className={classes.listItemIcon}>
-              <ExitToAppIcon />
-            </ListItemIcon>
+            <ListItemIcon className={classes.listItemIcon}>{logoutItem.icon}</ListItemIcon>
             <ListItemText
               classes={{ primary: classes.primary }}
-              primary="Cerrar Sesión"
+              primary={logoutItem.text}
               style={{ paddingLeft: '8px' }}
             />
           </ListItem>
@@ -353,6 +351,8 @@ SideBar.propTypes = {
     'triangle-expanded': PropTypes.string.isRequired,
     'triangle-collapsed': PropTypes.string.isRequired,
   }).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  logoutItem: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(SideBar);
