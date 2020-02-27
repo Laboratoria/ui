@@ -284,7 +284,7 @@ const SideBar = (props, theme) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-        <Hidden smUp implementation="css">
+        <Hidden smUp>
           <Drawer
             container={container}
             variant="temporary"
@@ -302,7 +302,7 @@ const SideBar = (props, theme) => {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden xsDown>
           <Drawer
             classes={{
               root: clsx(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClose),
