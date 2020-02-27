@@ -87,11 +87,6 @@ const styles = theme => ({
       width: drawerWidth,
     },
   },
-  hide: {
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  },
   list: {
     height: '100%',
   },
@@ -292,7 +287,6 @@ const SideBar = (props, theme) => {
             open={isOpen}
             onClose={() => setIsOpen(!isOpen)}
             classes={{
-              root: classes.hide,
               paper: classes.drawerPaper,
             }}
             ModalProps={{
@@ -333,7 +327,6 @@ SideBar.propTypes = {
     divider: PropTypes.string.isRequired,
     drawer: PropTypes.string.isRequired,
     drawerPaper: PropTypes.string.isRequired,
-    hide: PropTypes.string.isRequired,
     list: PropTypes.string.isRequired,
     listItem: PropTypes.string.isRequired,
     'listItem-actived': PropTypes.string.isRequired,
