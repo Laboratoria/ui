@@ -187,13 +187,14 @@ const SideBar = (props, theme) => {
   const {
     classes,
     container,
+    currentPath,
+    isSelected,
     items,
     logoutItem,
     main,
     user: { name, email },
   } = props;
   const [isOpen, setIsOpen] = React.useState(true);
-  const [activedItem, setActivedItem] = React.useState(items[0].id);
 
   const drawer = (
     <>
@@ -221,14 +222,13 @@ const SideBar = (props, theme) => {
                 selected: classes['listItem-actived'],
             }}
             key={item.id}
-            onClick={() => setActivedItem(item.id)}
-            selected={activedItem === item.id}
+            selected={isSelected(currentPath, item.id)}
           >
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
             <ListItemText
               classes={{ primary: classes.primary }}
               primary={item.text} />
-            {item.id === activedItem && (
+            {isSelected(currentPath, item.id) && (
               <div
                 className={clsx(classes.triangle, {
                   [`${classes['triangle-expanded']}`]: isOpen,
