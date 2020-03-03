@@ -17,9 +17,20 @@ storiesOf('SideBar', module)
   .add('SideBar', () => (
     <>
       <SideBar
+        currentPath="/"
+        isSelected={(path, item) => {
+          switch (item) {
+            case 'home':
+              return path === '/';
+            case 'talent-pool':
+              return path === '/talent-pool';
+            default:
+              return false;
+          }
+        }}
         items={[
           { id: 'home', text: 'Inicio', icon: <HomeIcon /> },
-          { id: 'profiles', text: 'Perfiles', icon: <GroupIcon /> },
+          { id: 'talent-pool', text: 'Talent Pool', icon: <GroupIcon /> },
         ]}
         logoutItem={{
           id: 'logout',
