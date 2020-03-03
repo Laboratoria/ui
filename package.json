@@ -9,7 +9,8 @@
   "scripts": {
     "start": "start-storybook -p 8080",
     "build": "build-storybook -o public",
-    "dist": "rollup -c"
+    "dist": "rollup -c",
+    "link-talento-react": "rm -rf node_modules/react && ln -s ../../talento.laboratoria.la/node_modules/react ./node_modules/react"
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
