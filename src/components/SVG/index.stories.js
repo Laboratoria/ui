@@ -8,6 +8,7 @@ import {
   cdmxFlag,
   sclFlag,
   splFlag,
+  bogFlag,
 } from './flags';
 
 import {
@@ -38,6 +39,8 @@ storiesOf('SVG', module)
       <img src={cdmxFlag} alt="Ciudad de México" width="50" />
       <br />
       <img src={splFlag} alt="São Paulo" width="50" />
+      <br />
+      <img src={bogFlag} alt="Bogotá" width="50" />
     </>
   ))
   .add('Logos', () => (
