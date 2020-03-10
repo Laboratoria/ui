@@ -13,5 +13,6 @@ export { default as SignUp } from './SignUp';
 export { default as SideBar } from './SideBar';
 export { default as PasswordRecovery } from './PasswordRecovery';
 export * from './SVG/flags';
+export * from './SVG/square-flags';
 export * from './SVG/icons';
 export * from './SVG/logos';
