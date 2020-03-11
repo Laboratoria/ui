@@ -2,12 +2,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import {
-  aqp,
-  lim,
-  gdl,
-  cdmx,
-  scl,
-  spl,
+  aqpFlag,
+  limFlag,
+  gdlFlag,
+  cdmxFlag,
+  sclFlag,
+  splFlag,
 } from './flags';
 
 import {
@@ -27,17 +27,17 @@ import {
 storiesOf('SVG', module)
   .add('Flags', () => (
     <>
-      <img src={aqp} alt="Arequipa" width="50" />
+      <img src={aqpFlag} alt="Arequipa" width="50" />
       <br />
-      <img src={scl} alt="Santiago" width="50" />
+      <img src={sclFlag} alt="Santiago" width="50" />
       <br />
-      <img src={lim} alt="Lima" width="50" />
+      <img src={limFlag} alt="Lima" width="50" />
       <br />
-      <img src={gdl} alt="Arequipa" width="50" />
+      <img src={gdlFlag} alt="Guadalajara" width="50" />
       <br />
-      <img src={cdmx} alt="Guadalajara" width="50" />
+      <img src={cdmxFlag} alt="Ciudad de México" width="50" />
       <br />
-      <img src={spl} alt="São Paulo" width="50" />
+      <img src={splFlag} alt="São Paulo" width="50" />
     </>
   ))
   .add('Logos', () => (
