@@ -12,6 +12,16 @@ import {
 } from './flags';
 
 import {
+  aqpSquareFlag,
+  limSquareFlag,
+  gdlSquareFlag,
+  cdmxSquareFlag,
+  sclSquareFlag,
+  splSquareFlag,
+  bogSquareFlag,
+} from './square-flags';
+
+import {
   iconGithub,
   iconLinkedin,
   iconPortfolio,
@@ -41,6 +51,23 @@ storiesOf('SVG', module)
       <img src={splFlag} alt="São Paulo" width="50" />
       <br />
       <img src={bogFlag} alt="Bogotá" width="50" />
+    </>
+  ))
+  .add('Square Flags', () => (
+    <>
+      <img src={aqpSquareFlag} alt="Arequipa" width="50" />
+      <br />
+      <img src={sclSquareFlag} alt="Santiago" width="50" />
+      <br />
+      <img src={limSquareFlag} alt="Lima" width="50" />
+      <br />
+      <img src={gdlSquareFlag} alt="Guadalajara" width="50" />
+      <br />
+      <img src={cdmxSquareFlag} alt="Ciudad de México" width="50" />
+      <br />
+      <img src={splSquareFlag} alt="São Paulo" width="50" />
+      <br />
+      <img src={bogSquareFlag} alt="Bogotá" width="50" />
     </>
   ))
   .add('Logos', () => (
