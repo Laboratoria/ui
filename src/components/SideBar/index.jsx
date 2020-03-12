@@ -222,6 +222,7 @@ const SideBar = (props, theme) => {
                 selected: classes['listItem-actived'],
             }}
             key={item.id}
+            data-test={`item-${item.id}`}
             selected={isSelected(currentPath, item.id)}
           >
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
@@ -242,6 +243,7 @@ const SideBar = (props, theme) => {
           <ListItem
             button
             className={classes.signOutBtn}
+            data-test={`item-${logoutItem.id}`}
             key={logoutItem.id}
             onClick={logoutItem.onClick}
           >
