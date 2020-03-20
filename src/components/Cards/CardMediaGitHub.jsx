@@ -20,9 +20,7 @@ const styles = {
     padding: 24,
   },
   thumbnail: {
-    height: 62,
     position: 'relative',
-    width: 62,
   },
   description: {
     flexGrow: 1,
