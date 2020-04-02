@@ -7,7 +7,6 @@ const styles = theme => ({
   root: {
     fontFamily: 'Open Sans',
     fontSize: '1rem',
-    fontWeight: 300,
     textDecoration: 'inherit',
   },
   default: {
