@@ -22,9 +22,10 @@ import {
 } from './square-flags';
 
 import {
-  iconGithub,
-  iconLinkedin,
-  iconPortfolio,
+  greyIconGithub,
+  greyIconLink,
+  greyIconLinkedin,
+  greyIconWebsite,
 } from './icons';
 
 import {
@@ -85,10 +86,12 @@ storiesOf('SVG', module)
   ))
   .add('Icons', () => (
     <>
-      <img src={iconGithub} alt="Github" width="50" />
+      <img src={greyIconGithub} alt="Github" width="50" />
       <br />
-      <img src={iconLinkedin} alt="Linkedin" width="50" />
+      <img src={greyIconLink} alt="Linkedin" width="50" />
       <br />
-      <img src={iconPortfolio} alt="Portfolio" width="50" />
+      <img src={greyIconLinkedin} alt="Portfolio" width="50" />
+      <br />
+      <img src={greyIconWebsite} alt="Website" width="50" />
     </>
   ));
