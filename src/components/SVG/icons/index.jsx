@@ -6,3 +6,4 @@ export { default as iconPortfolio } from './portfolio.svg'; // Portfolio
 export { default as greyIconGithub } from './github-grey.svg'; // Github
 export { default as greyIconLink } from './link-grey.svg'; // Link
 export { default as greyIconLinkedin } from './linkedin-grey.svg'; // Linkedin
+export { default as greyIconWebsite } from './website.svg'; // Website
