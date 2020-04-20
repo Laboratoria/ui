@@ -10,6 +10,7 @@
     "start": "start-storybook -p 8080",
     "build": "build-storybook -o public",
     "dist": "rollup -c",
+    "changelog": "git checkout HEAD~1 && git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an <%ae>)\"",
     "link-talento-react": "rm -rf node_modules/react && ln -s ../../talento.laboratoria.la/node_modules/react ./node_modules/react"
   },
   "dependencies": {
