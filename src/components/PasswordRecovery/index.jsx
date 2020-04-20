@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import PrimaryButton from '../Buttons';
+import Button from '../Buttons';
 import TextField from '../Inputs/TextField';
 
 const style = {
@@ -62,9 +62,7 @@ const PasswordRecovery = ({
       />
 
       <div className={classes.action}>
-        <PrimaryButton tag="button" type="submit" id="buttonRecoveryPass">
-          {labels.submit}
-        </PrimaryButton>
+        <Button id="buttonRecoveryPass" type="submit">{labels.submit}</Button>
       </div>
     </Grid>
   </Grid>
