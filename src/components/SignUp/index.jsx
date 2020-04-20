@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import PrimaryButton from '../Buttons';
+import { Button } from '../Buttons';
 import Link from '../Links';
 import TextField from '../Inputs/TextField';
 
@@ -83,9 +83,7 @@ const SingUp = ({
       />
 
       <div className={classes.action}>
-        <PrimaryButton tag="button" type="submit" id="buttonSignUp">
-          {labels.submit}
-        </PrimaryButton>
+        <Button id="buttonSignUp" type="submit">{labels.submit}</Button>
       </div>
 
       <Typography

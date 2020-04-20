@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 
-import PrimaryButton from '../Buttons';
+import { Button } from '../Buttons';
 import Link from '../Links';
 import TextField from '../Inputs/TextField';
 
@@ -72,9 +72,7 @@ const Login = ({
       <div className={classes.textRight}>{recoveryPass}</div>
 
       <div className={classNames(classes.textCenter, classes.action)}>
-        <PrimaryButton tag="button" type="submit" id="buttonLogin">
-          {labels.submit}
-        </PrimaryButton>
+        <Button id="buttonLogin" type="submit">{labels.submit}</Button>
       </div>
 
       <div className={classes.textCenter}>{createAccount}</div>
