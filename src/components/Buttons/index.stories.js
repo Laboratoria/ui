@@ -30,4 +30,13 @@ storiesOf('Buttons', module)
       <br />
       <Button color="secondary" size="small" variant="outlined">Regístrate</Button>
     </>
+  ))
+  .add('Disabled button', () => (
+    <>
+      <Button size="large" style={{ marginBottom: 16 }} disabled>Publica una vacante</Button>
+      <br />
+      <Button style={{ marginBottom: 16 }} disabled>Publica una vacante</Button>
+      <br />
+      <Button size="small" disabled>Publica una vacante</Button>
+    </>
   ));
