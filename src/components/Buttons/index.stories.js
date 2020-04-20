@@ -21,4 +21,13 @@ storiesOf('Buttons', module)
       <br />
       <Button size="small" color="secondary">Regístrate</Button>
     </>
+  ))
+  .add('Secondary outlined button', () => (
+    <>
+      <Button color="secondary" size="large" style={{ marginBottom: 16 }} variant="outlined">Regístrate</Button>
+      <br />
+      <Button color="secondary" style={{ marginBottom: 16 }} variant="outlined">Regístrate</Button>
+      <br />
+      <Button color="secondary" size="small" variant="outlined">Regístrate</Button>
+    </>
   ));
