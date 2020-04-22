@@ -61,6 +61,7 @@ const styles = theme => ({
     fontSize: '1rem',
     fontWeight: 800,
     minWidth: 64,
+    textDecoration: 'none',
     textTransform: 'uppercase',
     '&:hover': {
       cursor: 'pointer',
