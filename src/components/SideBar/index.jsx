@@ -19,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { logoWhite, isotypeWhite } from '../SVG/logos';
 
-const drawerWidth = 300;
+const drawerWidth = 320;
 
 const styles = theme => ({
   appBar: {
@@ -89,20 +89,25 @@ const styles = theme => ({
   },
   list: {
     height: '100%',
+    paddingTop: theme.spacing.unit * 2,
   },
   listItem: {
     opacity: 0.7,
     maxHeight: '48px',
-    padding: '16px',
-    marginTop: '16px',
+    paddingTop: theme.spacing.unit * 2,
+    '&:hover': {
+      opacity: 1,
+    },
   },
   'listItem-actived': {
     opacity: 1,
   },
   listItemIcon: {
-    color: theme.palette.common.white,
+    color: 'inherit',
     marginLeft: theme.spacing.unit,
-    opacity: 'inherit',
+  },
+  listItemText: {
+    paddingLeft: theme.spacing.unit,
   },
   logout: {
     position: 'absolute',
@@ -130,8 +135,13 @@ const styles = theme => ({
   },
   primary: {
     color: 'inherit',
-    fontWeight: 600,
-    fontSize: '18px',
+    fontSize: '1rem',
+    fontWeight: 500,
+    lineHeight: '1.5em',
+  },
+  profileBadge: {
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
   },
   root: {
     display: 'flex',
@@ -139,8 +149,9 @@ const styles = theme => ({
   },
   secondary: {
     color: 'inherit',
-    fontWeight: 'normal',
-    fontSize: '14px',
+    fontSize: '1rem',
+    fontWeight: 100,
+    lineHeight: '1.46429em',
   },
   signOutBtn: {
     backgroundColor: theme.palette.common.black,
@@ -151,6 +162,14 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     ...theme.mixins.toolbar,
+    [theme.breakpoints.only('xs')]: {
+      maxHeight: 90,
+      minHeight: 90,
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxHeight: 90,
+      minHeight: 90,
+    },
   },
   triangle: {
     width: 0,
@@ -200,8 +219,8 @@ const SideBar = (props, theme) => {
     <>
       <div className={classes.toolbar}>
         { isOpen
-          ? <img src={logoWhite} alt="Logo" width="75%" />
-          : <img src={isotypeWhite} alt="Isotipo" width="75%" /> }
+          ? <img src={logoWhite} alt="Logo" width="70%" height="85" />
+          : <img src={isotypeWhite} alt="Isotipo"  width="70%" height="45" /> }
       </div>
       <Divider className={classes.divider} />
       <ListItem className={classes.profileBadge}>
@@ -227,7 +246,7 @@ const SideBar = (props, theme) => {
           >
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
             <ListItemText
-              classes={{ primary: classes.primary }}
+              classes={{ root: classes.listItemText, primary: classes.primary }}
               primary={item.text} />
             {isSelected(currentPath, item.id) && (
               <div
