@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import Button from '../Buttons';
 import Link from '../Links';
@@ -27,74 +29,85 @@ const style = {
 };
 
 const SingUp = ({
-  onSubmit, onBlur, labels, logIn, classes,
-}) => (
-  <Grid container justify="center" className={classes.root}>
-    <Grid
-      item
-      xs={12}
-      component="form"
-      autoComplete="true"
-      onSubmit={(event) => {
-        event.preventDefault();
-        onSubmit(event.target);
-      }}
-    >
+  onSubmit, onBlur, labels, logIn, privacyPolicies, classes,
+}) => {
+  const [checked, setChecked] = React.useState(false);
 
-      <TextField
-        label={labels.company}
-        inputProps={{
-          id: 'company',
-          name: 'company',
-          type: 'text',
-          required: true,
-          onBlur: event => onBlur(event),
-        }}
-      />
-      <TextField
-        label={labels.name}
-        inputProps={{
-          id: 'name',
-          name: 'name',
-          type: 'text',
-          required: true,
-          onBlur: event => onBlur(event),
-        }}
-      />
-      <TextField
-        label={labels.email}
-        inputProps={{
-          id: 'email',
-          name: 'email',
-          type: 'email',
-          required: true,
-          onBlur: event => onBlur(event),
-        }}
-      />
-      <TextField
-        label={labels.pass}
-        inputProps={{
-          id: 'password',
-          name: 'password',
-          type: 'password',
-          required: true,
-          onBlur: event => onBlur(event),
-        }}
-      />
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
-      <div className={classes.action}>
-        <Button id="buttonSignUp" type="submit">{labels.submit}</Button>
-      </div>
-
-      <Typography
-        component="p"
-        align="center"
+  return (
+    <Grid container justify="center" className={classes.root}>
+      <Grid
+        item
+        xs={12}
+        component="form"
+        autoComplete="true"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onSubmit(event.target);
+        }}
       >
-        { logIn && logIn }
-      </Typography>
+        <TextField
+          label={labels.company}
+          inputProps={{
+            id: 'company',
+            name: 'company',
+            type: 'text',
+            required: true,
+            onBlur: event => onBlur(event),
+          }}
+        />
+        <TextField
+          label={labels.name}
+          inputProps={{
+            id: 'name',
+            name: 'name',
+            type: 'text',
+            required: true,
+            onBlur: event => onBlur(event),
+          }}
+        />
+        <TextField
+          label={labels.email}
+          inputProps={{
+            id: 'email',
+            name: 'email',
+            type: 'email',
+            required: true,
+            onBlur: event => onBlur(event),
+          }}
+        />
+        <TextField
+          label={labels.pass}
+          inputProps={{
+            id: 'password',
+            name: 'password',
+            type: 'password',
+            required: true,
+            onBlur: event => onBlur(event),
+          }}
+        />
+        <FormControlLabel
+          data-test="checkbox"
+          control={<Checkbox color="primary" checked={checked} onChange={handleChange} />}
+          label={(privacyPolicies && privacyPolicies)}
+        />
+
+        <div className={classes.action}>
+          <Button id="buttonSignUp" type="submit" disabled={!checked}>{labels.submit}</Button>
+        </div>
+        <Typography
+          component="p"
+          align="center"
+        >
+          { logIn && logIn }
+        </Typography>
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
+};
 
 SingUp.defaultProps = {
   onSubmit: () => {
@@ -110,6 +123,18 @@ SingUp.defaultProps = {
     pass: 'Contraseña',
     submit: 'Regístrate',
   },
+  privacyPolicies: (
+    <Link
+      href="https://www.laboratoria.la/privacidad"
+      target="_blank"
+    >
+      Estoy de acuerdo con la
+      {' '}
+      <strong>
+        política de privacidad de Laboratoria
+      </strong>
+    </Link>
+  ),
   logIn: (
     <Link href="/login">
       ¿Tienes una cuenta?
@@ -133,6 +158,7 @@ SingUp.propTypes = {
     submit: PropTypes.oneOfType([PropTypes.node, PropTypes.object, PropTypes.string]),
   }),
   logIn: PropTypes.node,
+  privacyPolicies: PropTypes.node,
 };
 
 export default withStyles(style)(SingUp);
