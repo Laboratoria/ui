@@ -91,12 +91,12 @@ const SingUp = ({
         />
         <FormControlLabel
           data-test="checkbox"
-          control={<Checkbox color="primary" checked={checked} onChange={handleChange} />}
+          control={<Checkbox color="primary" checked={checked} onChange={handleChange} required />}
           label={(privacyPolicies && privacyPolicies)}
         />
 
         <div className={classes.action}>
-          <Button id="buttonSignUp" type="submit" disabled={!checked}>{labels.submit}</Button>
+          <Button id="buttonSignUp" type="submit">{labels.submit}</Button>
         </div>
         <Typography
           component="p"
