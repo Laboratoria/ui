@@ -13,18 +13,18 @@ import TextField from '../Inputs/TextField';
 const style = {
   root: {
     flexGrow: 1,
-    '& a': {
-      border: 'none',
-    },
-    '& strong': {
-      fontWeight: 400,
-    },
   },
   action: {
     width: '100%',
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 20,
+  },
+  link: {
+    '& a': {
+      border: 'none',
+      fontWeight: 400,
+    },
   },
 };
 
@@ -91,18 +91,20 @@ const SingUp = ({
         />
         <FormControlLabel
           data-test="checkbox"
+          classes={{ label: classes.link }}
           control={<Checkbox color="primary" checked={checked} onChange={handleChange} required />}
-          label={(privacyPolicies && privacyPolicies)}
+          label={privacyPolicies}
         />
 
         <div className={classes.action}>
           <Button id="buttonSignUp" type="submit">{labels.submit}</Button>
         </div>
         <Typography
+          classes={{ root: classes.link }}
           component="p"
           align="center"
         >
-          { logIn && logIn }
+          {logIn}
         </Typography>
       </Grid>
     </Grid>
@@ -124,25 +126,23 @@ SingUp.defaultProps = {
     submit: 'Regístrate',
   },
   privacyPolicies: (
-    <Link
-      href="https://www.laboratoria.la/privacidad"
-      target="_blank"
-    >
+    <>
       Estoy de acuerdo con la
       {' '}
-      <strong>
+      <Link
+        href="https://www.laboratoria.la/privacidad"
+        target="_blank"
+      >
         política de privacidad de Laboratoria
-      </strong>
-    </Link>
+      </Link>
+    </>
   ),
   logIn: (
-    <Link href="/login">
+    <>
       ¿Tienes una cuenta?
       {' '}
-      <strong>
-        Ingresa
-      </strong>
-    </Link>
+      <Link href="/login">Ingresa</Link>
+    </>
   ),
 };
 
