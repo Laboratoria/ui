@@ -19,4 +19,15 @@ storiesOf('Loader', module)
       <br />
       <Loader size={80} />
     </div>
+  ))
+  .add('Secondary loader', () => (
+    <div>
+      <Loader color="secondary" size="small" />
+      <br />
+      <Loader color="secondary" />
+      <br />
+      <Loader color="secondary" size="large" />
+      <br />
+      <Loader color="secondary" size={80} />
+    </div>
   ));
