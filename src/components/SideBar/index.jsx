@@ -127,6 +127,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       marginRight: theme.spacing.unit * 3,
     },
+    [theme.breakpoints.only('xs')]: {
+      marginLeft: -theme.spacing.unit * 2,
+    },
   },
   'menuBtn-close': {
     [theme.breakpoints.up('sm')]: {
@@ -286,7 +289,7 @@ const SideBar = (props, theme) => {
           [classes.appBarShift]: isOpen,
         })}
         elevation={0}
-        position="fixed"
+        position="absolute"
       >
         <Toolbar>
           <IconButton
