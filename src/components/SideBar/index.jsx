@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
-import { logoWhite, isotypeWhite } from '../SVG/logos';
-
 import { withStyles } from '@material-ui/core/styles';
+import { logoWhite, isotypeWhite } from '../SVG/logos';
 
 import {
   AppBar,
