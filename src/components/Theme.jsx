@@ -47,7 +47,6 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    useNextVariants: true,
     fontFamily: 'Open Sans, Arial, sans-serif',
     fontWeightMedium: 600,
     h1: {
