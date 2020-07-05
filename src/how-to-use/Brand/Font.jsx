@@ -115,4 +115,4 @@ Font.propTypes = {
   theme: PropTypes.shape().isRequired,
 };
 
-export default withTheme()(withStyles(styles)(Font));
+export default withTheme(withStyles(styles)(Font));

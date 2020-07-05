@@ -107,4 +107,4 @@ Colors.propTypes = {
   theme: PropTypes.shape().isRequired,
 };
 
-export default withTheme()(withStyles(styles)(Colors));
+export default withTheme(withStyles(styles)(Colors));
