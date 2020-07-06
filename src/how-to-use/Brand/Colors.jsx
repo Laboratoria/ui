@@ -41,7 +41,7 @@ const styles = theme => ({
 const ColorPalette = ({ classes, color, theme }) => (
   <Grid container spacing={16}>
     <Grid item xs={12} md={2}>
-      <Paper
+      <Paper elevation={0}
         classes={{
           root: classNames(classes.paper, classes[`${color}-light`]),
         }}
@@ -52,7 +52,7 @@ const ColorPalette = ({ classes, color, theme }) => (
       </Paper>
     </Grid>
     <Grid item xs={12} md={2}>
-      <Paper
+      <Paper elevation={0}
         classes={{
           root: classNames(classes.paper, classes[`${color}-main`]),
         }}
@@ -63,7 +63,7 @@ const ColorPalette = ({ classes, color, theme }) => (
       </Paper>
     </Grid>
     <Grid item xs={12} md={2}>
-      <Paper
+      <Paper elevation={0}
         classes={{
           root: classNames(classes.paper, classes[`${color}-dark`]),
         }}
