@@ -65,7 +65,8 @@ const SearchBarUI = (props) => {
           <Paper elevation={0} className={classes.list}>
             {
               options.map(option => (
-                <Paper elevation={0}
+                <Paper
+                  elevation={0}
                   className={classes.item}
                   key={option.key}
                   onClick={onSelectValue}
