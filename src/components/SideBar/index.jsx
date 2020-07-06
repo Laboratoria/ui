@@ -14,6 +14,7 @@ import {
   Hidden,
   List,
   ListItem,
+  ListItemAvatar,
   ListItemIcon,
   ListItemText,
   Toolbar,
@@ -229,7 +230,9 @@ const SideBar = (props, theme) => {
       </div>
       <Divider className={classes.divider} />
       <ListItem className={classes.profileBadge}>
-        <Avatar className={classes.avatar} >{ nameToInitials(name) }</Avatar>
+        <ListItemAvatar className={classes.profileBadge}>
+          <Avatar className={classes.avatar} >{ nameToInitials(name) }</Avatar>
+        </ListItemAvatar>
         <ListItemText
           classes={{ primary: classes.primary, secondary: classes.secondary }}
           primary={ name }
