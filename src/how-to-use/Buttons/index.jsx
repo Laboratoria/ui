@@ -1,6 +1,6 @@
 import React from 'react';
-import PrimaryButton from '../../components/Buttons';
 import { Typography } from '@material-ui/core';
+import PrimaryButton from '../../components/Buttons';
 
 const Buttons = () => (
   <section id="buttons">

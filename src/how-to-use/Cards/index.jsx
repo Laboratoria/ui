@@ -4,21 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, CardMedia, Typography } from '@material-ui/core';
 import CardMediaGitHub from '../../components/Cards';
 import {
-  aqp,
-  lim,
-  gdl,
-  cdmx,
-  scl,
-  spl,
+  aqpFlag,
+  limFlag,
+  gdlFlag,
+  cdmxFlag,
+  sclFlag,
+  splFlag,
+  bogFlag,
 } from '../../components/SVG/flags';
 
 const Flags = {
-  aqp,
-  lim,
-  gdl,
-  cdmx,
-  scl,
-  spl,
+  aqpFlag,
+  limFlag,
+  gdlFlag,
+  cdmxFlag,
+  sclFlag,
+  splFlag,
+  bogFlag,
 };
 
 const graduated = {

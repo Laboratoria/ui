@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from '../../components/Links';
 import { Typography } from '@material-ui/core';
+import Link from '../../components/Links';
 
 const Links = () => (
   <section id="links">
