@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 const Alert = ({ children, classes }) => (
-  <Paper className={classes.root}>
+  <Paper elevation={0} className={classes.root}>
     <Typography component="p" className={classes.text} align="center" id="alert">
       { children }
     </Typography>

@@ -49,7 +49,7 @@ const SearchBarUI = (props) => {
 
   return (
     <>
-      <Paper className={classes.searchBar}>
+      <Paper elevation={0} className={classes.searchBar}>
         <SearchIcon className={classes.icon} />
         <InputBase
           className={classes.input}
@@ -62,10 +62,10 @@ const SearchBarUI = (props) => {
       </Paper>
       { showOptions === true && options.length > 0
         && (
-          <Paper className={classes.list}>
+          <Paper elevation={0} className={classes.list}>
             {
               options.map(option => (
-                <Paper
+                <Paper elevation={0}
                   className={classes.item}
                   key={option.key}
                   onClick={onSelectValue}
