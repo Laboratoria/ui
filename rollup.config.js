@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import svg from 'rollup-plugin-svg';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
 
@@ -26,6 +26,9 @@ const getBabelOptions = ({ useESModules }) => ({
 
 const commonjsOptions = {
   include: 'node_modules/**',
+  namedExports: {
+    'node_modules/react-is/index.js': ['isFragment', 'ForwardRef', 'Memo'],
+  },
 };
 
 export default [
@@ -87,7 +90,7 @@ export default [
       babel(getBabelOptions({ useESModules: true })),
       svg(),
       commonjs(commonjsOptions),
-      uglify(),
+      terser(),
     ],
   },
 ];
