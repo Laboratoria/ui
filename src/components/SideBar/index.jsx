@@ -214,9 +214,12 @@ const SideBar = (props, theme) => {
     items,
     logoutItem,
     main,
+    isMobile,
     user: { name, email },
   } = props;
   const [isOpen, setIsOpen] = React.useState(true);
+
+  React.useEffect(() => isMobile && setIsOpen(false), []);
 
   const drawer = (
     <>
@@ -246,6 +249,7 @@ const SideBar = (props, theme) => {
             key={item.id}
             data-test={`item-${item.id}`}
             selected={isSelected(currentPath, item.id)}
+            onClick={() => isMobile && setIsOpen(!isOpen)}
           >
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
             <ListItemText
