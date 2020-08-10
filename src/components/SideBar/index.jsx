@@ -249,7 +249,6 @@ const SideBar = (props, theme) => {
             key={item.id}
             data-test={`item-${item.id}`}
             selected={isSelected(currentPath, item.id)}
-            onClick={() => isMobile && setIsOpen(!isOpen)}
           >
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
             <ListItemText
@@ -314,6 +313,7 @@ const SideBar = (props, theme) => {
             anchor={'left'}
             open={isOpen}
             onClose={() => setIsOpen(!isOpen)}
+            onClick={() => isMobile && setIsOpen(!isOpen)}
             classes={{
               paper: classes.drawerPaper,
             }}
