@@ -214,12 +214,9 @@ const SideBar = (props, theme) => {
     items,
     logoutItem,
     main,
-    isMobile,
     user: { name, email },
   } = props;
   const [isOpen, setIsOpen] = React.useState(true);
-
-  React.useEffect(() => isMobile && setIsOpen(false), []);
 
   const drawer = (
     <>
@@ -257,8 +254,8 @@ const SideBar = (props, theme) => {
             {isSelected(currentPath, item.id) && (
               <div
                 className={clsx(classes.triangle, {
-                  [`${classes['triangle-expanded']}`]: isOpen,
-                  [`${classes['triangle-collapsed']}`]: !isOpen,
+                  [`${classes['triangle-expanded']}`]: true,
+                  [`${classes['triangle-collapsed']}`]: false,
                 })} />
             )}
           </ListItem>
@@ -311,7 +308,7 @@ const SideBar = (props, theme) => {
             container={container}
             variant="temporary"
             anchor={'left'}
-            open={isOpen}
+            open={!isOpen}
             onClose={() => setIsOpen(!isOpen)}
             onClick={() => isMobile && setIsOpen(!isOpen)}
             classes={{
@@ -320,6 +317,7 @@ const SideBar = (props, theme) => {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
+            onClick={() => setTimeout(() => setIsOpen(!isOpen), 150)}
           >
             {drawer}
           </Drawer>
