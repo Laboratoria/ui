@@ -50,8 +50,8 @@ const styles = theme => ({
     background: '#3ED58C',
     borderRadius: 0,
     color: theme.palette.common.black,
-    height: `${theme.spacing.unit * 5}px`,
-    width: `${theme.spacing.unit * 5}px`,
+    height: `${theme.spacing(5)}px`,
+    width: `${theme.spacing(5)}px`,
   },
   divider: {
     backgroundColor: theme.palette.background.default,
@@ -75,7 +75,7 @@ const styles = theme => ({
         duration: theme.transitions.duration.leavingScreen,
         easing: theme.transitions.easing.sharp,
       }),
-      width: (theme.spacing.unit * 9) + 1,
+      width: (theme.spacing(9)) + 1,
     },
   },
   drawerOpen: {
@@ -89,12 +89,12 @@ const styles = theme => ({
   },
   list: {
     height: '100%',
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
   },
   listItem: {
     opacity: 0.7,
     maxHeight: '48px',
-    paddingTop: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
     '&:hover': {
       opacity: 1,
     },
@@ -104,10 +104,10 @@ const styles = theme => ({
   },
   listItemIcon: {
     color: 'inherit',
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
   },
   listItemText: {
-    paddingLeft: theme.spacing.unit,
+    paddingLeft: theme.spacing(1),
   },
   logout: {
     position: 'absolute',
@@ -117,18 +117,18 @@ const styles = theme => ({
   main: {
     flexGrow: 1,
     minHeight: '100vh',
-    padding: `0 ${theme.spacing.unit * 15}px`,
+    padding: `0 ${theme.spacing(15)}px`,
     [theme.breakpoints.only('xs')]: {
-      padding: `0 ${theme.spacing.unit * 2}px`,
+      padding: `0 ${theme.spacing(2)}px`,
     },
   },
   menuBtn: {
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
-      marginRight: theme.spacing.unit * 3,
+      marginRight: theme.spacing(3),
     },
     [theme.breakpoints.only('xs')]: {
-      marginLeft: -theme.spacing.unit * 2,
+      marginLeft: -theme.spacing(1) * 2,
     },
   },
   'menuBtn-close': {
@@ -143,8 +143,8 @@ const styles = theme => ({
     lineHeight: '1.5em',
   },
   profileBadge: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   root: {
     display: 'flex',
