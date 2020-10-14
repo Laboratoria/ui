@@ -1,17 +1,17 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { addReadme } from 'storybook-readme';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 
 import Theme from '../src/components/Theme';
 
 addDecorator(storyFn => (
-  <MuiThemeProvider theme={Theme}>
+  <ThemeProvider theme={Theme}>
     <div style={{ background: '#EEEEEE', padding: 20 }}>
       {storyFn()}
     </div>
-  </MuiThemeProvider>
+  </ThemeProvider>
 ));
 
 addDecorator(addReadme);
