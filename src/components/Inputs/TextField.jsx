@@ -41,7 +41,7 @@ class TextField extends Component {
 }
 
 TextField.propTypes = {
-  label: PropTypes.shape({}).isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   classes: PropTypes.shape({}).isRequired,
   inputProps: PropTypes.shape({}).isRequired,
 };
