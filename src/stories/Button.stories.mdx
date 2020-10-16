@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import { Button } from '../components';
+import './storybook-main.css';
+
+<Meta title="Components/Buttons" component={Button} />
+
+# Buttons
+
+### How to use
+
+```js
+import { Button } from 'laboratoria-ui';
+```
+
+El componente `Button` utiliza por defecto `size="medium"`, `color="primary"` y `variant="contained"`.
+
+## Contained Buttons
+
+<Canvas>
+  <Story name="Contained" decorators={[(Story) => <div className="center-text buttons-container"><Story/></div>]}>
+    <Button>Primary</Button>
+    <Button color="secondary">Secondary</Button>
+    <Button disabled>Disabled</Button>
+  </Story>
+</Canvas>
+
+## Outlined Buttons
+
+<Canvas>
+  <Story name="Outlined" decorators={[(Story) => <div className="center-text buttons-container"><Story/></div>]}>
+    <Button variant="outlined">Primary</Button>
+    <Button variant="outlined" color="secondary">Secondary</Button>
+    <Button variant="outlined" disabled>Disabled</Button>
+  </Story>
+</Canvas>
+
+## Sizes
+
+<Canvas>
+  <Story name="Sizes">
+    <div className="center-text mb-16 buttons-container">
+      <Button size="small">Small</Button>
+      <Button>Medium</Button>
+      <Button size="large">Large</Button>
+    </div>
+    <div className="center-text buttons-container">
+      <Button color="secondary" size="small" variant="outlined">Small</Button>
+      <Button color="secondary" variant="outlined">Medium</Button>
+      <Button color="secondary" size="large" variant="outlined">Large</Button>
+    </div>
+  </Story>
+</Canvas>
