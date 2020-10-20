@@ -1,0 +1,29 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import { TextField } from '../components';
+
+<Meta title="Components/Inputs" component={TextField} />
+
+# Inputs
+
+### How to use
+
+```js
+import { TextField } from 'laboratoria-ui';
+```
+
+## TextField
+
+<Canvas>
+  <Story name="TextField">
+    <TextField 
+      inputProps={{
+        id: 'name',
+        required: true,
+        type: 'text',
+      }}
+      label="Name"
+    />
+  </Story>
+</Canvas>
+
