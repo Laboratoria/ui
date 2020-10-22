@@ -1,0 +1,24 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import { Link } from '../components';
+
+<Meta title="Components/Links" component={Link} />
+
+## Links
+
+### How to use
+
+```js
+import { Link } from 'laboratoria-ui';
+```
+
+## Simple links
+
+<Canvas>
+  <Story name="Simple" decorators={[(Story) => <div className="links-container center-text"><Story/></div>]}>
+    <Link id="default" href="#default">Default</Link>
+    <Link id="primary" href="#primary" variant="primary">Primary</Link>
+    <Link id="magenta" href="#magenta" variant="magenta">Magenta</Link>
+    <Link id="mint" href="#mint" variant="mint">Mint</Link>
+  </Story>
+</Canvas>
