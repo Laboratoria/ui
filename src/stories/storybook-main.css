@@ -1,0 +1,35 @@
+.center-text {
+  text-align: center;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+/* Styles for containers */
+.loaders-container,
+.logos-container {
+  display: flex;
+}
+
+.loaders-container {
+  justify-content: center;
+}
+
+.logos-container {
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Styles for items of container */
+.buttons-container button[class*="Button"],
+.links-container [class*="Link"],
+.loaders-container [class*="Loader"],
+.flags-container img,
+.icons-container img {
+  margin: 0 8px;
+}
+
+.logos-container img {
+  margin: 12px 0;
+}
