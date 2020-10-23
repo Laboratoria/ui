@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+
+import { SearchBar, SearchBarUI } from '../components';
+
+<Meta title="Components/SearchBarUI" />
+
+# SearchBar UI
+
+### How to use
+
+```js
+import { SearchBar, SearchBarUI } from 'laboratoria-ui';
+```
+
+## SearchBarUI closed
+
+<Canvas>
+  <Story name="SearchBarUI closed">
+    <SearchBarUI
+      options={['César', 'Gonzalo', 'Mery', 'Steph']}
+      onSelectValue={action('onSelectValue')}
+      onChange={action('onChange')}
+      value="Search by name"
+    />
+  </Story>
+</Canvas>
+
+## SearchBarUI opened
+
+<Canvas>
+  <Story name="SearchBarUI opened">
+    <SearchBarUI
+      options={['César', 'Gonzalo', 'Mery', 'Steph']}
+      onSelectValue={action('onSelectValue')}
+      onChange={action('onChange')}
+      value="Search by name"
+      showOptions
+    />
+  </Story>
+</Canvas>
+
+## SearchBar
+
+<Canvas>
+  <Story name="SearchBar">
+    <SearchBar
+      options={['César', 'Gonzalo', 'Mery', 'Steph']}
+      debounceCallback={action('debounceCallback')}
+      onSelectValue={action('onelectValue')}
+    />
+  </Story>
+</Canvas>
