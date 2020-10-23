@@ -1,22 +1,25 @@
-import React from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import GroupIcon from '@material-ui/icons/Group';
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { storiesOf } from '@storybook/react';
+import GroupIcon from '@material-ui/icons/Group';
+import HomeIcon from '@material-ui/icons/Home';
 
-import SideBarReadme from './README.md';
+import { SideBar } from '../components';
 
-import SideBar from '.';
+<Meta title="Components/Sidebar" component={SideBar} />
 
-storiesOf('SideBar', module)
-  .addParameters({
-    readme: {
-      content: SideBarReadme,
-    },
-  })
-  .add('SideBar', () => (
-    <>
-      <SideBar
+# Sidebar
+
+### How to use
+
+```js
+import { Sidebar } from 'laboratoria-ui';
+```
+
+## Contained Buttons
+
+<Canvas>
+  <Story name="Sidebar">
+    <SideBar
         currentPath="/"
         isSelected={(path, item) => {
           switch (item) {
@@ -41,5 +44,9 @@ storiesOf('SideBar', module)
         }}
         user={{ name: 'Nombre Apellidos', email: 'nombre.apellido@dominio.la' }}
       />
-    </>
-  ));
+  </Story>
+</Canvas>
+
+### View the source
+
+Aquí puedes revisar el código del componente: [SideBar](https://github.com/Laboratoria/ui/blob/master/src/components/SideBar/index.jsx)
