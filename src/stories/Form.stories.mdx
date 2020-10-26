@@ -1,0 +1,67 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+
+import { Login, SignUp, PasswordRecovery } from '../components';
+
+<Meta title="Components/Forms" />
+
+# Forms
+
+## SignUp
+
+### How to use
+
+```js
+import { SignUp } from 'laboratoria-ui';
+```
+
+<Canvas>
+  <Story name="SignUp">
+    <SignUp />
+  </Story>
+</Canvas>
+
+### View the source
+
+Aquí puedes revisar el código del componente: [SignUp](https://github.com/Laboratoria/ui/blob/master/src/components/SignUp/index.jsx)
+
+El link de **"¿Tienes una cuenta? Ingresa"** tiene un href que redirecciona hacia la ruta *href="/login"*
+
+## Login
+
+### How to use
+
+```js
+import { Login } from 'laboratoria-ui';
+```
+
+<Canvas>
+  <Story name="Login">
+    <Login />
+  </Story>
+</Canvas>
+
+### View the source
+
+Aquí puedes revisar el código del componente: [Login](https://github.com/Laboratoria/ui/blob/master/src/components/Login/index.jsx)
+
+El link de **"¿Olvidaste tu Contraseña?"** tiene un href que redirecciona hacia la ruta *href="/recovery-pass"*
+
+El link de **"Regístrate"** tiene un href que redirecciona hacia la ruta *href="/create-account"*
+
+## Password Recovery
+
+### How to use
+
+```js
+import { PasswordRecovery } from 'laboratoria-ui';
+```
+
+<Canvas>
+  <Story name="Password Recovery">
+    <PasswordRecovery />
+  </Story>
+</Canvas>
+
+### View the source
+
+Aquí puedes revisar el código del componente: [PasswordRecovery](https://github.com/Laboratoria/ui/blob/master/src/components/PasswordRecovery/index.jsx)
