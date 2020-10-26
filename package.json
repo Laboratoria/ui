@@ -55,7 +55,6 @@
     "react-is": "^16.13.1",
     "rollup": "^1.4.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-ignore": "^1.0.3",
     "rollup-plugin-jsx": "^1.0.3",
     "rollup-plugin-node-globals": "^1.2.1",
