@@ -39,7 +39,7 @@ const styles = theme => ({
   },
 });
 
-function Link(props) {
+const Link = React.forwardRef((props, ref) => {
   const {
     children,
     classes,
@@ -50,6 +50,7 @@ function Link(props) {
 
   return (
     <a
+      ref={ref}
       className={classNames(
         classes.root,
         {
@@ -71,7 +72,7 @@ function Link(props) {
       {children}
     </a>
   );
-}
+});
 
 Link.defaultProps = {
   className: '',
@@ -85,4 +86,4 @@ Link.propTypes = {
   variant: PropTypes.oneOf(['default', 'primary', 'magenta', 'mint']),
 };
 
-export default withStyles(styles)(Link);
+export default withStyles(styles, { name: 'Link' })(Link);
