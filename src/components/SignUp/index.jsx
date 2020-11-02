@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Grid,
-  Typography,
   Checkbox,
   FormControlLabel,
 } from '@material-ui/core';
@@ -16,6 +15,13 @@ import TextField from '../Inputs/TextField';
 const style = {
   root: {
     flexGrow: 1,
+    '& a': {
+      border: 'none',
+      fontWeight: 400,
+    },
+    '& strong': {
+      fontWeight: 400,
+    },
   },
   action: {
     width: '100%',
@@ -23,11 +29,11 @@ const style = {
     marginTop: 20,
     marginBottom: 20,
   },
-  link: {
-    '& a': {
-      border: 'none',
-      fontWeight: 400,
-    },
+  formControlLabel: {
+    marginRight: 0,
+  },
+  checkbox: {
+    padding: 9,
   },
 };
 
@@ -94,21 +100,24 @@ const SingUp = ({
         />
         <FormControlLabel
           data-test="checkbox"
-          classes={{ label: classes.link }}
-          control={<Checkbox color="primary" checked={checked} onChange={handleChange} required />}
+          classes={{ root: classes.formControlLabel }}
+          control={(
+            <Checkbox
+              checked={checked}
+              classes={{ root: classes.checkbox }}
+              color="primary"
+              onChange={handleChange}
+              required
+            />
+          )}
           label={privacyPolicies}
         />
 
         <div className={classes.action}>
           <Button id="buttonSignUp" type="submit">{labels.submit}</Button>
         </div>
-        <Typography
-          classes={{ root: classes.link }}
-          component="p"
-          align="center"
-        >
-          {logIn}
-        </Typography>
+
+        {logIn}
       </Grid>
     </Grid>
   );
@@ -141,11 +150,11 @@ SingUp.defaultProps = {
     </>
   ),
   logIn: (
-    <>
+    <p>
       ¿Tienes una cuenta?
       {' '}
       <Link href="/login">Ingresa</Link>
-    </>
+    </p>
   ),
 };
 
