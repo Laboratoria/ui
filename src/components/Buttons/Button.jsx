@@ -1,21 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import capitalize from '../../utils/capitalize';
 
 const styles = theme => ({
-  contained: {
-    border: 0,
-    padding: '14px 25px',
+  root: {
+    borderRadius: 5,
+    boxShadow: 'none',
+    color: '#000',
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '1rem',
+    fontWeight: 800,
+    lineHeight: 'normal',
     '&:hover': {
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
-      },
+      boxShadow: 'none',
     },
-    '&$disabled': {
-      backgroundColor: theme.palette.action.disabledBackground,
+  },
+  contained: {
+    padding: '14px 25px',
+  },
+  containedPrimary: {
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  containedSecondary: {
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: '#f7f7f7',
     },
   },
   containedSizeSmall: {
@@ -24,61 +39,34 @@ const styles = theme => ({
   containedSizeLarge: {
     padding: '20px 31px',
   },
-  disabled: {},
-  fullWidth: {
-    width: '100%',
-  },
   outlined: {
     border: '3px solid #202020',
     padding: '11px 22px',
     '&:hover': {
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
-      },
+      border: '3px solid #202020',
     },
-    '&$disabled': {
-      backgroundColor: theme.palette.action.disabledBackground,
-      border: `3px solid ${theme.palette.action.disabledBackground}`,
+  },
+  outlinedPrimary: {
+    background: theme.palette.primary.main,
+    '&:hover': {
+      background: theme.palette.primary.dark,
     },
+  },
+  outlinedSecondary: {
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: '#f7f7f7',
+    },
+  },
+  outlinedDisabled: {
+    backgroundColor: theme.palette.action.disabledBackground,
+    border: `3px solid ${theme.palette.action.disabledBackground} !important`,
   },
   outlinedSizeSmall: {
     padding: '5px 18px',
   },
   outlinedSizeLarge: {
     padding: '17px 28px',
-  },
-  primary: {
-    backgroundColor: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-  },
-  root: {
-    borderRadius: 5,
-    boxShadow: 'none',
-    color: '#000',
-    display: 'inline-flex',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: '1rem',
-    fontWeight: 800,
-    minWidth: 64,
-    textDecoration: 'none',
-    textTransform: 'uppercase',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-    '&$disabled': {
-      color: theme.palette.action.disabled,
-    },
-  },
-  secondary: {
-    backgroundColor: theme.palette.common.white,
-    '&:hover': {
-      backgroundColor: '#f7f7f7',
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
-    },
   },
   sizeSmall: {
     fontSize: '0.875rem',
@@ -88,58 +76,34 @@ const styles = theme => ({
   },
 });
 
-const Button = (props) => {
-  const {
-    classes,
-    className,
-    color,
-    component: ComponentProp,
-    disabled,
-    fullWidth,
-    size,
-    variant,
-    ...other
-  } = props;
+const LabButton = React.forwardRef(({
+  classes: { outlinedDisabled, ...classes },
+  disabled,
+  variant,
+  ...other
+}, ref) => (
+  <Button
+    className={clsx({ [outlinedDisabled]: variant === 'outlined' && disabled })}
+    classes={{ ...classes }}
+    disabled={disabled}
+    ref={ref}
+    variant={variant}
+    {...other}
+  />
+));
 
-  return (
-    <ComponentProp
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes[color]]: color,
-          [classes.disabled]: disabled,
-          [classes.fullWidth]: fullWidth,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
-      disabled={disabled}
-      {...other}
-    />
-  );
-};
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary']),
-  component: PropTypes.elementType,
+LabButton.propTypes = {
+  color: PropTypes.string,
+  classes: PropTypes.shape().isRequired,
   disabled: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  variant: PropTypes.oneOf(['contained', 'outlined']),
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
-Button.defaultProps = {
+LabButton.defaultProps = {
   color: 'primary',
-  component: 'button',
   disabled: false,
-  fullWidth: false,
-  size: 'medium',
   variant: 'contained',
 };
 
-export default withStyles(styles)(Button);
+// NOTE: In a next refactoring the class name could be LabButton
+export default withStyles(styles, { name: 'Button' })(LabButton);
