@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
-import { logoWhite, isotypeWhite } from '../SVG/logos';
-
 import { withStyles } from '@material-ui/core/styles';
-
 import {
   AppBar,
   Avatar,
@@ -18,9 +15,10 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Typography,
   IconButton,
 } from '@material-ui/core';
+
+import { logoWhite, isotypeWhite } from '../SVG/logos';
 
 const drawerWidth = 320;
 
@@ -208,10 +206,9 @@ const nameToInitials = (name = '') => name.split(' ').reduce((memo, item) => {
   return memo;
 }, '');
 
-const SideBar = (props, theme) => {
+const SideBar = (props) => {
   const {
     classes,
-    container,
     currentPath,
     isSelected,
     items,
@@ -226,15 +223,16 @@ const SideBar = (props, theme) => {
       <div className={classes.toolbar}>
         { isOpen
           ? <img src={logoWhite} alt="Logo" width="70%" height="85" />
-          : <img src={isotypeWhite} alt="Isotipo"  width="70%" height="45" /> }
+          : <img src={isotypeWhite} alt="Isotipo" width="70%" height="45" /> }
       </div>
       <Divider className={classes.divider} />
       <ListItem className={classes.profileBadge}>
-        <Avatar className={classes.avatar} >{ nameToInitials(name) }</Avatar>
+        <Avatar className={classes.avatar}>{ nameToInitials(name) }</Avatar>
         <ListItemText
           classes={{ primary: classes.primary, secondary: classes.secondary }}
-          primary={ name }
-          secondary={ email }
+          primary={name}
+          secondary={email}
+          style={{ padding: '0 16px', margin: 0 }}
         />
       </ListItem>
       <Divider className={classes.divider} />
@@ -243,8 +241,8 @@ const SideBar = (props, theme) => {
           <ListItem
             button
             classes={{
-                root: classes.listItem,
-                selected: classes['listItem-actived'],
+              root: classes.listItem,
+              selected: classes['listItem-actived'],
             }}
             key={item.id}
             data-test={`item-${item.id}`}
@@ -253,13 +251,15 @@ const SideBar = (props, theme) => {
             <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
             <ListItemText
               classes={{ root: classes.listItemText, primary: classes.primary }}
-              primary={item.text} />
+              primary={item.text}
+            />
             {isSelected(currentPath, item.id) && (
               <div
                 className={clsx(classes.triangle, {
                   [`${classes['triangle-expanded']}`]: true,
                   [`${classes['triangle-collapsed']}`]: false,
-                })} />
+                })}
+              />
             )}
           </ListItem>
         ))}
@@ -279,7 +279,7 @@ const SideBar = (props, theme) => {
               style={{ paddingLeft: '8px' }}
             />
           </ListItem>
-        </div> 
+        </div>
       </List>
     </>
   );
@@ -306,47 +306,45 @@ const SideBar = (props, theme) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-        <Hidden smUp>
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={'left'}
-            open={!isOpen}
-            onClose={() => setIsOpen(!isOpen)}
-            onClick={() => isMobile && setIsOpen(!isOpen)}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            onClick={() => setTimeout(() => setIsOpen(!isOpen), 150)}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown>
-          <Drawer
-            classes={{
-              root: clsx(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClose),
-              paper: clsx(classes.drawerPaper, {
-                [classes.drawerOpen]: isOpen,
-                [classes.drawerClose]: !isOpen,
-              }),
-            }}
-            open={isOpen}
-            variant="permanent"
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
+      <Hidden smUp>
+        <Drawer
+          variant="temporary"
+          anchor="left"
+          open={!isOpen}
+          onClose={() => setIsOpen(!isOpen)}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          onClick={() => setTimeout(() => setIsOpen(!isOpen), 150)}
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+      <Hidden xsDown>
+        <Drawer
+          classes={{
+            root: clsx(classes.drawer, isOpen ? classes.drawerOpen : classes.drawerClose),
+            paper: clsx(classes.drawerPaper, {
+              [classes.drawerOpen]: isOpen,
+              [classes.drawerClose]: !isOpen,
+            }),
+          }}
+          open={isOpen}
+          variant="permanent"
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
       <main className={classes.main}>
         <div className={classes.toolbar} />
         {main}
       </main>
     </div>
   );
-}
+};
 
 SideBar.propTypes = {
   classes: PropTypes.shape({
@@ -355,16 +353,20 @@ SideBar.propTypes = {
     avatar: PropTypes.string.isRequired,
     divider: PropTypes.string.isRequired,
     drawer: PropTypes.string.isRequired,
+    drawerClose: PropTypes.string.isRequired,
+    drawerOpen: PropTypes.string.isRequired,
     drawerPaper: PropTypes.string.isRequired,
     list: PropTypes.string.isRequired,
     listItem: PropTypes.string.isRequired,
     'listItem-actived': PropTypes.string.isRequired,
     listItemIcon: PropTypes.string.isRequired,
+    listItemText: PropTypes.string.isRequired,
     logout: PropTypes.string.isRequired,
     main: PropTypes.string.isRequired,
     menuBtn: PropTypes.string.isRequired,
     'menuBtn-close': PropTypes.string.isRequired,
     primary: PropTypes.string.isRequired,
+    profileBadge: PropTypes.string.isRequired,
     root: PropTypes.string.isRequired,
     secondary: PropTypes.string.isRequired,
     signOutBtn: PropTypes.string.isRequired,
@@ -373,8 +375,20 @@ SideBar.propTypes = {
     'triangle-expanded': PropTypes.string.isRequired,
     'triangle-collapsed': PropTypes.string.isRequired,
   }).isRequired,
+  currentPath: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  logoutItem: PropTypes.shape({}).isRequired,
+  isSelected: PropTypes.func.isRequired,
+  logoutItem: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+    onClick: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  main: PropTypes.node.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default withStyles(styles)(SideBar);
