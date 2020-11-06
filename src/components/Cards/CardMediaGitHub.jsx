@@ -61,7 +61,7 @@ const CardMediaGitHub = (props) => {
         </Typography>
       </CardContent>
 
-      <CardActions disableActionSpacing>
+      <CardActions disableSpacing>
         { action }
       </CardActions>
 
