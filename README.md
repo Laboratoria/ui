@@ -22,7 +22,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Inject a theme into your application
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 // Our theme
 import { Theme } from 'laboratoria-ui';
@@ -31,7 +31,7 @@ import Typography from '@material-ui/core/Typography';
 import Login from 'laboratoria-ui';
 
 ReactDOM.render(
-  <MuiThemeProvider theme={Theme}>
+  <ThemeProvider theme={Theme}>
     <div>
       <Typography variant="h1" align="center">
         ¡Hola!
@@ -39,7 +39,7 @@ ReactDOM.render(
 
       <Login/>
     </div> 
-  </MuiThemeProvider>
+  </ThemeProvider>
   document.getElementById('app'),
 );
 ```
