@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming/create'
-import logo from './public/logo.png'
+import logo from './images/logo.png'
 import Theme from '../src/components/Theme.jsx';
 
 export default create({
