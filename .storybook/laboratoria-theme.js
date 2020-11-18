@@ -8,7 +8,7 @@ export default create({
   colorSecondary: Theme.palette.primary.main,
   barSelectedColor: Theme.palette.primary.main,
   brandTitle: 'Laboratoria',
-  brandUrl: 'https://laboratoria.la/',
+  brandUrl: 'http://ui.laboratoria.la/',
   brandImage: `/${logo}`,
 })
 
