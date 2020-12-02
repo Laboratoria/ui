@@ -17,6 +17,7 @@ const theme = createMuiTheme({
     },
     MuiFormLabel: {
       root: {
+        fontWeight: 400,
         '&$error': {
           color: '#000',
         },
