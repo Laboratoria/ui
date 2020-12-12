@@ -63,7 +63,7 @@
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-svg": "^1.0.1",
     "rollup-plugin-terser": "^7.0.2",
-    "throttle-debounce": "^2.1.0"
+    "throttle-debounce": "^3.0.1"
   },
   "browserslist": [
     ">0.2%",
