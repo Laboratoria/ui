@@ -71,7 +71,7 @@ Si deseas obtener más información sobre el proceso de desarrollo, el flujo de 
 
 ## Team
 
-Devs: Todo el equipo de [developers](https://github.com/orgs/Laboratoria/teams/developers) de Laboratoria
+Devs: Todo el equipo de [developers](https://github.com/orgs/Laboratoria/people) de Laboratoria
 
 ## Soporte
 
