@@ -10,6 +10,7 @@ import Button from '../Buttons';
 
 import Link from '../Links';
 import TextField from '../Inputs/TextField';
+import Autocomplete from '../Autocomplete';
 
 
 const style = {
@@ -38,7 +39,13 @@ const style = {
 };
 
 const SingUp = ({
-  onSubmit, onBlur, labels, logIn, privacyPolicies, classes,
+  autocompleteProps,
+  classes,
+  labels,
+  logIn,
+  onSubmit,
+  onBlur,
+  privacyPolicies,
 }) => {
   const [checked, setChecked] = React.useState(false);
 
@@ -58,16 +65,19 @@ const SingUp = ({
           onSubmit(event.target);
         }}
       >
-        <TextField
-          label={labels.company}
-          inputProps={{
-            id: 'company',
-            name: 'company',
-            type: 'text',
-            required: true,
-            onBlur: event => onBlur(event),
-          }}
-        />
+        { autocompleteProps ? <Autocomplete {...autocompleteProps} />
+          : (
+            <TextField
+              label={labels.company}
+              inputProps={{
+                id: 'company',
+                name: 'company',
+                type: 'text',
+                required: true,
+                onBlur: event => onBlur(event),
+              }}
+            />
+          )}
         <TextField
           label={labels.name}
           inputProps={{
@@ -124,6 +134,7 @@ const SingUp = ({
 };
 
 SingUp.defaultProps = {
+  autocompleteProps: null,
   onSubmit: () => {
     console.log('OnSubmit');
   },
@@ -159,6 +170,7 @@ SingUp.defaultProps = {
 };
 
 SingUp.propTypes = {
+  autocompleteProps: PropTypes.shape(),
   classes: PropTypes.shape().isRequired,
   onSubmit: PropTypes.func,
   onBlur: PropTypes.func,
