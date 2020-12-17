@@ -1,4 +1,5 @@
 export { default as Theme } from './Theme';
+export { default as Autocomplete } from './Autocomplete';
 export { default as Button } from './Buttons';
 export { default as Link } from './Links';
 export { default as Header } from './partials/Header';

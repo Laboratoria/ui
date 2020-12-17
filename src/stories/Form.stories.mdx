@@ -1,6 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
 
 import { Login, SignUp, PasswordRecovery } from '../components';
+import loadOptions from './storybook-utils.js';
 
 <Meta title="Components/Forms" />
 
@@ -16,7 +17,7 @@ import { SignUp } from 'laboratoria-ui';
 
 <Canvas>
   <Story name="SignUp">
-    <SignUp />
+    <SignUp autocompleteProps={{ loadOptions, placeholder: 'City' }} />
   </Story>
 </Canvas>
 
